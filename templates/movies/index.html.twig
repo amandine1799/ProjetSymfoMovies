@@ -11,7 +11,7 @@
       <h2>{{ media.title }}</h2>
       <div class="content">
         <img src="{{ media.poster }}" alt="">
-        <a href="{{ path('movies_film', {'id': media.id}) }}" class="btn btn-primary">En savoir +</a>
+        <a href="{{ path('movies_show', {'title': media.title}) }}" class="btn btn-primary">En savoir +</a>
       </div>
     </div>
   {% endfor %}

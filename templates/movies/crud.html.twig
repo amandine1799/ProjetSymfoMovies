@@ -4,7 +4,6 @@
 
 {% block body %}
     <h1>Media index</h1>
-
     <table class="table">
         <thead>
             <tr>
@@ -25,8 +24,8 @@
                 <td>{{ medium.releasedYear }}</td>
                 <td>{{ medium.poster }}</td>
                 <td>
-                    <a href="{{ path('media_show', {'id': medium.id}) }}">show</a>
-                    <a href="{{ path('media_edit', {'id': medium.id}) }}">edit</a>
+                    <a href="{{ path('movies_show', {'title' : medium.title}) }}">show</a>
+                    <a href="{{ path('movies_edit', {'title': medium.title}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +36,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('media_new') }}">Create new</a>
+    <a href="{{ path('movies_new') }}">Create new</a>
 {% endblock %}
