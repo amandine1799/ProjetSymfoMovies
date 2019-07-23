@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="film">
+      <h2>{{ media.title }}</h2>
+      <div class="content">
+        <img src="{{ media.poster }}" alt="">
+        <hr>
+        {{ media.synopsis | raw }}
+      </div>
+    </div>
+{% endblock %}
