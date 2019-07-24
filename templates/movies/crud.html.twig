@@ -4,31 +4,30 @@
 
 {% block body %}
     <h1>Media index</h1>
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Synopsis</th>
-                <th>Released_year</th>
-                <th>Poster</th>
-                <th>Genre</th>
-                <th>actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Synopsis</th>
+                <th scope="col">Année</th>
+                <th scope="col">Affiche</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Editer</th>
+                <th scope="col">Voir</th>
             </tr>
         </thead>
         <tbody>
         {% for medium in media %}
-            <tr>
+            <tr class="table-secondary">
                 <td>{{ medium.id }}</td>
                 <td>{{ medium.title }}</td>
                 <td>{{ medium.synopsis }}</td>
                 <td>{{ medium.releasedYear }}</td>
                 <td>{{ medium.poster }}</td>
                 <td>{{ medium.genres.name }}</td>
-                <td>
-                    <a href="{{ path('movies_show', {'title' : medium.title}) }}">show</a>
-                    <a href="{{ path('movies_edit', {'title': medium.title}) }}">edit</a>
-                </td>
+                <td><a href="{{ path('movies_edit', {'title': medium.title}) }}"><i class="fas fa-edit"></i></a></td>
+                <td><a href="{{ path('movies_show', {'title' : medium.title}) }}"><i class="far fa-eye"></i></a></td>
             </tr>
         {% else %}
             <tr>
@@ -37,6 +36,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('movies_new') }}">Create new</a>
+    <a href="{{ path('movies_new') }}"><button type="button" class="btn btn-secondary">Ajouter</button></a>
 {% endblock %}

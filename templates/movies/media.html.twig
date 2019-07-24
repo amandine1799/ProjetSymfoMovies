@@ -3,16 +3,14 @@
 
 {% endblock %}
 {% block body %}
-    <div class="film">
-      <h2>{{ media.title }}</h2>
-      <div class="content">
-        <img src="{{ media.poster }}" alt="">
-        <hr>
-        {{ media.synopsis | raw }}
+    <div class="media">
+      <img src="{{ media.poster }}" alt="">
+      <div class="media-content">
+        <h2>{{ media.title }}</h2>
+        <p>{{ media.synopsis | raw }}</p>
       </div>
-      {{ media.genres.name }}
-      {# media->getGenres() #}
-      {# genres.name #}
-      {# genres->getName() #}
+    </div>
+    <div class="media-description">
+        {{ media.genres.name }}
     </div>
 {% endblock %}

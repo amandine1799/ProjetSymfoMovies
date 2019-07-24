@@ -1,3 +1,73 @@
 button.navbar-toggler {
     outline: none;
   }
+
+  html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    text-align: center;
+    color: white;
+    font-family: 'Arvo';
+  }
+
+  .content {
+    background-color: black;
+  }
+
+  .poster-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .poster-grid a {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-family: 'Arvo';
+    display: block;
+    margin: 0 5px;
+    width: 200px;
+  }
+
+  .poster-grid img:hover {
+    opacity: 0.7;
+  }
+
+  .poster-grid img {
+    height: 250px;
+  }
+
+  .media {
+    height: 33em;
+    background-color: black;
+    padding-top: 1.5em;
+  }
+
+  .media img {
+    height: 450px;
+    padding-left: 20%;
+  }
+
+  .media-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    width: 40%;
+    box-sizing: border-box;
+    padding-left: 40px;
+    color: #ffffff;
+  }
+
+  .media-content p {
+    padding-top: 1em;
+  }

@@ -4,8 +4,9 @@
 
 {% block body %}
     <h1>Create new Media</h1>
-
+    
+    <a href="{{ path('movies_crud') }}">back to list</a>
+    
     {{ include('movies/_form.html.twig') }}
 
-    <a href="{{ path('movies_crud') }}">back to list</a>
 {% endblock %}

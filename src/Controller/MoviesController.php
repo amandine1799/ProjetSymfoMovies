@@ -42,7 +42,7 @@ class MoviesController extends AbstractController
             $entityManager->persist($medium);
             $entityManager->flush();
 
-            return $this->redirectToRoute('movies');
+            return $this->redirectToRoute('movies_crud');
         }
 
         return $this->render('movies/new.html.twig', [

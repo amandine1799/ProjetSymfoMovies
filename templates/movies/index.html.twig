@@ -1,21 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MoviesController!{% endblock %}
+{% block title %}Films & Séries{% endblock %}
 
 {% block body %}
+<div class="content p-2">
+  <div class="container-fluid">
+    <h1>Médias</h1>
 
-<section class="films">
-
-  {% for media in medias %}
-    <div class="film">
-      <div class="content">
-        <a href="{{ path('movies_show', {'title': media.title}) }}"><img src="{{ media.poster }}" alt="">
-          <h3>{{ media.title }}</h3>
-        </a>
-      </div>
+    <div class="poster-grid">
+    {% for media in medias %}
+    <a href="{{ path('movies_show', {'title': media.title}) }}"><img src="{{ media.poster }}" alt="">
+      <p>{{ media.title }}</p>
+    </a>
+    {% endfor %}
     </div>
-  {% endfor %}
-
-</section>
-
+  </div>
+</div>
 {% endblock %}
