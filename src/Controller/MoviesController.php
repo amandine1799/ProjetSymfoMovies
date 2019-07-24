@@ -14,6 +14,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class MoviesController extends AbstractController
 {
+
+
     /**
      * @Route("/", name="index")
      */

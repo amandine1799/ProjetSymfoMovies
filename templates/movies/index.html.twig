@@ -8,10 +8,10 @@
 
   {% for media in medias %}
     <div class="film">
-      <h2>{{ media.title }}</h2>
       <div class="content">
-        <img src="{{ media.poster }}" alt="">
-        <a href="{{ path('movies_show', {'title': media.title}) }}" class="btn btn-primary">En savoir +</a>
+        <a href="{{ path('movies_show', {'title': media.title}) }}"><img src="{{ media.poster }}" alt="">
+          <h3>{{ media.title }}</h3>
+        </a>
       </div>
     </div>
   {% endfor %}

@@ -12,6 +12,7 @@
                 <th>Synopsis</th>
                 <th>Released_year</th>
                 <th>Poster</th>
+                <th>Genre</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,6 +24,7 @@
                 <td>{{ medium.synopsis }}</td>
                 <td>{{ medium.releasedYear }}</td>
                 <td>{{ medium.poster }}</td>
+                <td>{{ medium.genres.name }}</td>
                 <td>
                     <a href="{{ path('movies_show', {'title' : medium.title}) }}">show</a>
                     <a href="{{ path('movies_edit', {'title': medium.title}) }}">edit</a>

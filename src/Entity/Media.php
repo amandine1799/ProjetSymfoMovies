@@ -36,6 +36,12 @@ class Media
      */
     private $poster;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Genres", inversedBy="media")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $genres;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +91,18 @@ class Media
     public function setPoster(string $poster): self
     {
         $this->poster = $poster;
+
+        return $this;
+    }
+
+    public function getGenres(): ?Genres
+    {
+        return $this->genres;
+    }
+
+    public function setGenres(?Genres $genres): self
+    {
+        $this->genres = $genres;
 
         return $this;
     }
