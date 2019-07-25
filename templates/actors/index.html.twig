@@ -1,8 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ActorsController!{% endblock %}
+{% block title %} {{ actor.name }} {% endblock %}
 
 {% block body %}
-    {{ actor.name }}
-    {{ actor.born }}
+<div class="media">
+    <img src="{{ actor.image }}" alt="{{ actor.name }}">
+    <div class="media-content">
+        {{ actor.name }}<br/>
+        {{ actor.born }}
+    </div>
+</div>
+    
 {% endblock %}

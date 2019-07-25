@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Media;
+use App\Entity\Actors;
 use App\Entity\Genres;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,6 +22,10 @@ class MediaType extends AbstractType
             ->add('poster')
             ->add('genres', EntityType::class, [
                 'class' => Genres::class,
+                'choice_label' => 'name'
+            ])
+            ->add('actors', EntityType::class, [
+                'class' => Actors::class,
                 'choice_label' => 'name'
             ])
         ;

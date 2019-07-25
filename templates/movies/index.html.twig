@@ -8,11 +8,11 @@
     <h1>Médias</h1>
 
     <div class="poster-grid">
-    {% for media in medias %}
-    <a href="{{ path('movies_show', {'title': media.title}) }}"><img src="{{ media.poster }}" alt="">
-      <p>{{ media.title }}</p>
-    </a>
-    {% endfor %}
+      {% for media in medias %}
+        <a href="{{ path('movies_show', {'title': media.title}) }}"><img src="{{ media.poster }}" alt="affiche">
+          <p>{{ media.title }}</p>
+        </a>
+      {% endfor %}
     </div>
   </div>
 </div>

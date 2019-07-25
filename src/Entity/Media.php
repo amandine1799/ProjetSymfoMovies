@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class Media
      * @ORM\JoinColumn(nullable=false)
      */
     private $genres;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Actors", inversedBy="media")
+     */
+    private $actors;
+
+    public function __construct()
+    {
+        $this->actors = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +115,32 @@ class Media
     public function setGenres(?Genres $genres): self
     {
         $this->genres = $genres;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Actors[]
+     */
+    public function getActors(): Collection
+    {
+        return $this->actors;
+    }
+
+    public function addActor(Actors $actor): self
+    {
+        if (!$this->actors->contains($actor)) {
+            $this->actors[] = $actor;
+        }
+
+        return $this;
+    }
+
+    public function removeActor(Actors $actor): self
+    {
+        if ($this->actors->contains($actor)) {
+            $this->actors->removeElement($actor);
+        }
 
         return $this;
     }

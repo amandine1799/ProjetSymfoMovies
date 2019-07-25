@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
+{% block title %} {{ media.title }} {% endblock %}
 
-{% endblock %}
 {% block body %}
-    <div class="media">
-      <img src="{{ media.poster }}" alt="">
-      <div class="media-content">
-        <h2>{{ media.title }}</h2>
-        <p>{{ media.synopsis | raw }}</p>
-      </div>
+  <div class="media">
+    <img src="{{ media.poster }}" alt="">
+    <div class="media-content">
+      <h2>{{ media.title }}</h2>
+      <p>{{ media.synopsis | raw }}</p>
     </div>
-    <div class="media-description">
-        {{ media.genres.name }}
-    </div>
+  </div>
+  <div class="media-description">
+      {{ media.genres.name }}
+      {# <a href="{{ path('actor_show', {'title': actor.name}) }}"></a> #}
+  </div>
 {% endblock %}

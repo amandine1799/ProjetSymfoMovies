@@ -2,6 +2,10 @@ button.navbar-toggler {
     outline: none;
   }
 
+button.btn a {
+  color:white;
+}
+
   html, body {
     height: 100%;
     padding: 0;

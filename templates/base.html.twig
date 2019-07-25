@@ -14,7 +14,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="#">WatchingMedias</a>
+          <a class="navbar-brand" href="/movies">WatchingMedias</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -30,10 +30,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Déjà vu</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('movies_crud') }}">Admin</a>
-              </li>
             </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <button class="btn btn-dark"><a class="nav-link" href="{{ path('movies_crud') }}">Admin</a></button>
+            </form>
           </div>
         </nav>
         
