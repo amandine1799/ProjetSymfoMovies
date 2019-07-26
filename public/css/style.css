@@ -52,14 +52,15 @@ button.btn a {
   }
 
   .media {
-    height: 33em;
+    height: 40em;
     background-color: black;
     padding-top: 1.5em;
   }
 
   .media img {
-    height: 450px;
+    height: 30em;
     padding-left: 20%;
+    margin-bottom: 1.5em;
   }
 
   .media-content {
@@ -68,10 +69,14 @@ button.btn a {
     align-content: center;
     width: 40%;
     box-sizing: border-box;
-    padding-left: 40px;
+    padding-left: 2.5em;
     color: #ffffff;
   }
 
   .media-content p {
     padding-top: 1em;
+  }
+
+  .media-description {
+    height: 35em;
   }

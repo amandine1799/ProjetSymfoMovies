@@ -10,7 +10,13 @@
     </div>
   </div>
   <div class="media-description">
+    <h3>Genre</h3>
       {{ media.genres.name }}
-      {# <a href="{{ path('actor_show', {'title': actor.name}) }}"></a> #}
+    <h3>Casting</h3>
+      {% for actor in media.actors %}
+       <a href="{{ path('actors_show', {'name': actor.name}) }}">
+          <img src="{{ actor.image }}">
+       </a>
+      {% endfor %}
   </div>
 {% endblock %}
