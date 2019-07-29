@@ -17,10 +17,16 @@ button.btn a {
     flex-direction: column;
   }
 
+  footer {
+    margin-top: auto;
+    color: white;
+    font-weight: bold;
+  }
+
   h1 {
     text-align: center;
     color: white;
-    font-family: 'Arvo';
+    font-family: 'Roboto';
   }
 
   .content {
@@ -37,7 +43,7 @@ button.btn a {
     text-decoration: none;
     color: white;
     text-align: center;
-    font-family: 'Arvo';
+    font-family: 'Roboto';
     display: block;
     margin: 0 5px;
     width: 200px;
@@ -79,4 +85,14 @@ button.btn a {
 
   .media-description {
     height: 35em;
+  }
+
+  .media-description .acteur img {
+    height: 18em;
+  }
+
+  .media-description .acteur a p {
+    text-decoration: none;
+    color: black;
+    font-size: 1em;
   }

@@ -6,7 +6,6 @@
 <div class="content p-2">
   <div class="container-fluid">
     <h1>Médias</h1>
-
     <div class="poster-grid">
       {% for media in medias %}
         <a href="{{ path('movies_show', {'title': media.title}) }}"><img src="{{ media.poster }}" alt="affiche">

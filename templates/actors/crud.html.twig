@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ESPACE ACTEURS{% endblock %}
+{% block title %}Espace Acteurs{% endblock %}
 
 {% block body %}
-    <h1>Acteurs index</h1>
+    <h2>Acteurs index</h2>
+    <a href="{{ path('movies_crud') }}"><button type="button" class="btn btn-secondary">ESPACE FILMS</button></a>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
@@ -11,8 +12,8 @@
                     <th scope="col">Id</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Biographie</th>
-                    <th scope="col">Année de Naissance</th>
-                    <th scope="col">Année de Décès</th>
+                    <th scope="col">Naissance</th>
+                    <th scope="col">Décès</th>
                     <th scope="col">Image</th>
                     <th scope="col">Editer</th>
                     <th scope="col">Voir</th>

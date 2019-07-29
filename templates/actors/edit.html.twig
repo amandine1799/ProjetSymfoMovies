@@ -4,6 +4,8 @@
 
 {% block body %}
     {{ form_start(form) }}
+    <h2>Edit Actor</h2>
+    <a href="{{ path('actors_crud') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
 
     <div>
     {{ form_label(form.name) }}

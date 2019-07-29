@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Media index{% endblock %}
+{% block title %}Espace Médias{% endblock %}
 
 {% block body %}
-    <h1>Media index</h1>
+    <h2>Media index</h2>
+    <a href="{{ path('actors_crud') }}"><button type="button" class="btn btn-secondary">ESPACE ACTEURS</button></a>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
