@@ -19,6 +19,10 @@ class ActorsRepository extends ServiceEntityRepository
         parent::__construct($registry, Actors::class);
     }
 
+    public function findAllActors(){
+        return $this->createQueryBuilder('a');
+    }
+
     // /**
     //  * @return Actors[] Returns an array of Actors objects
     //  */

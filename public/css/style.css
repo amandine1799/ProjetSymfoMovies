@@ -18,7 +18,6 @@ button.btn a {
   }
 
   footer {
-    margin-top: auto;
     color: white;
     font-weight: bold;
   }
@@ -87,11 +86,11 @@ button.btn a {
     height: 35em;
   }
 
-  .media-description .acteur img {
+  .acteur img {
     height: 18em;
   }
 
-  .media-description .acteur a p {
+  .acteur a p {
     text-decoration: none;
     color: black;
     font-size: 1em;

@@ -8,6 +8,7 @@ use App\Repository\MediaRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ActorsRepository;
 
 /**
  * @Route("/movies", name="movies_")
@@ -31,13 +32,20 @@ class MoviesController extends AbstractController
     /**
      * @Route("/new", name="new", methods={"GET","POST"})
      */
-    public function new(Request $request)
+    public function new(Request $request, ActorsRepository $actorsRepository)
     {
         $medium = new Media();
         $form = $this->createForm(MediaType::class, $medium);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $request->request->get('media');
+            foreach($data['actors'] as $user_id) 
+            {
+                $user = $actorsRepository->find($user_id);
+                $medium->addActor($user);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($medium);
             $entityManager->flush();
@@ -54,13 +62,20 @@ class MoviesController extends AbstractController
     /**
      * @Route("/{title}/edit", name="edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Media $medium)
+    public function edit(Request $request, Media $medium, ActorsRepository $actorsRepository)
     {
         new Media();
         $form = $this->createForm(MediaType::class, $medium);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $request->request->get('media');
+            foreach($data['actors'] as $user_id)
+            {
+                $user = $actorsRepository->find($user_id);
+                $medium->addActor($user);
+            }
+            $this->getDoctrine()->getManager()->persist($medium);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('movies_crud');

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Media;
 use App\Entity\Actors;
 use App\Entity\Genres;
+use App\Repository\ActorsRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -24,9 +25,16 @@ class MediaType extends AbstractType
                 'class' => Genres::class,
                 'choice_label' => 'name'
             ])
-            ->add('actors', EntityType::class, [
-                'class' => Actors::class,
-                'choice_label' => 'name'
+            ->add('actors',EntityType::class, [
+                'class'         => Actors::class,
+                'choice_label'  => 'name',
+                'label'         => 'Acteurs',
+                'multiple'      => true,
+                'mapped'        => false,
+                'query_builder' => function(ActorsRepository $rep) {
+                    return $rep->createQueryBuilder('a')
+                                    ->distinct();
+                }
             ])
         ;
     }

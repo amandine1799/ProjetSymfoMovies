@@ -2,28 +2,28 @@
 
 namespace App\Form;
 
-use App\Entity\Actors;
+use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class ActorsType extends AbstractType
+class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('biography')
-            ->add('born')
-            ->add('died')
-            ->add('image')
+            ->add('email')
+            ->add('username')
+            ->add('password', PasswordType::class)
+            ->add('confirm_password', PasswordType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Actors::class,
+            'data_class' => Users::class,
         ]);
     }
 }
