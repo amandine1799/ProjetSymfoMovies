@@ -13,7 +13,7 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <a class="navbar-brand" href="/movies">WatchingMedias</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,14 +25,14 @@
                 <a class="nav-link" href="/movies">Films et Séries</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">A voir</a>
+                <a class="nav-link" href="#">Liste des médias à visionner</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Déjà vu</a>
+                <a class="nav-link" href="#">Liste des médias vus</a>
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-              <button class="btn btn-dark"><a class="nav-link" href="{{ path('movies_crud') }}">Admin</a></button>
+              <button class="btn btn-dark"><a class="nav-link" href="{{ path('movies_crud') }}">Espace Modération</a></button>
             </form>
           </div>
         </nav>

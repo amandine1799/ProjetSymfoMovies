@@ -21,6 +21,7 @@ class MediaType extends AbstractType
             ->add('synopsis')
             ->add('released_year')
             ->add('poster')
+            ->add('trailer')
             ->add('genres', EntityType::class, [
                 'class' => Genres::class,
                 'choice_label' => 'name'

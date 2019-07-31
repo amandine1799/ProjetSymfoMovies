@@ -14,6 +14,7 @@
                     <th scope="col">Synopsis</th>
                     <th scope="col">Année</th>
                     <th scope="col">Affiche</th>
+                    <th scope="col">Trailer</th>
                     <th scope="col">Genre</th>
                     <th scope="col">Acteurs</th>
                     <th scope="col">Editer</th>
@@ -28,6 +29,7 @@
                     <td>{{ medium.synopsis }}</td>
                     <td>{{ medium.releasedYear }}</td>
                     <td>{{ medium.poster }}</td>
+                    <td>{{ medium.trailer }}</td>
                     <td>{{ medium.genres.name }}</td>
                     <td>
                         {% for actor in medium.actors %}

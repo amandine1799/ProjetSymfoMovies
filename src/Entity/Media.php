@@ -51,6 +51,16 @@ class Media
      */
     private $actors;
 
+    /**
+     * @ORM\Column(type="string", length=500)
+     */
+    private $trailer;
+
+    /**
+     * @ORM\Column(type="time")
+     */
+    private $time;
+
     public function __construct()
     {
         $this->actors = new ArrayCollection();
@@ -143,6 +153,30 @@ class Media
         if ($this->actors->contains($actor)) {
             $this->actors->removeElement($actor);
         }
+
+        return $this;
+    }
+
+    public function getTrailer(): ?string
+    {
+        return $this->trailer;
+    }
+
+    public function setTrailer(string $trailer): self
+    {
+        $this->trailer = $trailer;
+
+        return $this;
+    }
+
+    public function getTime(): ?\DateTimeInterface
+    {
+        return $this->time;
+    }
+
+    public function setTime(\DateTimeInterface $time): self
+    {
+        $this->time = $time;
 
         return $this;
     }

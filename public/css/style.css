@@ -86,6 +86,11 @@ button.btn a {
     height: 35em;
   }
 
+  .acteur img:hover {
+    transition: 400ms;
+    transform: scale(1.02);
+  }
+
   .acteur img {
     height: 18em;
   }

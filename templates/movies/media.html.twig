@@ -10,6 +10,9 @@
     </div>
   </div>
   <div class="media-description">
+    <h3>Trailer</h3>
+    <embed src="{{ media.trailer }}" allowfullscreen="true" width="525" height="344">
+    
     <h3>Genre</h3>
       {{ media.genres.name }}
     </div>
@@ -19,7 +22,7 @@
       {% for actor in media.actors %}
        <a href="{{ path('actors_show', {'name': actor.name}) }}">
           <img src="{{ actor.image }}">
-           <p>{{ actor.name }}</p> 
+           <h3>{{ actor.name }}</h3> 
        </a>
       {% endfor %}
       </div>
