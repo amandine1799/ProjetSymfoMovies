@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MediaRepository")
- * @UniqueEntity("title", message="Ce film a déjà été ajouté")
+ * @UniqueEntity(fields= {"title"}, message="Ce film a déjà été ajouté")
  */
 class Media
 {
@@ -60,6 +60,11 @@ class Media
      * @ORM\Column(type="time")
      */
     private $time;
+
+    /**
+     * @ORM\Column(type="string", length=15)
+     */
+    private $type;
 
     public function __construct()
     {
@@ -177,6 +182,18 @@ class Media
     public function setTime(\DateTimeInterface $time): self
     {
         $this->time = $time;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

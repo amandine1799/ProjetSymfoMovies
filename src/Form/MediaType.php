@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class MediaType extends AbstractType
 {
@@ -26,6 +27,14 @@ class MediaType extends AbstractType
                 'class' => Genres::class,
                 'choice_label' => 'name'
             ])
+            ->add('type', ChoiceType::class, [
+                'placeholder' => 'Choix du type',
+                'choices' => [
+                    'Série' => 'Série',
+                    'Film' => 'Film'
+                ]  
+            ])
+            ->add('time')
             ->add('actors',EntityType::class, [
                 'class'         => Actors::class,
                 'choice_label'  => 'name',

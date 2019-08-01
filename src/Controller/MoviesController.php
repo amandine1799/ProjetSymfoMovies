@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ActorsRepository;
+use App\Repository\GenresRepository;
 
 /**
  * @Route("/movies", name="movies_")
@@ -20,12 +21,35 @@ class MoviesController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index(MediaRepository $repo)
+    public function index(MediaRepository $repo, GenresRepository $genresrepo, Request $request)
     {
       $medias = $repo->findAll();
+      $genres = $genresrepo->findAll();
+      $deceniesmin = $repo->findOneBy(
+        [],
+        ['released_year' => 'ASC'],
+        1
+      );
+      $deceniesmin = $deceniesmin->getReleasedYear();
+      $deceniesmin = substr($deceniesmin, 0, -1).'0';
+      $deceniesmin = intval($deceniesmin);
 
+      $deceniesmax = $repo->findOneBy(
+        [],
+        ['released_year' => 'DESC'],
+        1
+      );
+      $deceniesmax = $deceniesmax->getReleasedYear();
+      $deceniesmax = substr($deceniesmax, 0, -1).'0';
+      $deceniesmax = intval($deceniesmax);
+    
+     // die(var_dump($request->request->all()));
+            
         return $this->render('movies/index.html.twig', [
             'medias' => $medias,
+            'genres' => $genres,
+            'min' => $deceniesmin,
+            'max' => $deceniesmax
         ]);
 }
 

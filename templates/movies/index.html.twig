@@ -6,6 +6,43 @@
 <div class="content p-2">
   <div class="container-fluid">
     <h1>Médias</h1>
+
+
+    <form action="{{ path('movies_search') }}" method="POST">
+      <div class="form-row align-items-center mb-3">
+        <div class="col-3">
+          <label for="selectGenre">Genre</label>
+          <select class="custom-select custom-select-sm" name="genre" id="selectGenre">
+            <option value="0">Tous</option>
+            {% for genre in genres %} 
+            <option value="{{ genre.id }}">{{ genre.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-3">
+          <label for="selectDecade">Décennie</label>
+          <select class="custom-select custom-select-sm" name="decade" id="selectDecade">
+            <option value="0">Tous</option>
+            {% for i in range(min,max,10) %}
+            <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-3">
+          <label for="select">Type</label>
+          <select class="custom-select custom-select-sm" name="type" id="selectType">
+            <option value="0">Voir tout</option>
+            <option value="film">Films</option>
+            <option value="serie">Séries</option>
+          </select>
+        </div>
+        <div class="col-auto align-self-end">
+          <button type="submit" class="btn btn-secondary btn-sm">Valider</button>
+        </div>
+      </div>
+    </form>
+
+
     <div class="poster-grid">
       {% for media in medias %}
         <a href="{{ path('movies_show', {'title': media.title}) }}"><img src="{{ media.poster }}" alt="affiche">

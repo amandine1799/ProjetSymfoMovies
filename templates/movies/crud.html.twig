@@ -11,8 +11,10 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Titre</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Synopsis</th>
                     <th scope="col">Année</th>
+                    <th scope="col">Durée</th>
                     <th scope="col">Affiche</th>
                     <th scope="col">Trailer</th>
                     <th scope="col">Genre</th>
@@ -26,8 +28,10 @@
                 <tr class="table-secondary">
                     <td>{{ medium.id }}</td>
                     <td>{{ medium.title }}</td>
+                    <td>{{ medium.type }}</td>
                     <td>{{ medium.synopsis }}</td>
                     <td>{{ medium.releasedYear }}</td>
+                    <td>{{ medium.time | date('H:i') }}</td>
                     <td>{{ medium.poster }}</td>
                     <td>{{ medium.trailer }}</td>
                     <td>{{ medium.genres.name }}</td>
