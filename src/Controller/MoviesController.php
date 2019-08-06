@@ -23,6 +23,7 @@ class MoviesController extends AbstractController
      */
     public function index(MediaRepository $repo, GenresRepository $genresrepo, Request $request)
     {
+
       $medias = $repo->findAll();
       $genres = $genresrepo->findAll();
       $deceniesmin = $repo->findOneBy(
@@ -42,8 +43,9 @@ class MoviesController extends AbstractController
       $deceniesmax = $deceniesmax->getReleasedYear();
       $deceniesmax = substr($deceniesmax, 0, -1).'0';
       $deceniesmax = intval($deceniesmax);
-    
-     // die(var_dump($request->request->all()));
+    if ($request->isMethod('post')){
+     die(var_dump($request->request->all()));
+    }
             
         return $this->render('movies/index.html.twig', [
             'medias' => $medias,

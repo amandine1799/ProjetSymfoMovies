@@ -7,9 +7,6 @@
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -39,9 +36,12 @@
              {% else  %}
             <a class="nav-link" href="{{ path('logout') }}">Déconnexion</a>
             {% endif %}
+            {% if app.user %}
+            {# is_granted('IS_AUTHENTICATED_REMEMBERED') #}
             <form class="form-inline my-2 my-lg-0">
               <button class="btn btn-dark"><a class="nav-link" href="{{ path('movies_crud') }}">Espace Modération</a></button>
             </form>
+            {% endif %}
           </div>
         </nav>
         
@@ -50,9 +50,9 @@
           <div class="footer-copyright text-center bg-dark py-3">© 2019 Copyright: WatchingMedias
           </div>
         </footer>
-        {% block javascripts %}{% endblock %}
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        {% block javascripts %}{% endblock %}
     </body>
 </html>

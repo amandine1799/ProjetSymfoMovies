@@ -1,10 +1,10 @@
-button.navbar-toggler {
+ button.navbar-toggler {
     outline: none;
   }
 
-button.btn a {
-  color:white;
-}
+  button.btn a {
+    color:white;
+  }
 
   html, body {
     height: 100%;
@@ -20,6 +20,11 @@ button.btn a {
   footer {
     color: white;
     font-weight: bold;
+  }
+
+  form {
+    text-align: center;
+    color: white;
   }
 
   h1 {
