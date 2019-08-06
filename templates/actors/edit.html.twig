@@ -6,27 +6,26 @@
     {{ form_start(form) }}
     <h2>Edit Actor</h2>
     <a href="{{ path('actors_crud') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
-
-    <div>
-    {{ form_label(form.name) }}
-    {{ form_widget(form.name) }}
-    </div>
-    <div>
-    {{ form_label(form.biography) }}
-    {{ form_widget(form.biography) }}
-    </div>
-    <div>
-    {{ form_label(form.born) }}
-    {{ form_widget(form.born) }}
-    </div>
-    <div>
-    {{ form_label(form.died) }}
-    {{ form_widget(form.died) }}
-    </div>
-    <div>
-    {{ form_label(form.image) }}
-    {{ form_widget(form.image) }}
-    </div>
+        <div>
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        </div>
+        <div>
+        {{ form_label(form.biography) }}
+        {{ form_widget(form.biography) }}
+        </div>
+        <div>
+        {{ form_label(form.born) }}
+        {{ form_widget(form.born) }}
+        </div>
+        <div>
+        {{ form_label(form.died) }}
+        {{ form_widget(form.died) }}
+        </div>
+        <div>
+        {{ form_label(form.image) }}
+        {{ form_widget(form.image) }}
+        </div>
 
     <button type="submit"> Mettre à jour </button>
     {{ form_end(form) }}

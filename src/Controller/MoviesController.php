@@ -43,9 +43,17 @@ class MoviesController extends AbstractController
       $deceniesmax = $deceniesmax->getReleasedYear();
       $deceniesmax = substr($deceniesmax, 0, -1).'0';
       $deceniesmax = intval($deceniesmax);
-    if ($request->isMethod('post')){
-     die(var_dump($request->request->all()));
-    }
+        if ($request->isMethod('post')){
+            $genre_id = $request->request->get('genre');
+            $genre = $genresrepo->find($genre_id);
+            $decenie = $request->request->get('decade');
+            $type = $request->request->get('type');
+            $new_movies = $repo->findBy([
+                'genres' => $genre,
+                'type' => $type,
+                 
+            ])
+        }
             
         return $this->render('movies/index.html.twig', [
             'medias' => $medias,

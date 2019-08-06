@@ -4,6 +4,8 @@
 
 {% block body %}
     {{ form_start(form) }}
+    <a href="{{ path('actors_crud') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
+
 
     <div>
     {{ form_label(form.name) }}
@@ -25,7 +27,6 @@
     {{ form_label(form.image) }}
     {{ form_widget(form.image) }}
     </div>
-
     <button type="submit"> Envoyer </button>
     {{ form_end(form) }}
 {% endblock %}

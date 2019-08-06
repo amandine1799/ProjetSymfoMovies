@@ -19,6 +19,11 @@ class MediaRepository extends ServiceEntityRepository
         parent::__construct($registry, Media::class);
     }
 
+    public function findBySearch($genre, $type, $decenie)
+    {
+        $sql = $this->createQueryBuilder()
+    } 
+
     // /**
     //  * @return Media[] Returns an array of Media objects
     //  */
