@@ -48,11 +48,7 @@ class MoviesController extends AbstractController
             $genre = $genresrepo->find($genre_id);
             $decenie = $request->request->get('decade');
             $type = $request->request->get('type');
-            $new_movies = $repo->findBy([
-                'genres' => $genre,
-                'type' => $type,
-                 
-            ])
+            $medias = $repo->findBySearch($genre, $decenie, $type);
         }
             
         return $this->render('movies/index.html.twig', [

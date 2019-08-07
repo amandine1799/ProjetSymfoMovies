@@ -21,7 +21,22 @@ class MediaRepository extends ServiceEntityRepository
 
     public function findBySearch($genre, $type, $decenie)
     {
-        $sql = $this->createQueryBuilder()
+        $decenieMax = (string)intval($decenie)+10;
+        $sql = $this->getEntityManager()->createQuery(
+            '
+                SELECT m FROM App\Entity\Media m
+                WHERE m.genres = :genre
+                AND m.type = :type
+                AND m.released_year BETWEEN :decenie AND :decenieMax
+            '
+        )
+        ->setParameters([
+            'genre' => $genre,
+            'type' => $type,
+            'decenie' => $decenie,
+            'decenieMax' => $decenieMax
+        ]);
+        return $sql->getResult();
     } 
 
     // /**
