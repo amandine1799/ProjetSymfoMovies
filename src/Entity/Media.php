@@ -31,7 +31,7 @@ class Media
     private $synopsis;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="integer")
      */
     private $released_year;
 
@@ -100,12 +100,12 @@ class Media
         return $this;
     }
 
-    public function getReleasedYear(): ?string
+    public function getReleasedYear(): ?int
     {
         return $this->released_year;
     }
 
-    public function setReleasedYear(string $released_year): self
+    public function setReleasedYear(int $released_year): self
     {
         $this->released_year = $released_year;
 

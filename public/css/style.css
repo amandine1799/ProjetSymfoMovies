@@ -15,11 +15,13 @@
   body {
     display: flex;
     flex-direction: column;
+    min-height: calc(100vh - 54px - 54px);
   }
 
   footer {
     color: white;
     font-weight: bold;
+    margin-top: auto;
   }
 
   h1 {
