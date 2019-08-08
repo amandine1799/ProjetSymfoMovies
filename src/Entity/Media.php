@@ -52,14 +52,14 @@ class Media
     private $actors;
 
     /**
-     * @ORM\Column(type="string", length=500)
+     * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $trailer;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="integer")
      */
-    private $time;
+    private $duration;
 
     /**
      * @ORM\Column(type="string", length=15)
@@ -174,14 +174,14 @@ class Media
         return $this;
     }
 
-    public function getTime(): ?\DateTimeInterface
+    public function getDuration(): ?int
     {
-        return $this->time;
+        return $this->duration;
     }
 
-    public function setTime(\DateTimeInterface $time): self
+    public function setDuration(int $duration): self
     {
-        $this->time = $time;
+        $this->duration = $duration;
 
         return $this;
     }

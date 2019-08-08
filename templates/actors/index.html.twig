@@ -8,6 +8,9 @@
     <div class="media-content">
         <h2>{{ actor.name }}</h2>
         {{ actor.born }}<br/>
+        {% if actor.died is not null %} 
+        {{ actor.died }}<br/>
+        {% endif %}
         {{ actor.biography }}
     </div>
 </div>

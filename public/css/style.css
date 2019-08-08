@@ -100,5 +100,10 @@
   .acteur a p {
     text-decoration: none;
     color: black;
-    font-size: 1em;
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  .acteur a:hover {
+    text-decoration: none;
   }

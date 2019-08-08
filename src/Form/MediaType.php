@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class MediaType extends AbstractType
 {
@@ -34,7 +35,7 @@ class MediaType extends AbstractType
                     'Film' => 'Film'
                 ]  
             ])
-            ->add('time')
+            ->add('duration', IntegerType::class)
             ->add('actors',EntityType::class, [
                 'class'         => Actors::class,
                 'choice_label'  => 'name',
