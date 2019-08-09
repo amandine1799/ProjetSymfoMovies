@@ -23,31 +23,60 @@ class MoviesController extends AbstractController
      */
     public function index(MediaRepository $repo, GenresRepository $genresrepo, Request $request)
     {
+        // Affiche tous les media de base (Quand on arrive sur la page d'accueil ou quand on recherche "tout")
+        $medias = $repo->findAll();
 
-      $medias = $repo->findAll();
-      $genres = $genresrepo->findAll();
-      $deceniesmin = $repo->findOneBy(
-        [],
-        ['released_year' => 'ASC'],
-        1
-      );
-      $deceniesmin = $deceniesmin->getReleasedYear();
-      $deceniesmin = substr($deceniesmin, 0, -1).'0';
-      $deceniesmin = intval($deceniesmin);
+        // Récupération de tous les genres pour le formulaire
+        $genres = $genresrepo->findAll();
+        // Récupération de la date la plus basse
+        $deceniesmin = $repo->findOneBy(
+            [],
+            ['released_year' => 'ASC'],
+            1
+        );
+        // Appel de la fonction en bas pour arrondir l'année à XXX0
+        $deceniesmin = $this->decenies($deceniesmin);
 
-      $deceniesmax = $repo->findOneBy(
+        // Récupération de la date la plus haute
+        $deceniesmax = $repo->findOneBy(
         [],
         ['released_year' => 'DESC'],
         1
-      );
-      $deceniesmax = $deceniesmax->getReleasedYear();
-      $deceniesmax = substr($deceniesmax, 0, -1).'0';
-      $deceniesmax = intval($deceniesmax);
+        );
+        // Appel de la fonction en bas (la meme) pour arrondir l'année à XXX0
+        $deceniesmax = $this->decenies($deceniesmax);
+      
+        // Gestion des filtres
         if ($request->isMethod('post')){
+            // Récupération du genre entré dans le formulaire
             $genre_id = $request->request->get('genre');
-            $genre = $genresrepo->find($genre_id);
+            
+            // Récupération de la décenie entrée dans le formulaire
             $decenie = $request->request->get('decade');
+
+            // Récupération du type entrée dans le formulaire 
             $type = $request->request->get('type');
+
+            // S'il y a un genre de sélectionné alors on recupère le genre dans la bdd
+            if($genre_id != 0){
+                $genre = $genresrepo->find($genre_id);
+            }
+            // Sinon on le mets à null
+            else{
+                $genre = null;
+            }
+            
+            // S'il n'y a pas de décenie selectionnée alors on le mets à null
+            if($decenie == 0){
+                $decenie = null;
+            } 
+
+            // S'il n'y a pas de type selectionné alors on le met à null
+            if($type != "Série" && $type != "Film") {
+                $type = null;
+            } 
+
+            // Appel de la fonction dans le MediaRepository suivant ce qu'on a donné
             $medias = $repo->findBySearch($genre, $type, $decenie);
         }
             
@@ -148,5 +177,17 @@ class MoviesController extends AbstractController
       return $this->render('movies/media.html.twig', [
         'media' => $media
       ]);
+    }
+
+    /**
+     * Fonction qui arrondi l'année au 0 le plus bas (ex. : 1996 -> 1990)
+     */
+    public function decenies($decenies)
+    {
+        $res = strval($decenies->getReleasedYear());
+        $res = substr($res, 0, -1).'0';
+        $res = intval($res);
+
+        return $res;
     }
 }
