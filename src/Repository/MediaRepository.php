@@ -39,6 +39,15 @@ class MediaRepository extends ServiceEntityRepository
         return $sql->getResult();
     } 
 
+    public function findAll()
+    {
+        $sql = $this->createQueryBuilder('m')
+        ->orderBy('m.id', 'DESC')
+        ->getQuery();
+
+        return $sql->execute();
+    }
+
     // /**
     //  * @return Media[] Returns an array of Media objects
     //  */

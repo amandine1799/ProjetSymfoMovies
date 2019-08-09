@@ -89,8 +89,7 @@
   }
 
   .acteur img:hover {
-    transition: 400ms;
-    transform: scale(1.02);
+    opacity: 0.9;
   }
 
   .acteur img {

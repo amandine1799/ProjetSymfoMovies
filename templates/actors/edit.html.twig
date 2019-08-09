@@ -29,5 +29,5 @@
 
     <button type="submit"> Mettre à jour </button>
     {{ form_end(form) }}
-    <a href="{{ path('actors_delete_actor', {'name':actor.name}) }}">Supprimer</a>
+    <a href="{{ path('actors_delete_actor', {'name':actor.name}) }}" onclick="return confirm('Etes vous-sûr de vouloir supprimer ce acteur?')"><button type="button" class="btn btn-danger">Supprimer</button></a>
 {% endblock %}
