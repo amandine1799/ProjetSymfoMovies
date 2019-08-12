@@ -66,9 +66,15 @@ class Media
      */
     private $type;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="media", orphanRemoval=true)
+     */
+    private $reviews;
+
     public function __construct()
     {
         $this->actors = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -194,6 +200,37 @@ class Media
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Review[]
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setMedia($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->contains($review)) {
+            $this->reviews->removeElement($review);
+            // set the owning side to null (unless already changed)
+            if ($review->getMedia() === $this) {
+                $review->setMedia(null);
+            }
+        }
 
         return $this;
     }
