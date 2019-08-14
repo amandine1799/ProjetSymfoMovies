@@ -24,24 +24,24 @@
                 </tr>
             </thead>
             <tbody>
-            {% for medium in media %}
+            {% for media in media %}
                 <tr class="table-secondary">
-                    <td>{{ medium.id }}</td>
-                    <td>{{ medium.title }}</td>
-                    <td>{{ medium.type }}</td>
-                    <td>{{ medium.synopsis }}</td>
-                    <td>{{ medium.releasedYear }}</td>
-                    <td>{{ medium.duration }}</td>
-                    <td>{{ medium.poster }}</td>
-                    <td>{{ medium.trailer }}</td>
-                    <td>{{ medium.genres.name }}</td>
+                    <td>{{ media.id }}</td>
+                    <td>{{ media.title }}</td>
+                    <td>{{ media.type }}</td>
+                    <td>{{ media.synopsis }}</td>
+                    <td>{{ media.releasedYear }}</td>
+                    <td>{{ media.duration }}</td>
+                    <td>{{ media.poster }}</td>
+                    <td>{{ media.trailer }}</td>
+                    <td>{{ media.genres.name }}</td>
                     <td>
-                        {% for actor in medium.actors %}
+                        {% for actor in media.actors %}
                             {{ actor.name }}
                         {% endfor %}
                     </td>
-                    <td><a href="{{ path('movies_edit', {'title': medium.title}) }}"><i class="fas fa-edit"></i></a></td>
-                    <td><a href="{{ path('movies_show', {'title' : medium.title}) }}"><i class="far fa-eye"></i></a></td>
+                    <td><a href="{{ path('movies_edit', {'title': media.title}) }}"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="{{ path('movies_show', {'title' : media.title}) }}"><i class="far fa-eye"></i></a></td>
                 </tr>
             {% else %}
                 <tr>

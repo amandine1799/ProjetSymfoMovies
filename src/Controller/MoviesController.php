@@ -93,8 +93,8 @@ class MoviesController extends AbstractController
      */
     public function new(Request $request, ActorsRepository $actorsRepository)
     {
-        $medium = new Media();
-        $form = $this->createForm(MediaType::class, $medium);
+        $media = new Media();
+        $form = $this->createForm(MediaType::class, $media);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -102,29 +102,29 @@ class MoviesController extends AbstractController
             foreach($data['actors'] as $user_id) 
             {
                 $user = $actorsRepository->find($user_id);
-                $medium->addActor($user);
+                $media->addActor($user);
             }
-
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($medium);
+            $entityManager->persist($media);
             $entityManager->flush();
 
             return $this->redirectToRoute('movies_crud');
         }
 
         return $this->render('movies/new.html.twig', [
-            'medium' => $medium,
+            'media' => $media,
             'form' => $form->createView(),
         ]);
     }
 
+
     /**
      * @Route("/{title}/edit", name="edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Media $medium, ActorsRepository $actorsRepository)
+    public function edit(Request $request, Media $media, ActorsRepository $actorsRepository)
     {
         new Media();
-        $form = $this->createForm(MediaType::class, $medium);
+        $form = $this->createForm(MediaType::class, $media);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -132,28 +132,27 @@ class MoviesController extends AbstractController
             foreach($data['actors'] as $user_id)
             {
                 $user = $actorsRepository->find($user_id);
-                $medium->addActor($user);
+                $media->addActor($user);
             }
-            $this->getDoctrine()->getManager()->persist($medium);
+            $this->getDoctrine()->getManager()->persist($media);
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('movies_crud');
         }
 
         return $this->render('movies/edit.html.twig', [
-            'medium' => $medium,
+            'media' => $media,
             'form' => $form->createView(),
         ]);
     }
 
+
     /**
      * @Route("/{title}/delete", name="delete")
      */
-    public function delete(Request $request, Media $medium)
+    public function delete(Request $request, Media $media)
     {
         
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($medium);
+            $entityManager->remove($media);
             $entityManager->flush();
       
 
@@ -173,7 +172,8 @@ class MoviesController extends AbstractController
     /**
     * @Route("/{title}", name="show")
     */
-    public function film(Media $media) {
+    public function film(Media $media) 
+    {
       return $this->render('movies/media.html.twig', [
         'media' => $media
       ]);

@@ -3,10 +3,47 @@
 {% block title %}Edit Media{% endblock %}
 
 {% block body %}
+    {{ form_start(form) }}
     <h2>Edit Media</h2>
     <a href="{{ path('movies_crud') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
+    <div>
+    {{ form_label(form.title) }}
+    {{ form_widget(form.title) }}
+    </div>
+    <div>
+    {{ form_label(form.type) }}
+    {{ form_widget(form.type) }}
+    </div>
+    <div>
+    {{ form_label(form.synopsis) }}
+    {{ form_widget(form.synopsis) }}
+    </div>
+    <div>
+    {{ form_label(form.duration) }}
+    {{ form_widget(form.duration) }}
+    </div>
+    <div>
+    {{ form_label(form.poster) }}
+    {{ form_widget(form.poster) }}
+    </div>
+    <div>
+    {{ form_label(form.trailer) }}
+    {{ form_widget(form.trailer) }}
+    </div>
+    <div>
+    {{ form_label(form.genres) }}
+    {{ form_widget(form.genres) }}
+    </div>
+    <div>
+    {{ form_label(form.actors) }}
+    {{ form_widget(form.actors) }}
+    </div>
+    <div>
+    {{ form_label(form.released_year) }}
+    {{ form_widget(form.released_year) }}
+    </div>
 
-    {{ include('movies/_form.html.twig', {'button_label': 'Update'}) }} 
-    {{ include('movies/_delete_form.html.twig') }}
-
+<button type="submit"> Mettre à jour </button>
+{{ form_end(form) }}
+<a href="{{ path('movies_delete', {'title':media.title}) }}" onclick="return confirm('Etes vous-sûr de vouloir supprimer ce acteur?')"><button type="button" class="btn btn-danger">Supprimer</button></a>
 {% endblock %}

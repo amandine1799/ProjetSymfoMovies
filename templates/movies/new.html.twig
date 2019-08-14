@@ -5,8 +5,45 @@
 {% block body %}
     <h1>Create new Media</h1>
     
-    <a href="{{ path('movies_crud') }}">back to list</a>
-    
-    {{ include('movies/_form.html.twig') }}
+    <a href="{{ path('movies_crud') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
+    {{ form_start(form) }}
+    <div>
+    {{ form_label(form.title) }}
+    {{ form_widget(form.title) }}
+    </div>
+    <div>
+    {{ form_label(form.type) }}
+    {{ form_widget(form.type) }}
+    </div>
+    <div>
+    {{ form_label(form.synopsis) }}
+    {{ form_widget(form.synopsis) }}
+    </div>
+    <div>
+    {{ form_label(form.duration) }}
+    {{ form_widget(form.duration) }}
+    </div>
+    <div>
+    {{ form_label(form.poster) }}
+    {{ form_widget(form.poster) }}
+    </div>
+    <div>
+    {{ form_label(form.trailer) }}
+    {{ form_widget(form.trailer) }}
+    </div>
+    <div>
+    {{ form_label(form.genres) }}
+    {{ form_widget(form.genres) }}
+    </div>
+    <div>
+    {{ form_label(form.actors) }}
+    {{ form_widget(form.actors) }}
+    </div>
+    <div>
+    {{ form_label(form.released_year) }}
+    {{ form_widget(form.released_year) }}
+    </div>
+    <button type="submit"  class="btn btn-secondary"> Ajouter </button>
+    {{ form_end(form) }}
 
 {% endblock %}
