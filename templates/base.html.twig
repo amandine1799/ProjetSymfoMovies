@@ -28,6 +28,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Liste des médias vus</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('review.list') }}">Mes reviews</a>
+              </li>
               {% endif %}
             </ul>
             {% if not app.user %}

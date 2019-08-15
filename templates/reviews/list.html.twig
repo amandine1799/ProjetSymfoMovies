@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ReviewController!{% endblock %}
+
+{% block body %}
+
+<table>
+{% for review in reviews %}
+<tr>
+    <td><a href="{{ path('review.edit', {'id': review.id}) }}">{{ review.title }}</a></td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

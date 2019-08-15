@@ -18,4 +18,12 @@ class ReviewRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Review::class);
     }
+
+    public function getReviewsByUser($user_id) {
+        $query = $this->createQueryBuilder('r')
+                      ->where('r.user = :user_id')
+                      ->setParameter('user_id', $user_id)
+                      ->getQuery();
+        return $query->getResult();
+    }
 }
