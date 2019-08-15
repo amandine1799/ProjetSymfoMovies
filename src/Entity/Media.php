@@ -67,7 +67,7 @@ class Media
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="media", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="media")
      */
     private $reviews;
 

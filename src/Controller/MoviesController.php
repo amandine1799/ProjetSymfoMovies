@@ -16,8 +16,6 @@ use App\Repository\GenresRepository;
  */
 class MoviesController extends AbstractController
 {
-
-
     /**
      * @Route("/", name="index")
      */
@@ -45,6 +43,8 @@ class MoviesController extends AbstractController
         );
         // Appel de la fonction en bas (la meme) pour arrondir l'année à XXX0
         $deceniesmax = $this->decenies($deceniesmax);
+
+        $genre_id = 0;
       
         // Gestion des filtres
         if ($request->isMethod('post')){
@@ -81,6 +81,7 @@ class MoviesController extends AbstractController
         }
             
         return $this->render('movies/index.html.twig', [
+            'genre_id' => $genre_id,
             'medias' => $medias,
             'genres' => $genres,
             'min' => $deceniesmin,
@@ -172,11 +173,11 @@ class MoviesController extends AbstractController
     /**
     * @Route("/{title}", name="show")
     */
-    public function film(Media $media) 
+    public function film(Media $media)
     {
-      return $this->render('movies/media.html.twig', [
-        'media' => $media
-      ]);
+        return $this->render('movies/media.html.twig', [
+            'media' => $media,
+        ]);
     }
 
     /**

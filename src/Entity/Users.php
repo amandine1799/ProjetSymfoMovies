@@ -54,7 +54,7 @@ class Users implements UserInterface
     public $confirm_password;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="users", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="user")
      */
     private $reviews;
 
@@ -124,7 +124,7 @@ public function eraseCredentials() {}
     {
         if (!$this->reviews->contains($review)) {
             $this->reviews[] = $review;
-            $review->setUsers($this);
+            $review->setUser($this);
         }
 
         return $this;
@@ -135,8 +135,8 @@ public function eraseCredentials() {}
         if ($this->reviews->contains($review)) {
             $this->reviews->removeElement($review);
             // set the owning side to null (unless already changed)
-            if ($review->getUsers() === $this) {
-                $review->setUsers(null);
+            if ($review->getUser() === $this) {
+                $review->setUser(null);
             }
         }
 

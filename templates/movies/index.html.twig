@@ -7,6 +7,7 @@
   <div class="container-fluid">
     <h1>Médias</h1>
 
+    {{ genre_id }}
 
     <form action="{{ path('movies_index') }}" method="POST">
       <div class="form-row align-items-center mb-3">
@@ -15,7 +16,7 @@
           <select class="custom-select custom-select-sm" name="genre" id="selectGenre">
             <option value="0">Tous</option>
             {% for genre in genres %} 
-            <option value="{{ genre.id }}">{{ genre.name }}</option>
+            <option value="{{ genre.id }}"{% if genre.id == genre_id %} selected{% endif %}>{{ genre.name }}</option>
             {% endfor %}
           </select>
         </div>

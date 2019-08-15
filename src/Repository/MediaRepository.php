@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Media;
+use App\Entity\Review;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -128,43 +129,14 @@ class MediaRepository extends ServiceEntityRepository
         // Mets les parametres pour ta requete
         $sql->setParameters($param);
         return $sql->getResult();
-    } 
+    }
 
     public function findAll()
     {
         $sql = $this->createQueryBuilder('m')
-        ->orderBy('m.id', 'DESC')
-        ->getQuery();
+                    ->orderBy('m.id', 'DESC')
+                    ->getQuery();
 
         return $sql->execute();
     }
-
-    // /**
-    //  * @return Media[] Returns an array of Media objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Media
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

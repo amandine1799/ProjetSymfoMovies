@@ -28,5 +28,11 @@
       {% endfor %}
       </div>
     </div>
-  
+
+    {% for review in media.reviews %}
+    <h5>{{ review.title }}</h5>
+    <p>{{ review.date | date('d/m/Y') }}<p>
+    <p>{{ review.text }}</p>
+    {% endfor %}
+
 {% endblock %}

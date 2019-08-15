@@ -17,24 +17,19 @@ class Review
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $review;
+    private $text;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $date;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $rating;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Media", inversedBy="reviews")
@@ -46,7 +41,7 @@ class Review
      * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $users;
+    private $user;
 
     public function getId(): ?int
     {
@@ -65,14 +60,14 @@ class Review
         return $this;
     }
 
-    public function getReview(): ?string
+    public function getText(): ?string
     {
-        return $this->review;
+        return $this->text;
     }
 
-    public function setReview(string $review): self
+    public function setText(string $text): self
     {
-        $this->review = $review;
+        $this->text = $text;
 
         return $this;
     }
@@ -89,18 +84,6 @@ class Review
         return $this;
     }
 
-    public function getRating(): ?string
-    {
-        return $this->rating;
-    }
-
-    public function setRating(string $rating): self
-    {
-        $this->rating = $rating;
-
-        return $this;
-    }
-
     public function getMedia(): ?Media
     {
         return $this->media;
@@ -113,14 +96,14 @@ class Review
         return $this;
     }
 
-    public function getUsers(): ?Users
+    public function getUser(): ?Users
     {
-        return $this->users;
+        return $this->user;
     }
 
-    public function setUsers(?Users $users): self
+    public function setUser(?Users $user): self
     {
-        $this->users = $users;
+        $this->user = $user;
 
         return $this;
     }
