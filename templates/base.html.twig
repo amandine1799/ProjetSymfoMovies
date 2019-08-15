@@ -11,7 +11,7 @@
     </head>
     <body>
        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="/movies">WatchingMedias</a>
+          <a class="navbar-brand" href="{{ path('medias.index') }}">WatchingMedias</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -19,7 +19,7 @@
           <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="/movies">Films et Séries</a>
+                <a class="nav-link" href="{{ path('medias.index') }}">Films et Séries</a>
               </li>
               {% if app.user %}
               <li class="nav-item">
@@ -42,7 +42,7 @@
             {% if app.user %}
             {# is_granted('IS_AUTHENTICATED_REMEMBERED') #}
             <form class="form-inline my-2 my-lg-0">
-              <button class="btn btn-dark"><a class="nav-link" href="{{ path('movies_crud') }}">Espace Modération</a></button>
+              <button class="btn btn-dark"><a class="nav-link" href="{{ path('medias.crud') }}">Espace Modération</a></button>
             </form>
             {% endif %}
           </div>

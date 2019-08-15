@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Media{% endblock %}
+{% block title %}New Media{% endblock %}
 
 {% block body %}
+    <h1>Create new Media</h1>
+    
+    <a href="{{ path('medias.crud') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
     {{ form_start(form) }}
-    <h2>Edit Media</h2>
-    <a href="{{ path('movies_crud') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
     <div>
     {{ form_label(form.title) }}
     {{ form_widget(form.title) }}
@@ -42,8 +43,7 @@
     {{ form_label(form.released_year) }}
     {{ form_widget(form.released_year) }}
     </div>
+    <button type="submit"  class="btn btn-secondary"> Ajouter </button>
+    {{ form_end(form) }}
 
-<button type="submit"> Mettre à jour </button>
-{{ form_end(form) }}
-<a href="{{ path('movies_delete', {'title':media.title}) }}" onclick="return confirm('Etes vous-sûr de vouloir supprimer ce acteur?')"><button type="button" class="btn btn-danger">Supprimer</button></a>
 {% endblock %}

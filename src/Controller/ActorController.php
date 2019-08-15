@@ -5,18 +5,15 @@ namespace App\Controller;
 use App\Entity\Actors;
 use App\Form\ActorsType;
 use App\Repository\ActorsRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-/**
-* @Route("/actors", name="actors_")
-*/
-class ActorsController extends AbstractController
+
+class ActorController extends AbstractController
 {
-    
     /**
-     * @Route("/new", name="new", methods={"GET","POST"})
+     * @Route("/actors/new", name="actors.new", methods={"GET","POST"})
      */
     public function new(Request $request)
     {
@@ -29,27 +26,26 @@ class ActorsController extends AbstractController
             $entityManager->persist($actor);
             $entityManager->flush();
             
-            return $this->redirectToRoute('actors_crud');
+            return $this->redirectToRoute('actors.crud');
         }
 
         return $this->render('actors/new.html.twig', [
             'form' => $form->createView(),
-            ]);
-        }
+        ]);
+    }
 
     /**
-     * @Route("/{name}/edit", name="edit", methods={"GET","POST"})
+     * @Route("/actors/{id}/edit", name="actors.edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Actors $actor)
     {
-        new Actors();
         $form = $this->createForm(ActorsType::class, $actor);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('actors_crud');
+            return $this->redirectToRoute('actors.crud');
         }
 
         return $this->render('actors/edit.html.twig', [
@@ -59,23 +55,20 @@ class ActorsController extends AbstractController
     }
 
         /**
-        * @Route("/{name}/delete", name="delete_actor")
+        * @Route("/actors/{id}/delete", name="actors.delete")
         */
         public function delete(Request $request, Actors $actor)
         {
-        
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($actor);
             $entityManager->flush();
-      
-
-        return $this->redirectToRoute('actors_crud');
+            return $this->redirectToRoute('actors.crud');
         }
             
         /**
-         * @Route("/crud", name="crud", methods={"GET"})
+         * @Route("/actors/crud", name="actors.crud", methods={"GET"})
          */
-        public function admin(ActorsRepository $actorsRepository)
+        public function crud(ActorsRepository $actorsRepository)
         {
             return $this->render('actors/crud.html.twig', [
                 'actor' => $actorsRepository->findAll(),
@@ -83,9 +76,9 @@ class ActorsController extends AbstractController
         }
 
         /**
-         * @Route("/{name}", name="show") 
+         * @Route("/actors/{id}", name="actors.show")
          */
-        public function actor(Actors $actor)
+        public function show(Actors $actor)
         {
             return $this->render('actors/index.html.twig', [
                 'actor' => $actor

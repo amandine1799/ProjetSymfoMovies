@@ -6,6 +6,7 @@ use App\Entity\Genres;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+
 /**
  * @method Genres|null find($id, $lockMode = null, $lockVersion = null)
  * @method Genres|null findOneBy(array $criteria, array $orderBy = null)

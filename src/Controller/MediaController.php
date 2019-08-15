@@ -4,20 +4,18 @@ namespace App\Controller;
 
 use App\Entity\Media;
 use App\Form\MediaType;
-use App\Repository\MediaRepository;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ActorsRepository;
 use App\Repository\GenresRepository;
+use App\Repository\MediaRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/movies", name="movies_")
- */
-class MoviesController extends AbstractController
+
+class MediaController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/medias", name="medias.index")
      */
     public function index(MediaRepository $repo, GenresRepository $genresrepo, Request $request)
     {
@@ -80,7 +78,7 @@ class MoviesController extends AbstractController
             $medias = $repo->findBySearch($genre, $type, $decenie);
         }
             
-        return $this->render('movies/index.html.twig', [
+        return $this->render('medias/index.html.twig', [
             'genre_id' => $genre_id,
             'medias' => $medias,
             'genres' => $genres,
@@ -90,7 +88,7 @@ class MoviesController extends AbstractController
 }
 
     /**
-     * @Route("/new", name="new", methods={"GET","POST"})
+     * @Route("/medias/new", name="medias.new", methods={"GET","POST"})
      */
     public function new(Request $request, ActorsRepository $actorsRepository)
     {
@@ -109,10 +107,10 @@ class MoviesController extends AbstractController
             $entityManager->persist($media);
             $entityManager->flush();
 
-            return $this->redirectToRoute('movies_crud');
+            return $this->redirectToRoute('medias.crud');
         }
 
-        return $this->render('movies/new.html.twig', [
+        return $this->render('medias/new.html.twig', [
             'media' => $media,
             'form' => $form->createView(),
         ]);
@@ -120,11 +118,10 @@ class MoviesController extends AbstractController
 
 
     /**
-     * @Route("/{title}/edit", name="edit", methods={"GET","POST"})
+     * @Route("/medias/{id}/edit", name="medias.edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Media $media, ActorsRepository $actorsRepository)
     {
-        new Media();
         $form = $this->createForm(MediaType::class, $media);
         $form->handleRequest($request);
 
@@ -139,7 +136,7 @@ class MoviesController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
         }
 
-        return $this->render('movies/edit.html.twig', [
+        return $this->render('medias/edit.html.twig', [
             'media' => $media,
             'form' => $form->createView(),
         ]);
@@ -147,48 +144,41 @@ class MoviesController extends AbstractController
 
 
     /**
-     * @Route("/{title}/delete", name="delete")
+     * @Route("/medias/{id}/delete", name="medias.delete")
      */
     public function delete(Request $request, Media $media)
     {
-        
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($media);
-            $entityManager->flush();
-      
-
-        return $this->redirectToRoute('movies_crud');
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($media);
+        $entityManager->flush();
+        return $this->redirectToRoute('medias.crud');
     }
 
     /**
-     * @Route("/crud", name="crud", methods={"GET"})
+     * @Route("/medias/crud", name="medias.crud", methods={"GET"})
      */
-    public function admin(MediaRepository $mediaRepository)
+    public function crud(MediaRepository $mediaRepository)
     {
-        return $this->render('movies/crud.html.twig', [
+        return $this->render('medias/crud.html.twig', [
             'media' => $mediaRepository->findAll(),
         ]);
     }
 
     /**
-    * @Route("/{title}", name="show")
+    * @Route("/medias/{id}", name="medias.show")
     */
-    public function film(Media $media)
+    public function show(Media $media)
     {
-        return $this->render('movies/media.html.twig', [
+        return $this->render('medias/media.html.twig', [
             'media' => $media,
         ]);
     }
 
-    /**
-     * Fonction qui arrondi l'année au 0 le plus bas (ex. : 1996 -> 1990)
-     */
     public function decenies($decenies)
     {
         $res = strval($decenies->getReleasedYear());
         $res = substr($res, 0, -1).'0';
         $res = intval($res);
-
         return $res;
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Actors;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Actors|null find($id, $lockMode = null, $lockVersion = null)

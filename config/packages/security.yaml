@@ -20,7 +20,7 @@ security:
             form_login:
                 login_path: login
                 check_path: login
-                default_target_path: movies_index
+                default_target_path: medias.index
 
             logout:
                 path: logout

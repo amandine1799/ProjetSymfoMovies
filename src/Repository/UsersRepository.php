@@ -6,6 +6,7 @@ use App\Entity\Users;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+
 /**
  * @method Users|null find($id, $lockMode = null, $lockVersion = null)
  * @method Users|null findOneBy(array $criteria, array $orderBy = null)

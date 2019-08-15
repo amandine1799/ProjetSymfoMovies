@@ -4,14 +4,13 @@
 
 {% block body %}
     <h2>Acteurs index</h2>
-    <a href="{{ path('movies_crud') }}"><button type="button" class="btn btn-secondary">ESPACE FILMS</button></a>
+    <a href="{{ path('medias.crud') }}"><button type="button" class="btn btn-secondary">ESPACE MEDIAS</button></a>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nom</th>
-                    <th scope="col">Biographie</th>
                     <th scope="col">Naissance</th>
                     <th scope="col">Décès</th>
                     <th scope="col">Image</th>
@@ -24,12 +23,11 @@
                 <tr class="table-secondary">
                     <td>{{ actor.id }}</td>
                     <td>{{ actor.name }}</td>
-                    <td>{{ actor.biography }}</td>
                     <td>{{ actor.born }}</td>
                     <td>{{ actor.died }}</td>
                     <td>{{ actor.image }}</td>
-                    <td><a href="{{ path('actors_edit', {'name': actor.name}) }}"><i class="fas fa-edit"></i></a></td>
-                    <td><a href="{{ path('actors_show', {'name' : actor.name}) }}"><i class="far fa-eye"></i></a></td>
+                    <td><a href="{{ path('actors.edit', {'id': actor.id}) }}"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="{{ path('actors.show', {'id' : actor.id}) }}"><i class="far fa-eye"></i></a></td>
                 </tr>
             {% else %}
                 <tr>
@@ -39,5 +37,5 @@
             </tbody>
         </table>
     </div>
-    <a href="{{ path('actors_new') }}"><button type="button" class="btn btn-secondary">Ajouter</button></a>
+    <a href="{{ path('actors.new') }}"><button type="button" class="btn btn-secondary">Ajouter</button></a>
 {% endblock %}

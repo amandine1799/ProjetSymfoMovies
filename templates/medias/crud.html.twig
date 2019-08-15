@@ -4,7 +4,7 @@
 
 {% block body %}
     <h2>Medias index</h2>
-    <a href="{{ path('actors_crud') }}"><button type="button" class="btn btn-secondary">ESPACE ACTEURS</button></a>
+    <a href="{{ path('actors.crud') }}"><button type="button" class="btn btn-secondary">ESPACE ACTEURS</button></a>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
@@ -12,7 +12,6 @@
                     <th scope="col">Id</th>
                     <th scope="col">Titre</th>
                     <th scope="col">Type</th>
-                    <th scope="col">Synopsis</th>
                     <th scope="col">Année</th>
                     <th scope="col">Durée</th>
                     <th scope="col">Affiche</th>
@@ -29,7 +28,6 @@
                     <td>{{ media.id }}</td>
                     <td>{{ media.title }}</td>
                     <td>{{ media.type }}</td>
-                    <td>{{ media.synopsis }}</td>
                     <td>{{ media.releasedYear }}</td>
                     <td>{{ media.duration }}</td>
                     <td>{{ media.poster }}</td>
@@ -40,8 +38,8 @@
                             {{ actor.name }}
                         {% endfor %}
                     </td>
-                    <td><a href="{{ path('movies_edit', {'title': media.title}) }}"><i class="fas fa-edit"></i></a></td>
-                    <td><a href="{{ path('movies_show', {'title' : media.title}) }}"><i class="far fa-eye"></i></a></td>
+                    <td><a href="{{ path('medias.edit', {'id': media.id}) }}"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="{{ path('medias.show', {'id' : media.id}) }}"><i class="far fa-eye"></i></a></td>
                 </tr>
             {% else %}
                 <tr>
@@ -51,5 +49,5 @@
             </tbody>
         </table>
     </div>
-    <a href="{{ path('movies_new') }}"><button type="button" class="btn btn-secondary">Ajouter</button></a>
+    <a href="{{ path('medias.new') }}"><button type="button" class="btn btn-secondary">Ajouter</button></a>
 {% endblock %}
