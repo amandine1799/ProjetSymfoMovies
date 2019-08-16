@@ -4,15 +4,36 @@
 
 {% block body %}
 <div class="media">
-    <img src="{{ actor.image }}" alt="{{ actor.name }}">
-    <div class="media-content">
-        <h2>{{ actor.name }}</h2>
-        {{ actor.born }}<br/>
-        {% if actor.died is not null %} 
-        {{ actor.died }}<br/>
-        {% endif %}
-        {{ actor.biography }}
+    <div class="container mt-3 mb-3">
+        <div class="row">
+            <div class="col-lg-4 text-center">
+                <img src="{{ actor.image }}" alt="{{ actor.name }}">
+            </div>
+            <div class="col-lg-8">            
+                <div class="media-content">
+                    <h2>{{ actor.name }}</h2>
+                    {{ actor.born }}<br/>
+                    {% if actor.died is not null %} 
+                    {{ actor.died }}<br/>
+                    {% endif %}
+                    {{ actor.biography }}
+                </div>
+            </div>
+        </div>  
     </div>
 </div>
-    
+<div class="container mt-3">
+    <div class="poster">
+        <h2>Filmographie</h2>
+        <div class="d-flex mt-3 mb-3">
+        {% for m in actor.media %}
+            <a href="{{ path('medias.show', {'id': m.id}) }}" class="mr-1">
+                <img src="{{ m.poster }}" alt="{{ m.title }}">
+            </a>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+   
 {% endblock %}
+

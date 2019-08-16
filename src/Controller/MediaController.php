@@ -20,7 +20,7 @@ class MediaController extends AbstractController
     public function index(MediaRepository $repo, GenresRepository $genresrepo, Request $request)
     {
         // Affiche tous les media de base (Quand on arrive sur la page d'accueil ou quand on recherche "tout")
-        $medias = $repo->findAll();
+        $medias = $repo->findAll('released_year', true);
 
         // Récupération de tous les genres pour le formulaire
         $genres = $genresrepo->findAll();
@@ -160,7 +160,7 @@ class MediaController extends AbstractController
     public function crud(MediaRepository $mediaRepository)
     {
         return $this->render('medias/crud.html.twig', [
-            'media' => $mediaRepository->findAll(),
+            'media' => $mediaRepository->findAll('title'),
         ]);
     }
 

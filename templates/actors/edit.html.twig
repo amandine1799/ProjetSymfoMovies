@@ -4,8 +4,11 @@
 
 {% block body %}
     {{ form_start(form) }}
-    <h2>Edit Actor</h2>
-    <a href="{{ path('actors.crud') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
+    <h2>Editer un Acteur</h2>
+    <div>
+        <a class="btn btn-secondary" href="{{ path('actors.crud') }}" role="button">Retour</a>
+        <button type="submit" class="btn btn-secondary">Mettre à jour</button>
+    </div>
 
     <div>
     {{ form_label(form.name) }}
@@ -27,9 +30,8 @@
     {{ form_label(form.image) }}
     {{ form_widget(form.image) }}
     </div>
-
-    <button type="submit"> Mettre à jour </button>
     {{ form_end(form) }}
-    
-    <a href="{{ path('actors.delete', {'id': actor.id}) }}" onclick="return confirm('Etes vous-sûr de vouloir supprimer ce acteur?')"><button type="button" class="btn btn-danger">Supprimer</button></a>
+    <div>
+        <a href="{{ path('actors.delete', {'id': actor.id}) }}" onclick="return confirm('Etes vous-sûr de vouloir supprimer cet acteur?')" class="btn btn-danger">Supprimer</a>
+    </div>
 {% endblock %}

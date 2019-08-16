@@ -15,7 +15,6 @@
   body {
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 54px - 54px);
   }
 
   footer {
@@ -59,33 +58,15 @@
   }
 
   .media {
-    height: 40em;
     background-color: black;
-    padding-top: 1.5em;
   }
 
   .media img {
     height: 30em;
-    padding-left: 20%;
-    margin-bottom: 1.5em;
   }
 
   .media-content {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    width: 40%;
-    box-sizing: border-box;
-    padding-left: 2.5em;
     color: #ffffff;
-  }
-
-  .media-content p {
-    padding-top: 1em;
-  }
-
-  .media-description {
-    height: 35em;
   }
 
   .acteur img:hover {
@@ -94,6 +75,10 @@
 
   .acteur img {
     height: 18em;
+  }
+
+  .d-flex {
+    border-bottom: 1px solid #d7d7d7;
   }
 
   .acteur a p {
@@ -105,4 +90,16 @@
 
   .acteur a:hover {
     text-decoration: none;
+  }
+
+  .poster img {
+    height: 20em;
+  }
+
+  .poster img:hover {
+    opacity: 0.9;
+  }
+
+  .poster-list img {
+    height: 15em;
   }

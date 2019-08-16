@@ -131,10 +131,10 @@ class MediaRepository extends ServiceEntityRepository
         return $sql->getResult();
     }
 
-    public function findAll()
+    public function findAll(string $order_field = 'released_year', bool $reverse = false)
     {
         $sql = $this->createQueryBuilder('m')
-                    ->orderBy('m.id', 'DESC')
+                    ->orderBy('m.' . $order_field, $reverse ? 'DESC' : 'ASC')
                     ->getQuery();
 
         return $sql->execute();

@@ -3,40 +3,67 @@
 
 {% block body %}
   <div class="media">
-    <img src="{{ media.poster }}" alt="">
-    <div class="media-content">
-      <h2>{{ media.title }}</h2>
-      <p>{{ media.synopsis | raw }}</p>
+    <div class="container mt-3 mb-3">
+      <div class="row">
+        <div class="col-lg-4 text-center">
+         <img src="{{ media.poster }}" alt="">
+        </div>
+        <div class="col-lg-8">
+          <div class="media-content text-justify">
+            <div class="list-button text-right mb-3">
+              <a href="#" class="btn btn-secondary" role="button"><i class="fas fa-film"> Déjà vu</i></a>
+              <a href="#" class="btn btn-secondary" role="button"><i class="far fa-clock"> A voir</i></a>
+            </div>
+            <h2>{{ media.title }}</h2>
+            <p>{{ media.synopsis | raw }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="media-description">
-    <h3>Trailer</h3>
-    <embed src="{{ media.trailer }}" allowfullscreen="true" width="525" height="344">
+  <div class="container mt-4">
+    <div class="row justify-content-md-center">
+      <div class="col">
+        <h3>Durée</h3>
+        <p>{{ media.duration }}mns</p>
 
-    <h3>Durée</h3>
-    {{ media.duration }}mns
-
-    <h3>Genre</h3>
-    {{ media.genres.name }}
+        <h3>Genre</h3>
+        <p>{{ media.genres.name }}</p>
+        <h3>Année</h3>
+        <p>{{ media.releasedYear }}</p>      
+      </div>
+      <div class="col">
+        <embed src="{{ media.trailer }}" allowfullscreen="true" width="625" height="350">
+      </div>
+    </div>
   </div>
 
-  <div class="acteur">
-    <h3>Casting</h3>
-    <div class="d-flex w-100 justify-content-around">
-      {% for actor in media.actors %}
-      <a href="{{ path('actors.show', {'id': actor.id}) }}">
-        <img src="{{ actor.image }}">
-        <p>{{ actor.name }}</p> 
-      </a>
+  <div class="container mt-5">
+    <div class="acteur">
+      <h3>Casting</h3>
+      <div class="d-flex mt-3">
+        {% for actor in media.actors %}
+        <a href="{{ path('actors.show', {'id': actor.id}) }}" class="mr-1">
+          <img src="{{ actor.image }}">
+          <p>{{ actor.name }}</p> 
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+   </div> 
+
+  <div class="container mt-3">
+    <h3>Reviews</h3>
+    <div class="card border-light mb-8">
+      {% for review in media.reviews %}
+      <div class="card-header"><h5 class="card-title">{{ review.title }}</h5></div>
+      <div class="card-body">
+        <p class="card-text">{{ review.text }}</p>
+        <p>Par {{ review.user.username }} le {{ review.date | date('d/m/Y') }}<p>
+      </div>
       {% endfor %}
     </div>
+    <a class="btn btn-secondary mb-3" href="{{ path('review.new', {'id': media.id}) }}">Ajouter une Review</a>
   </div>
-
-  {% for review in media.reviews %}
-  <h5>{{ review.title }}</h5>
-  <p>{{ review.date | date('d/m/Y') }}<p>
-  <p>{{ review.text }}</p>
-  {% endfor %}
-
 {% endblock %}

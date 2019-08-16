@@ -4,8 +4,13 @@
 
 {% block body %}
     {{ form_start(form) }}
-    <h2>Edit Media</h2>
-    <a href="{{ path('medias.crud') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
+    <h2>Editer un Média</h2>
+
+    <div>
+        <a class="btn btn-secondary" href="{{ path('medias.crud') }}" role="button">Retour</a>
+        <button type="submit" class="btn btn-secondary">Mettre à jour</button>
+    </div>
+    
     <div>
     {{ form_label(form.title) }}
     {{ form_widget(form.title) }}
@@ -43,7 +48,8 @@
     {{ form_widget(form.released_year) }}
     </div>
 
-<button type="submit"> Mettre à jour </button>
 {{ form_end(form) }}
-<a href="{{ path('medias.delete', {'id': media.id}) }}" onclick="return confirm('Etes vous-sûr de vouloir supprimer ce acteur?')"><button type="button" class="btn btn-danger">Supprimer</button></a>
+<div>
+    <a href="{{ path('medias.delete', {'id': media.id}) }}" onclick="return confirm('Etes vous-sûr de vouloir supprimer ce média?')" class="btn btn-danger">Supprimer</a>
+</div>
 {% endblock %}

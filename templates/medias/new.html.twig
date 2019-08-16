@@ -3,10 +3,13 @@
 {% block title %}New Media{% endblock %}
 
 {% block body %}
-    <h1>Create new Media</h1>
+    <h2>Ajouter un nouveau Media</h2>
     
-    <a href="{{ path('medias.crud') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
     {{ form_start(form) }}
+    <div>
+        <a class="btn btn-secondary" href="{{ path('medias.crud') }}" role="button">Retour</a>
+        <button type="submit"  class="btn btn-secondary">Ajouter</button>
+    </div>
     <div>
     {{ form_label(form.title) }}
     {{ form_widget(form.title) }}
@@ -43,7 +46,7 @@
     {{ form_label(form.released_year) }}
     {{ form_widget(form.released_year) }}
     </div>
-    <button type="submit"  class="btn btn-secondary"> Ajouter </button>
+    
     {{ form_end(form) }}
 
 {% endblock %}

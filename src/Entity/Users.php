@@ -30,21 +30,21 @@ class Users implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string", length=255)
      * @Assert\Email(
      *      message = "Cet email n'est pas valide", 
      *      checkMX = true
      * )
      */
+    private $email;
+
+     /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min="8", minMessage="Votre mot de passe doit faire minimum 8 caractères")
+     * @Assert\Length(min="6", minMessage="Votre mot de passe doit faire minimum 6 caractères")
      */
     private $password;
 
