@@ -13,6 +13,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Media
 {
+
+    const FILM = 1;
+    const SERIE = 2;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -31,9 +35,9 @@ class Media
     private $synopsis;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="date")
      */
-    private $released_year;
+    private $released;
 
     /**
      * @ORM\Column(type="string", length=2000)
@@ -62,7 +66,7 @@ class Media
     private $duration;
 
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="integer")
      */
     private $type;
 
@@ -106,14 +110,14 @@ class Media
         return $this;
     }
 
-    public function getReleasedYear(): ?int
+    public function getReleased(): ?\DateTimeInterface
     {
-        return $this->released_year;
+        return $this->released;
     }
 
-    public function setReleasedYear(int $released_year): self
+    public function setReleased(\DateTimeInterface $released): self
     {
-        $this->released_year = $released_year;
+        $this->released = $released;
 
         return $this;
     }

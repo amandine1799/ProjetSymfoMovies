@@ -22,7 +22,7 @@ class MediaType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('synopsis')
-            ->add('released_year')
+            ->add('released')
             ->add('poster')
             ->add('trailer')
             ->add('genres', EntityType::class, [

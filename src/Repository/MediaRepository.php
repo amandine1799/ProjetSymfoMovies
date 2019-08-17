@@ -20,123 +20,54 @@ class MediaRepository extends ServiceEntityRepository
         parent::__construct($registry, Media::class);
     }
 
-    public function findBySearch($genre, $type, $decenie)
+    public function findWithFilters($genre, $type, $decade)
     {
-        // Valeur de base
-        $tmp = 0;
-        $req = 'SELECT m FROM App\Entity\Media m ';
-        
-        // Si le genre est défini
-        // -------
-        if($genre != null){
-            // Requete pour trier les médias par genre
-            $req .= 'WHERE m.genres = :genre ';
-            $tmp = 1;
+        $q = $this->createQueryBuilder('m')
+                  ->orderBy('m.released', 'DESC');
 
-            // Si le type est défini (en + du genre)
-            if($type != null){
-                // Requete pour trier les médias par type (en + du genre)
-                $req .= 'AND m.type = :type ';
-                $tmp = 2;
-                // Si la décenie est définie (en + du genre et du type)
-                if($decenie != null){
-                    // Ex. on a 1980 minimum, on mets l'année maximum dans la décenie (1989)
-                    $decenieMax = (string)intval($decenie)+9;
-                    // Requete pour trier les médias entre la décenie minimum et maximum (en + du genre et du type=)
-                    $req .= 'AND m.released_year BETWEEN :decenie AND :decenieMax ';
-                    $tmp = 3;
-                }
-            }
-            // Si la décénie est définie (en + du genre et sans le type)
-            else if($decenie != null){
-                $decenieMax = (string)intval($decenie)+9;
-                $req .= 'AND m.released_year BETWEEN :decenie AND :decenieMax ';
-                $tmp = 7;
-            }
-        }
-        // Si le genre n'est pas défini, et si le type est défini
-        // --------
-        else if($type != null){
-            // Requete pour trier les médias par type
-            $req .= 'WHERE m.type = :type ';
-            $tmp = 4;
-            // Si la décenie est défini (en + du type)
-            if($decenie != null){
-                $decenieMax = (string)intval($decenie)+9;
-                $req .= 'AND m.released_year BETWEEN :decenie AND :decenieMax ';
-                $tmp = 5;
-            }
-        } 
-        // Si la décenie est définie
-        // -------
-        else if($decenie != null){
-            $decenieMax = (string)intval($decenie)+9;
-            $req .= 'WHERE m.released_year BETWEEN :decenie AND :decenieMax ';
-            $tmp = 6;
-        } 
-        // Si rien n'est défini
-        else {
-            $req .= 'ORDER BY m.id DESC';
-        }
-        
-        // Execute ta requete
-        $sql = $this->getEntityManager()->createQuery(
-            $req
-        );
-        
-        switch ($tmp){
-            case 1:
-                $param = ['genre' => $genre];
-                break;
-            case 2:
-                $param = ['genre' => $genre,'type' => $type];
-                break;
-            case 7:
-                $param = [
-                    'genre' => $genre,
-                    'decenie' => $decenie,
-                    'decenieMax' => $decenieMax
-                ];
-                break;
-            case 4:
-                $param = ['type' => $type];
-                break;
-            case 5:
-                $param = [
-                    'type' => $type,
-                    'decenie' => $decenie,
-                    'decenieMax' => $decenieMax
-                ];
-                break;
-            case 6:
-                $param = [
-                    'decenie' => $decenie,
-                    'decenieMax' => $decenieMax
-                ];
-                break;
-            case 3:
-                $param = [
-                    'genre' => $genre,
-                    'decenie' => $decenie,
-                    'decenieMax' => $decenieMax,
-                    'type' => $type
-                ];
-                break;
-            default:
-                $param = [];
+        if ($type !== null) {
+            $q->andWhere('m.type = :type');
+            $q->setParameter('type', $type);
         }
 
-        // Mets les parametres pour ta requete
-        $sql->setParameters($param);
-        return $sql->getResult();
+        if ($genre !== null) {
+            $q->andWhere('m.genres = :genre');
+            $q->setParameter('genre', $genre);
+        }
+
+        if ($decade !== null) {
+            $q->andWhere('YEAR(m.released) BETWEEN :decade AND (:decade + 9)');
+            $q->setParameter('decade', $decade);
+        }
+
+        return $q->getQuery()->execute();
     }
 
-    public function findAll(string $order_field = 'released_year', bool $reverse = false)
+    public function findAll(string $order_field = 'released', bool $reverse = false)
     {
         $sql = $this->createQueryBuilder('m')
                     ->orderBy('m.' . $order_field, $reverse ? 'DESC' : 'ASC')
                     ->getQuery();
 
         return $sql->execute();
+    }
+
+    public function getDistinctDecades()
+    {
+        $sql = $this->getEntityManager()->createQuery(
+            'SELECT DISTINCT m.released FROM App\Entity\Media m'
+        );
+        $res = $sql->getResult();
+
+        $decades = [];
+        foreach($res as $date) {
+            $y = (int)$date['released']->format('Y');
+            $y = floor($y / 10) * 10;
+            $decades[] = (int)$y;
+        }
+        
+        sort($decades);
+        $decades = array_unique($decades);
+        return $decades;
     }
 }

@@ -33,7 +33,7 @@
                 <td>{{ media.id }}</td>
                 <td>{{ media.title }}</td>
                 <td>{{ media.type }}</td>
-                <td>{{ media.releasedYear }}</td>
+                <td>{{ media.released | date('d/m/Y') }}</td>
                 <td>{{ media.duration }}</td>
                 <td>{{ media.poster }}</td>
                 <td>{{ media.trailer }}</td>

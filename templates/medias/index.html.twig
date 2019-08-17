@@ -22,8 +22,8 @@
           <label for="selectDecade">Décennie</label>
           <select class="custom-select custom-select-sm" name="decade" id="selectDecade">
             <option value="0">Tous</option>
-            {% for i in range(min,max,10) %}
-            <option value="{{ i }}">{{ i }}</option>
+            {% for d in decades %}
+            <option value="{{ d }}"{% if decade == d %} selected{% endif %}>{{ d }}</option>
             {% endfor %}
           </select>
         </div>
@@ -31,8 +31,8 @@
           <label for="select">Type</label>
           <select class="custom-select custom-select-sm" name="type" id="selectType">
             <option value="0">Voir tout</option>
-            <option value="Film">Films</option>
-            <option value="Série">Séries</option>
+            <option value="1"{% if type == 1 %} selected{% endif %}>Films</option>
+            <option value="2"{% if type == 2 %} selected{% endif %}>Séries</option>
           </select>
         </div>
         <div class="col-auto align-self-end">
