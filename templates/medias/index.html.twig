@@ -13,7 +13,7 @@
           <label for="selectGenre">Genre</label>
           <select class="custom-select custom-select-sm" name="genre" id="selectGenre">
             <option value="0">Tous</option>
-            {% for genre in genres %} 
+            {% for genre in genres %}
             <option value="{{ genre.id }}"{% if genre.id == genre_id %} selected{% endif %}>{{ genre.name }}</option>
             {% endfor %}
           </select>

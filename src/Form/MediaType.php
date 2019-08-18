@@ -32,8 +32,8 @@ class MediaType extends AbstractType
             ->add('type', ChoiceType::class, [
                 'placeholder' => 'Choix du type',
                 'choices' => [
-                    'Série' => 'Série',
-                    'Film' => 'Film'
+                    'Série' => Media::SERIE,
+                    'Film' => Media::FILM
                 ]  
             ])
             ->add('duration', IntegerType::class)
