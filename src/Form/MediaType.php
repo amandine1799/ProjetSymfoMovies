@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 
 class MediaType extends AbstractType
@@ -22,7 +23,9 @@ class MediaType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('synopsis')
-            ->add('released')
+            ->add('released', DateType::class, [
+                'widget' => 'single_text'
+            ])
             ->add('poster')
             ->add('trailer')
             ->add('genres', EntityType::class, [
