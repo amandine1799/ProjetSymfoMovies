@@ -3,43 +3,43 @@
 {% block title %}Espace Acteurs{% endblock %}
 
 {% block body %}
-<h2>Acteurs index</h2>
+<div class="container">
+    <h2>Acteurs index</h2>
 
-<div>
-    <a class="btn btn-secondary" href="{{ path('medias.crud') }}" role="button">ESPACE MEDIAS</a>
-    <a class="btn btn-secondary" href="{{ path('actors.new') }}">Ajouter</a>
-</div>
+    <div>
+        <a class="btn btn-secondary" href="{{ path('medias.crud') }}" role="button">ESPACE MEDIAS</a>
+        <a class="btn btn-secondary" href="{{ path('actors.new') }}">Ajouter</a>
+    </div>
 
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Naissance</th>
-                <th scope="col">Décès</th>
-                <th scope="col">Image</th>
-                <th scope="col">Editer</th>
-                <th scope="col">Voir</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for actor in actor %}
-            <tr class="table-secondary">
-                <td>{{ actor.id }}</td>
-                <td>{{ actor.name }}</td>
-                <td>{{ actor.born }}</td>
-                <td>{{ actor.died }}</td>
-                <td>{{ actor.image }}</td>
-                <td><a href="{{ path('actors.edit', {'id': actor.id}) }}"><i class="fas fa-edit"></i></a></td>
-                <td><a href="{{ path('actors.show', {'id' : actor.id}) }}"><i class="far fa-eye"></i></a></td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Naissance</th>
+                    <th scope="col">Décès</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Editer</th>
+                    <th scope="col">Voir</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for actor in actor %}
+                <tr class="table-secondary">
+                    <td>{{ actor.name }}</td>
+                    <td>{{ actor.born }}</td>
+                    <td>{{ actor.died }}</td>
+                    <td>{{ actor.image }}</td>
+                    <td><a href="{{ path('actors.edit', {'id': actor.id}) }}"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="{{ path('actors.show', {'id' : actor.id}) }}"><i class="far fa-eye"></i></a></td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}

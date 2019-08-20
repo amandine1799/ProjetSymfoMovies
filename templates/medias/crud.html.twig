@@ -3,55 +3,53 @@
 {% block title %}Espace Médias{% endblock %}
 
 {% block body %}
-<h2>Medias index</h2>
+<div class="container">
+    <h2>Medias index</h2>
 
-<div>
-    <a class="btn btn-secondary" href="{{ path('actors.crud') }}" role="button">ESPACE ACTEURS</a>
-    <a class="btn btn-secondary" href="{{ path('medias.new') }}">Ajouter</a>
-</div>
+    <div>
+        <a class="btn btn-secondary" href="{{ path('actors.crud') }}" role="button">ESPACE ACTEURS</a>
+        <a class="btn btn-secondary" href="{{ path('medias.new') }}">Ajouter</a>
+    </div>
 
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Titre</th>
-                <th scope="col">Type</th>
-                <th scope="col">Année</th>
-                <th scope="col">Durée</th>
-                <th scope="col">Affiche</th>
-                <th scope="col">Trailer</th>
-                <th scope="col">Genre</th>
-                <th scope="col">Acteurs</th>
-                <th scope="col">Editer</th>
-                <th scope="col">Voir</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for media in media %}
-            <tr class="table-secondary">
-                <td>{{ media.id }}</td>
-                <td>{{ media.title }}</td>
-                <td>{{ media.type }}</td>
-                <td>{{ media.released | date('d/m/Y') }}</td>
-                <td>{{ media.duration }}</td>
-                <td>{{ media.poster }}</td>
-                <td>{{ media.trailer }}</td>
-                <td>{{ media.genres.name }}</td>
-                <td>
-                {% for actor in media.actors %}
-                    {{ actor.name }}
-                {% endfor %}
-                </td>
-                <td><a href="{{ path('medias.edit', {'id': media.id}) }}"><i class="fas fa-edit"></i></a></td>
-                <td><a href="{{ path('medias.show', {'id' : media.id}) }}"><i class="far fa-eye"></i></a></td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Année</th>
+                    <th scope="col">Durée</th>
+                    <th scope="col">Affiche</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Acteurs</th>
+                    <th scope="col">Editer</th>
+                    <th scope="col">Voir</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for media in media %}
+                <tr class="table-secondary">
+                    <td>{{ media.title }}</td>
+                    <td>{{ media.type }}</td>
+                    <td>{{ media.released | date('d/m/Y') }}</td>
+                    <td>{{ media.duration }}</td>
+                    <td>{{ media.poster }}</td>
+                    <td>{{ media.genres.name }}</td>
+                    <td>
+                    {% for actor in media.actors %}
+                        {{ actor.name }}
+                    {% endfor %}
+                    </td>
+                    <td><a href="{{ path('medias.edit', {'id': media.id}) }}"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="{{ path('medias.show', {'id' : media.id}) }}"><i class="far fa-eye"></i></a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
