@@ -42,7 +42,11 @@
         </div>
         <div>
         {{ form_label(form.actors) }}
-        {{ form_widget(form.actors) }}
+        {{ form_widget(form.actors, {'attr': {
+            'class' : 'media-actors selectpicker',
+            'data-live-search' : "true",
+            'data-size' : '8'
+        }}) }}
         </div>
         <div>
         {{ form_label(form.released) }}
@@ -53,4 +57,10 @@
 <div>
     <a href="{{ path('medias.delete', {'id': media.id}) }}" onclick="return confirm('Etes vous-sûr de vouloir supprimer ce média?')" class="btn btn-danger">Supprimer</a>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $('.media-actors').selectpicker();
+</script>
 {% endblock %}
