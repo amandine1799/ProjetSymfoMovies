@@ -4,32 +4,34 @@
 
 {% block body %}
     {{ form_start(form) }}
-    <h2>Editer un Acteur</h2>
-    <div>
-        <a class="btn btn-secondary" href="{{ path('actors.crud') }}" role="button">Retour</a>
-        <button type="submit" class="btn btn-secondary">Mettre à jour</button>
-    </div>
+    <div class="container">
+        <h2>Editer un Acteur</h2>
+        <div>
+            <a class="btn btn-secondary" href="{{ path('actors.crud') }}" role="button">Retour</a>
+            <button type="submit" class="btn btn-secondary">Mettre à jour</button>
+        </div>
 
-    <div>
-    {{ form_label(form.name) }}
-    {{ form_widget(form.name) }}
-    </div>
-    <div>
-    {{ form_label(form.biography) }}
-    {{ form_widget(form.biography) }}
-    </div>
-    <div>
-    {{ form_label(form.born) }}
-    {{ form_widget(form.born) }}
-    </div>
-    <div>
-    {{ form_label(form.died) }}
-    {{ form_widget(form.died) }}
-    </div>
-    <div>
-    {{ form_label(form.image) }}
-    {{ form_widget(form.image) }}
-    </div>
+        <div>
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        </div>
+        <div>
+        {{ form_label(form.biography) }}
+        {{ form_widget(form.biography) }}
+        </div>
+        <div>
+        {{ form_label(form.born) }}
+        {{ form_widget(form.born) }}
+        </div>
+        <div>
+        {{ form_label(form.died) }}
+        {{ form_widget(form.died) }}
+        </div>
+        <div>
+        {{ form_label(form.image) }}
+        {{ form_widget(form.image) }}
+        </div>
+    </div>    
     {{ form_end(form) }}
     <div>
         <a href="{{ path('actors.delete', {'id': actor.id}) }}" onclick="return confirm('Etes vous-sûr de vouloir supprimer cet acteur?')" class="btn btn-danger">Supprimer</a>

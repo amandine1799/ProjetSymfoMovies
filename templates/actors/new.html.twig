@@ -4,29 +4,30 @@
 
 {% block body %}
     {{ form_start(form) }}
-    <a href="{{ path('actors.crud') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
+    <div class="container">
+        <a href="{{ path('actors.crud') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
 
-
-    <div>
-    {{ form_label(form.name) }}
-    {{ form_widget(form.name) }}
-    </div>
-    <div>
-    {{ form_label(form.biography) }}
-    {{ form_widget(form.biography) }}
-    </div>
-    <div>
-    {{ form_label(form.born) }}
-    {{ form_widget(form.born) }}
-    </div>
-    <div>
-    {{ form_label(form.died) }}
-    {{ form_widget(form.died) }}
-    </div>
-    <div>
-    {{ form_label(form.image) }}
-    {{ form_widget(form.image) }}
-    </div>
-    <button type="submit"> Envoyer </button>
+        <div>
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        </div>
+        <div>
+        {{ form_label(form.biography) }}
+        {{ form_widget(form.biography) }}
+        </div>
+        <div>
+        {{ form_label(form.born) }}
+        {{ form_widget(form.born) }}
+        </div>
+        <div>
+        {{ form_label(form.died) }}
+        {{ form_widget(form.died) }}
+        </div>
+        <div>
+        {{ form_label(form.image) }}
+        {{ form_widget(form.image) }}
+        </div>
+        <button type="submit"> Envoyer </button>
+    </div>    
     {{ form_end(form) }}
 {% endblock %}

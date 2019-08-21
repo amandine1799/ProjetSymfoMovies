@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="container mt-3">
+<div class="container-fluid mt-3">
     <div class="poster-list">
         {% for review in reviews %}
             <td><a href="{{ path('medias.show', {'id': review.media.id}) }}"><img src="{{ review.media.poster }}" alt="affiche"></a></td><br/>

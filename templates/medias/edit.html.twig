@@ -4,50 +4,51 @@
 
 {% block body %}
     {{ form_start(form) }}
-    <h2>Editer un Média</h2>
+    <div class="container">
+        <h2>Editer un Média</h2>
 
-    <div>
-        <a class="btn btn-secondary" href="{{ path('medias.crud') }}" role="button">Retour</a>
-        <button type="submit" class="btn btn-secondary">Mettre à jour</button>
+        <div>
+            <a class="btn btn-secondary" href="{{ path('medias.crud') }}" role="button">Retour</a>
+            <button type="submit" class="btn btn-secondary">Mettre à jour</button>
+        </div>
+        
+        <div>
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title) }}
+        </div>
+        <div>
+        {{ form_label(form.type) }}
+        {{ form_widget(form.type) }}
+        </div>
+        <div>
+        {{ form_label(form.synopsis) }}
+        {{ form_widget(form.synopsis) }}
+        </div>
+        <div>
+        {{ form_label(form.duration) }}
+        {{ form_widget(form.duration) }}
+        </div>
+        <div>
+        {{ form_label(form.poster) }}
+        {{ form_widget(form.poster) }}
+        </div>
+        <div>
+        {{ form_label(form.trailer) }}
+        {{ form_widget(form.trailer) }}
+        </div>
+        <div>
+        {{ form_label(form.genres) }}
+        {{ form_widget(form.genres) }}
+        </div>
+        <div>
+        {{ form_label(form.actors) }}
+        {{ form_widget(form.actors) }}
+        </div>
+        <div>
+        {{ form_label(form.released) }}
+        {{ form_widget(form.released) }}
+        </div>
     </div>
-    
-    <div>
-    {{ form_label(form.title) }}
-    {{ form_widget(form.title) }}
-    </div>
-    <div>
-    {{ form_label(form.type) }}
-    {{ form_widget(form.type) }}
-    </div>
-    <div>
-    {{ form_label(form.synopsis) }}
-    {{ form_widget(form.synopsis) }}
-    </div>
-    <div>
-    {{ form_label(form.duration) }}
-    {{ form_widget(form.duration) }}
-    </div>
-    <div>
-    {{ form_label(form.poster) }}
-    {{ form_widget(form.poster) }}
-    </div>
-    <div>
-    {{ form_label(form.trailer) }}
-    {{ form_widget(form.trailer) }}
-    </div>
-    <div>
-    {{ form_label(form.genres) }}
-    {{ form_widget(form.genres) }}
-    </div>
-    <div>
-    {{ form_label(form.actors) }}
-    {{ form_widget(form.actors) }}
-    </div>
-    <div>
-    {{ form_label(form.released) }}
-    {{ form_widget(form.released) }}
-    </div>
-
 {{ form_end(form) }}
 <div>
     <a href="{{ path('medias.delete', {'id': media.id}) }}" onclick="return confirm('Etes vous-sûr de vouloir supprimer ce média?')" class="btn btn-danger">Supprimer</a>
