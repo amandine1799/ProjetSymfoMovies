@@ -48,7 +48,7 @@ class MediaType extends AbstractType
                 'mapped'        => false,
                 'query_builder' => function(ActorsRepository $rep) {
                     return $rep->createQueryBuilder('a')
-                                    ->distinct();
+                                ->distinct();
                 }
             ])
         ;
