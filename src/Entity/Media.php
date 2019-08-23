@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\MediaUsers;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -75,10 +76,16 @@ class Media
      */
     private $reviews;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MediaUsers", mappedBy="media")
+     */
+    private $mediaUsers;
+
     public function __construct()
     {
         $this->actors = new ArrayCollection();
         $this->reviews = new ArrayCollection();
+        $this->mediaUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -233,6 +240,37 @@ class Media
             // set the owning side to null (unless already changed)
             if ($review->getMedia() === $this) {
                 $review->setMedia(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|mediaUsers[]
+     */
+    public function getMediaUsers(): Collection
+    {
+        return $this->mediaUsers;
+    }
+
+    public function addMediaUser(MediaUsers $mediaUser): self
+    {
+        if (!$this->mediaUsers->contains($mediaUser)) {
+            $this->mediaUsers[] = $mediaUser;
+            $mediaUser->setMedia($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMediaUser(MediaUsers $mediaUser): self
+    {
+        if ($this->mediaUsers->contains($mediaUser)) {
+            $this->mediaUsers->removeElement($mediaUser);
+            // set the owning side to null (unless already changed)
+            if ($mediaUser->getMedia() === $this) {
+                $mediaUser->setMedia(null);
             }
         }
 

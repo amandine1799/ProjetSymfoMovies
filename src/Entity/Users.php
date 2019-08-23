@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\MediaUsers;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -58,9 +59,15 @@ class Users implements UserInterface
      */
     private $reviews;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MediaUsers", mappedBy="users")
+     */
+    private $mediaUsers;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
+        $this->mediaUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -137,6 +144,47 @@ public function eraseCredentials() {}
             // set the owning side to null (unless already changed)
             if ($review->getUser() === $this) {
                 $review->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|mediaUsers[]
+     */
+    public function getMediaUsers(): Collection
+    {
+        return $this->mediaUsers;
+    }
+
+    public function getMediaUser(Media $media)
+    {
+        foreach($this->mediaUsers as $umedia){
+            if($umedia->getMedia() == $media){
+                return $umedia;
+            }
+        }
+        return null;
+    }
+
+    public function addMediaUser(MediaUsers $mediaUser): self
+    {
+        if (!$this->mediaUsers->contains($mediaUser)) {
+            $this->mediaUsers[] = $mediaUser;
+            $mediaUser->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMediaUser(MediaUsers $mediaUser): self
+    {
+        if ($this->mediaUsers->contains($mediaUser)) {
+            $this->mediaUsers->removeElement($mediaUser);
+            // set the owning side to null (unless already changed)
+            if ($mediaUser->getUsers() === $this) {
+                $mediaUser->setUsers(null);
             }
         }
 

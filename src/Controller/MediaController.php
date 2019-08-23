@@ -4,12 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Media;
 use App\Form\MediaType;
+use App\Entity\MediaUsers;
+use App\Repository\MediaRepository;
 use App\Repository\ActorsRepository;
 use App\Repository\GenresRepository;
-use App\Repository\MediaRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\MediaUsersRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class MediaController extends AbstractController
@@ -133,6 +137,92 @@ class MediaController extends AbstractController
     {
         return $this->render('medias/crud.html.twig', [
             'media' => $mediaRepository->findAll('title'),
+        ]);
+    }
+
+    /**
+     * @Route("/medias/{id}/haveseen", name="medias.haveseen")
+     */
+    public function haveseen(Media $media, ObjectManager $manager, MediaUsersRepository $repo)
+    {
+        $user = $this->getUser();
+        $mediauser = $repo->findOneBy(['media' => $media, 'users' => $user]);
+        if($mediauser == null){
+            $mediauser = new MediaUsers();
+        }
+        $mediauser->setMedia($media);
+        $mediauser->setUsers($user);
+        if($mediauser->getHaveSeen()==true){
+            $mediauser->setHaveSeen(false);
+            $active = false;
+        } else {
+            $mediauser->setHaveSeen(true);
+            $active = true;
+        }
+
+        $manager->persist($mediauser);
+        $manager->flush();
+
+        $response = [
+            "active" => $active
+        ];
+
+        return new JsonResponse($response);
+    }
+
+    /**
+     * @Route("/medias/dejavu", name="medias.dejavu")
+     */
+    public function listHaveSeen(MediaUsersRepository $repo)
+    {
+        return $this->render('medias/dejavu.html.twig', [
+            'medias' => $repo->findBy([
+                'users' =>  $this->getUser(),
+                'haveSeen' => true
+            ])
+        ]);
+    }
+
+    /**
+     * @Route("/medias/{id}/wantsee", name="medias.wantsee")
+     */
+    public function wantsee(Media $media, ObjectManager $manager, MediaUsersRepository $repo)
+    {
+        $user = $this->getUser();
+        $mediauser = $repo->findOneBy(['media' => $media, 'users' => $user]);
+        if($mediauser == null){
+            $mediauser = new MediaUsers();
+        }
+        $mediauser->setMedia($media);
+        $mediauser->setUsers($user);
+        if($mediauser->getWishList()==true){
+            $mediauser->setWishList(false);
+            $active = false;
+        } else {
+            $mediauser->setWishList(true);
+            $active = true;
+        }
+
+        $manager->persist($mediauser);
+        $manager->flush();
+
+        $response = [
+            "active" => $active
+        ];
+
+        return new JsonResponse($response);
+    }
+
+    /**
+     * @Route("/medias/wishlist", name="medias.wishlist")
+     */
+    public function wishList(MediaUsersRepository $repo)
+    {
+        return $this->render('medias/wishlist.html.twig', [
+            'medias' => $repo->findBy([
+                'users' => $this->getUser(),
+                'wishList' => true
+            ])
         ]);
     }
 

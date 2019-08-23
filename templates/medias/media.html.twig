@@ -11,8 +11,16 @@
         <div class="col-lg-8">
           <div class="media-content text-justify">
             <div class="list-button text-right mb-3">
-              <a href="#" class="btn btn-secondary" role="button"><i class="fas fa-film"> Déjà vu</i></a>
-              <a href="#" class="btn btn-secondary" role="button"><i class="far fa-clock"> A voir</i></a>
+              {% if app.user %}
+              {% set var = app.user.mediaUser(media) %}
+              <a class="btn btn-secondary {% if var is not null and var.haveSeen == true %} bg-danger{% endif %} haveSeen" data-url="{{ path('medias.haveseen', {'id': media.id }) }}" role="button">
+                <i class="fas fa-film"> Déjà vu</i>
+              </a>
+              {% set var = app.user.mediaUser(media) %}
+              <a class="btn btn-secondary {% if var is not null and var.wishList == true %} bg-danger{% endif %} wishList" data-url="{{ path('medias.wantsee', {'id': media.id }) }}" role="button">
+                <i class="far fa-clock"> Veux voir</i>
+              </a>
+              {% endif %}
             </div>
             <h2>{{ media.title }}</h2>
             <p>{{ media.synopsis | raw }}</p>
@@ -64,6 +72,8 @@
       </div>
       {% endfor %}
     </div>
+    {% if app.user %}
     <a class="btn btn-secondary mb-3" href="{{ path('review.new', {'id': media.id}) }}">Ajouter une Review</a>
+    {% endif %}
   </div>
 {% endblock %}

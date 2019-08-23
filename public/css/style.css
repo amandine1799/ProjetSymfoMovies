@@ -111,3 +111,7 @@
   .collapse a.nav-link:hover {
     color: white;
   }
+
+  .list p {
+    color: black;
+  }

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Films & Séries{% endblock %}
+
+{% block body %}
+<div class="list p-2">
+  <div class="container-fluid">
+    <h2>Vous avez {{ medias|length }} Médias dans votre WishList</h2>
+    <div class="poster-grid mt-4">
+      {% for umedia in medias %}
+        <a href="{{ path('medias.show', {'id': umedia.media.id}) }}"><img src="{{ umedia.media.poster }}" alt="affiche">
+          <p>{{ umedia.media.title }}</p>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
