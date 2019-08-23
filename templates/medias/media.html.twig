@@ -39,7 +39,7 @@
         <h3>Genre</h3>
         <p>{{ media.genres.name }}</p>
         <h3>Année</h3>
-        <p>{{ media.released | date('Y') }}</p>      
+        <p>{{ media.released | date('d/m/Y') }}</p>      
       </div>
       <div class="col">
         <embed src="{{ media.trailer }}" allowfullscreen="true" width="625" height="350">
