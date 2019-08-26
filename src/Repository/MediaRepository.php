@@ -70,4 +70,15 @@ class MediaRepository extends ServiceEntityRepository
         $decades = array_unique($decades);
         return $decades;
     }
+
+    public function aleatoireMedias()
+    {
+        $sql = $this->getEntityManager()->createQuery(
+            "SELECT m FROM App\Entity\Media m ORDER BY RAND()"
+        );
+        $sql->setMaxResults(1);
+        return $sql->getSingleResult();
+    }
 }
+
+

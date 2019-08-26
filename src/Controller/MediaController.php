@@ -21,7 +21,7 @@ class MediaController extends AbstractController
     /**
      * @Route("/medias", name="medias.index")
      */
-    public function index(MediaRepository $repo, GenresRepository $genresrepo, Request $request)
+    public function index(MediaRepository $repo, GenresRepository $genresrepo, Request $request, MediaRepository $repomedia)
     {
         // Remplissage des valeurs du formulaire
         $genres = $genresrepo->findAll();
@@ -51,7 +51,9 @@ class MediaController extends AbstractController
             }
         }
 
+        $mediasaleatoire = $repomedia->aleatoireMedias();
         $medias = $repo->findWithFilters($genre_id, $type, $decade);
+        
         
         return $this->render('medias/index.html.twig', [
             'genre_id' => $genre_id,
@@ -60,8 +62,9 @@ class MediaController extends AbstractController
             'medias' => $medias,
             'genres' => $genres,
             'decades' => $decades,
+            'mediaaleatoire' => $mediasaleatoire
         ]);
-}
+    }
 
     /**
      * @Route("/medias/new", name="medias.new", methods={"GET","POST"})

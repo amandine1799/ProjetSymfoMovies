@@ -16,6 +16,8 @@ doctrine:
         dql:
             string_functions:
                 YEAR: DoctrineExtensions\Query\Mysql\Year
+            numeric_functions:
+                rand: DoctrineExtensions\Query\Mysql\Rand
         mappings:
             App:
                 is_bundle: false
