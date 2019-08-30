@@ -77,10 +77,10 @@ class MediaController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $request->request->get('media');
-            foreach($data['actors'] as $user_id) 
+            foreach($data['actors'] as $actor_id) 
             {
-                $user = $actorsRepository->find($user_id);
-                $media->addActor($user);
+                $actor = $actorsRepository->find($actor_id);
+                $media->addActor($actor);
             }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($media);
@@ -91,7 +91,7 @@ class MediaController extends AbstractController
 
         return $this->render('medias/new.html.twig', [
             'media' => $media,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ]);
     }
 
@@ -106,10 +106,10 @@ class MediaController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $request->request->get('media');
-            foreach($data['actors'] as $user_id)
+            foreach($data['actors'] as $actor_id)
             {
-                $user = $actorsRepository->find($user_id);
-                $media->addActor($user);
+                $actor = $actorsRepository->find($actor_id);
+                $media->addActor($actor);
             }
             $this->getDoctrine()->getManager()->persist($media);
             $this->getDoctrine()->getManager()->flush();
@@ -117,7 +117,7 @@ class MediaController extends AbstractController
 
         return $this->render('medias/edit.html.twig', [
             'media' => $media,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ]);
     }
 

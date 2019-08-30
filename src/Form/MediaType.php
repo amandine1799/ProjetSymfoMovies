@@ -21,7 +21,9 @@ class MediaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
+            ->add('title', TextType::class, [
+                'label' => 'Titre',
+            ])
             ->add('synopsis')
             ->add('released', DateType::class, [
                 'widget' => 'single_text'
@@ -35,8 +37,8 @@ class MediaType extends AbstractType
             ->add('type', ChoiceType::class, [
                 'placeholder' => 'Choix du type',
                 'choices' => [
-                    'Série' => Media::SERIE,
-                    'Film' => Media::FILM
+                    'Film' => Media::FILM,
+                    'Série' => Media::SERIE
                 ]  
             ])
             ->add('duration', IntegerType::class)
