@@ -79,6 +79,18 @@ class MediaRepository extends ServiceEntityRepository
         $sql->setMaxResults(1);
         return $sql->getSingleResult();
     }
+
+    public function lastReleased()
+        {
+            $sql = $this->getEntityManager()->createQuery(
+                "SELECT m FROM App\Entity\Media m WHERE m.released > CURRENT_DATE()"
+            );
+
+            return $sql->getResult();
+        }
+
 }
+
+
 
 

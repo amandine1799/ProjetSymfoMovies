@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Bienvenue sur Watching Medias, votre base de données de Films et Séries!</h2>
+    <h2>Prochainement...</h2>
+   
+         <div class="carousel" data-flickity='{ "groupCells": true }'>
+            {% for media in medias %}
+            <div class="carousel-cell">
+                <a href="{{ path('medias.show', {'id': media.id}) }}"><img src="{{ media.poster }}" alt="affiche">
+                <p>{{ media.title }}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+</div>
+{% endblock %}

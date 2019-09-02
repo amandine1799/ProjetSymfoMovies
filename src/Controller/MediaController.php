@@ -19,9 +19,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MediaController extends AbstractController
 {
     /**
+     * @Route("/", name="accueil")
+     */
+    public function home(MediaRepository $repo)
+    {
+        $medias = $repo->lastReleased();
+        return $this->render('medias/home.html.twig', [
+            'medias' => $medias
+        ]);
+    }
+
+    /**
      * @Route("/medias", name="medias.index")
      */
-    public function index(MediaRepository $repo, GenresRepository $genresrepo, Request $request, MediaRepository $repomedia)
+    public function index(MediaRepository $repo, GenresRepository $genresrepo, Request $request)
     {
         // Remplissage des valeurs du formulaire
         $genres = $genresrepo->findAll();
@@ -51,7 +62,6 @@ class MediaController extends AbstractController
             }
         }
 
-        $mediasaleatoire = $repomedia->aleatoireMedias();
         $medias = $repo->findWithFilters($genre_id, $type, $decade);
         
         
@@ -61,9 +71,23 @@ class MediaController extends AbstractController
             'decade' => $decade,
             'medias' => $medias,
             'genres' => $genres,
-            'decades' => $decades,
-            'mediaaleatoire' => $mediasaleatoire
+            'decades' => $decades
         ]);
+    }
+
+    /**
+     * @Route("/aleatoire", name="aleatoire")
+     */
+    public function aleatoire(MediaRepository $rep){
+        // Ajax calling
+        $render = $this->render('medias/aleatoire.html.twig',[
+            'mediaaleatoire' => $rep->aleatoireMedias()
+        ]);
+        $response = [
+            "code"   => 200,
+            "render" => $render->getContent(),
+        ];
+        return new JsonResponse($response);
     }
 
     /**

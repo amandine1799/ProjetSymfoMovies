@@ -20,11 +20,17 @@ security:
             form_login:
                 login_path: login
                 check_path: login
-                default_target_path: medias.index
+                default_target_path: accueil
 
             logout:
                 path: logout
                 target: login
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 86400
+                path: /
+                always_remember_me: true
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
