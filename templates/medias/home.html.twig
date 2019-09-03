@@ -16,5 +16,15 @@
             </div>
             {% endfor %}
         </div>
+
+       <div class="carousel" data-flickity='{ "groupCells": true }'>
+                {% for lmedia  in last %}
+                <div class="carousel-cell">
+                    <a href="{{ path('medias.show', {'id': lmedia.id}) }}"><img src="{{ lmedia.poster }}" alt="affiche">
+                    <p>{{ lmedia.title }}</p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div> 
 </div>
 {% endblock %}

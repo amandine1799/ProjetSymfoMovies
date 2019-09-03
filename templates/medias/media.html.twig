@@ -14,11 +14,11 @@
               {% if app.user %}
               {% set var = app.user.mediaUser(media) %}
               <a title="Ajouter à sa liste de médias déjà vu" class="btn btn-secondary {% if var is not null and var.haveSeen == true %} bg-danger{% endif %} haveSeen" data-url="{{ path('medias.haveseen', {'id': media.id }) }}" role="button">
-                <i class="fas fa-film"> Ajouter à la Liste Vu</i>
+                <i class="fas fa-film"> Déjà Vu</i>
               </a>
               {% set var = app.user.mediaUser(media) %}
               <a title="Ajouter à sa WishList" class="btn btn-secondary {% if var is not null and var.wishList == true %} bg-danger{% endif %} wishList" data-url="{{ path('medias.wantsee', {'id': media.id }) }}" role="button">
-                <i class="far fa-clock"> Ajouter à la Wish List</i>
+                <i class="far fa-clock"> Wish List</i>
               </a>
               {% endif %}
             </div>

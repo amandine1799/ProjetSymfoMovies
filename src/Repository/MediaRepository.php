@@ -3,8 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Media;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 
 /**
@@ -80,15 +80,22 @@ class MediaRepository extends ServiceEntityRepository
         return $sql->getSingleResult();
     }
 
+    public function nextReleased()
+    {
+        $sql = $this->getEntityManager()
+                     ->createQuery("SELECT m FROM App\Entity\Media m WHERE m.released > CURRENT_DATE() ORDER BY m.released ASC"
+        );
+        return $sql->getResult();
+    }
+
     public function lastReleased()
-        {
-            $sql = $this->getEntityManager()->createQuery(
-                "SELECT m FROM App\Entity\Media m WHERE m.released > CURRENT_DATE()"
-            );
-
-            return $sql->getResult();
-        }
-
+    {
+        $sql = $this->getEntityManager()
+                     ->createQuery("SELECT m FROM App\Entity\Media m WHERE m.released BETWEEN :start_date AND CURRENT_DATE"
+        );
+        $sql->setParameter('start_date', new \DateTime('-1 month'));
+        return $sql->getResult();
+    }
 }
 
 

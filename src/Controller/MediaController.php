@@ -23,9 +23,11 @@ class MediaController extends AbstractController
      */
     public function home(MediaRepository $repo)
     {
-        $medias = $repo->lastReleased();
+        $medias = $repo->nextReleased();
+        $last = $repo->lastReleased();
         return $this->render('medias/home.html.twig', [
-            'medias' => $medias
+            'medias' => $medias,
+            'last' => $last
         ]);
     }
 
@@ -100,6 +102,7 @@ class MediaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $data = $request->request->get('media');
             foreach($data['actors'] as $actor_id) 
             {
