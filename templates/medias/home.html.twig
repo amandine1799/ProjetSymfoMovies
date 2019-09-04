@@ -11,20 +11,19 @@
             {% for media in medias %}
             <div class="carousel-cell">
                 <a href="{{ path('medias.show', {'id': media.id}) }}"><img src="{{ media.poster }}" alt="affiche">
-                <p>{{ media.title }}</p>
                 </a>
             </div>
             {% endfor %}
-        </div>
+        </div></br></br>
 
+        <h2>Récemment sorti</h2>
        <div class="carousel" data-flickity='{ "groupCells": true }'>
                 {% for lmedia  in last %}
                 <div class="carousel-cell">
                     <a href="{{ path('medias.show', {'id': lmedia.id}) }}"><img src="{{ lmedia.poster }}" alt="affiche">
-                    <p>{{ lmedia.title }}</p>
                     </a>
                 </div>
                 {% endfor %}
-            </div> 
+            </div><br/><br/>
 </div>
 {% endblock %}

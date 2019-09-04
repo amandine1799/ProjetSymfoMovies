@@ -7,6 +7,18 @@
     </div>
     <div class="modal-body">
         <img src="{{ mediaaleatoire.poster }}" style="width:100%;">
+        <div class="list-button text-right mt-3 d-flex justify-content-center">
+            {% if app.user %}
+            {% set var = app.user.mediaUser(mediaaleatoire) %}
+            <a class="btn btn-secondary text-white mr-3 {% if var is not null and var.haveSeen == true %} bg-danger{% endif %} haveSeen" data-url="{{ path('medias.haveseen', {'id': mediaaleatoire.id }) }}" role="button">
+                <i class="fas fa-film"> Déjà Vu</i>
+            </a>
+            {% set var = app.user.mediaUser(mediaaleatoire) %}
+            <a class="btn btn-secondary text-white {% if var is not null and var.wishList == true %}bg-danger{% endif %} wishList" data-url="{{ path('medias.wantsee', {'id': mediaaleatoire.id }) }}" role="button">
+                <i class="far fa-clock"> Wish List</i>
+            </a>
+            {% endif %}
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
