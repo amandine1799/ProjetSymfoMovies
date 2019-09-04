@@ -116,21 +116,47 @@
     color: black;
   }
 
-  .carousel {
-    background: #EEE;
+  .carousel1, .carousel2 {
+    background: rgba(0,0,0,0.1);
   }
   
   .carousel-cell {
-    width: 20%;
-    height: 300px;
+    width: 25%;
+    height: 350px;
     margin-right: 10px;
     counter-increment: gallery-cell;
   }
 
   .carousel-cell img {
-    height: 300px;
+    height: 350px;
   }
 
   .carousel-cell img:hover {
     opacity: 0.7;
   }
+
+ .title-index {
+   color: white;
+   font-weight: bold;
+ }
+
+ .jumbotron {
+   background-image: url("../img/background.jpg");
+   background-repeat: no-repeat;
+ }
+
+ .jumbotron p {
+   color: white;
+ }
+
+ .title-next {
+  background: linear-gradient(to right, #34113F, white);  
+  width: 100%;
+  border-top-right-radius: 90%;
+ }
+
+ .title-next h2 {
+   padding: 1%;
+   color: white;
+ }
+

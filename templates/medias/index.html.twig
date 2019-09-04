@@ -3,66 +3,66 @@
 {% block title %}Films & Séries{% endblock %}
 
 {% block body %}
-<div class="content p-2">
-  <div class="container-fluid">
-    <h1>Médias</h1>
+  <div class="content p-2">
+    <div class="container-fluid">
+      <h1>Médias</h1>
 
-    <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-secondary btn-sm d-flex justify-content-end moviealea" data-url="{{ path('aleatoire') }}" data-toggle="modal" data-target="#aleatoire">
-        Film ou Média Aléatoire 
-      </button>
-    </div>
-
-    <form action="{{ path('medias.index') }}" method="POST">
-      <div class="form-row align-items-center mb-3">
-        <div class="col-3">
-          <label for="selectGenre">Genre</label>
-          <select class="custom-select custom-select-sm" name="genre" id="selectGenre">
-            <option value="0">Tous</option>
-            {% for genre in genres %}
-            <option value="{{ genre.id }}"{% if genre.id == genre_id %} selected{% endif %}>{{ genre.name }}</option>
-            {% endfor %}
-          </select>
-        </div>
-        <div class="col-3">
-          <label for="selectDecade">Décennie</label>
-          <select class="custom-select custom-select-sm" name="decade" id="selectDecade">
-            <option value="0">Tous</option>
-            {% for d in decades %}
-            <option value="{{ d }}"{% if decade == d %} selected{% endif %}>{{ d }}</option>
-            {% endfor %}
-          </select>
-        </div>
-        <div class="col-3">
-          <label for="select">Type</label>
-          <select class="custom-select custom-select-sm" name="type" id="selectType">
-            <option value="0">Voir tout</option>
-            <option value="1"{% if type == 1 %} selected{% endif %}>Films</option>
-            <option value="2"{% if type == 2 %} selected{% endif %}>Séries</option>
-          </select>
-        </div>
-        <div class="col-auto align-self-end">
-          <button type="submit" class="btn btn-secondary btn-sm">Valider</button>
-        </div>
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary btn-sm d-flex justify-content-end moviealea" data-url="{{ path('aleatoire') }}" data-toggle="modal" data-target="#aleatoire">
+          Film ou Média Aléatoire 
+        </button>
       </div>
-    </form>
+
+      <form action="{{ path('medias.index') }}" method="POST">
+        <div class="form-row align-items-center mb-3">
+          <div class="col-3">
+            <label for="selectGenre">Genre</label>
+            <select class="custom-select custom-select-sm" name="genre" id="selectGenre">
+              <option value="0">Tous</option>
+              {% for genre in genres %}
+              <option value="{{ genre.id }}"{% if genre.id == genre_id %} selected{% endif %}>{{ genre.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="selectDecade">Décennie</label>
+            <select class="custom-select custom-select-sm" name="decade" id="selectDecade">
+              <option value="0">Tous</option>
+              {% for d in decades %}
+              <option value="{{ d }}"{% if decade == d %} selected{% endif %}>{{ d }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="select">Type</label>
+            <select class="custom-select custom-select-sm" name="type" id="selectType">
+              <option value="0">Voir tout</option>
+              <option value="1"{% if type == 1 %} selected{% endif %}>Films</option>
+              <option value="2"{% if type == 2 %} selected{% endif %}>Séries</option>
+            </select>
+          </div>
+          <div class="col-auto align-self-end">
+            <button type="submit" class="btn btn-secondary btn-sm">Valider</button>
+          </div>
+        </div>
+      </form>
 
 
-    <div class="poster-grid">
-      {% for media in medias %}
-        <a href="{{ path('medias.show', {'id': media.id}) }}"><img src="{{ media.poster }}" alt="affiche">
-          <p>{{ media.title }}</p>
-        </a>
-      {% endfor %}
+      <div class="poster-grid">
+        {% for media in medias %}
+          <a href="{{ path('medias.show', {'id': media.id}) }}"><img src="{{ media.poster }}" alt="affiche">
+            <p>{{ media.title }}</p>
+          </a>
+        {% endfor %}
+      </div>
     </div>
   </div>
-</div>
 
-<div class="modal fade" id="aleatoire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
+  <div class="modal fade" id="aleatoire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
 
+    </div>
   </div>
-</div>
 
 {% endblock %}
 
