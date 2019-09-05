@@ -5,7 +5,9 @@
 {% block body %}
     <div class="jumbotron">
         <h1 class="display-4 title-index">Watching Medias</h1>
-        <p class="lead d-flex justify-content-center">Bienvenue sur Watching Medias, votre base de données de Films et Séries!</p>
+        <p class="lead d-flex text-center justify-content-center">Bienvenue sur Watching Medias, votre base de données de Films et Séries!<br/>
+        Un mode aléatoire pour vous laissez tenter par notre large choix de médias... Des reviews pour vous donner une idée de comment le média est apprécié!<br/>
+        Et plus encore !</p>
         <div class="d-flex justify-content-end">
             <a class="btn btn-info btn-lg" href="{{ path('medias.index')}}" role="button">Tous les Médias</a>
         </div>
@@ -16,10 +18,10 @@
     </div>
     <div class="carousel1 mb-5" data-flickity='{ "groupCells": true }'>
         {% for media in medias %}
-        <div class="carousel-cell">
-            <a href="{{ path('medias.show', {'id': media.id}) }}"><img src="{{ media.poster }}" alt="affiche">
-            </a>
-        </div>
+            <div class="carousel-cell">
+                <a href="{{ path('medias.show', {'id': media.id}) }}"><img src="{{ media.poster }}" alt="affiche">
+                </a>
+            </div>
         {% endfor %}
     </div>
 
@@ -28,10 +30,10 @@
     </div>
     <div class="carousel2 mb-5" data-flickity='{ "groupCells": true }'>
         {% for lmedia  in last %}
-        <div class="carousel-cell">
-            <a href="{{ path('medias.show', {'id': lmedia.id}) }}"><img src="{{ lmedia.poster }}" alt="affiche">
-            </a>
-        </div>
+            <div class="carousel-cell">
+                <a href="{{ path('medias.show', {'id': lmedia.id}) }}"><img src="{{ lmedia.poster }}" alt="affiche">
+                </a>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

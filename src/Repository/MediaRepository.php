@@ -90,8 +90,9 @@ class MediaRepository extends ServiceEntityRepository
     public function lastReleased()
     {
         $sql = $this->getEntityManager()
-                     ->createQuery("SELECT m FROM App\Entity\Media m WHERE m.released BETWEEN :start_date AND CURRENT_DATE()")
-        ->setParameter('start_date', new \DateTime('-3 month'));
+                     ->createQuery("SELECT m FROM App\Entity\Media m WHERE m.released BETWEEN :start_date AND CURRENT_DATE() ORDER BY m.released DESC")
+                     ->setParameter('start_date', new \DateTime('-3 month')
+                    );
         return $sql->getResult();
     }
 }

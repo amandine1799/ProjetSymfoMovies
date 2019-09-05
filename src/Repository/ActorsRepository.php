@@ -23,6 +23,15 @@ class ActorsRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a');
     }
 
+    public function findAll(string $order_field = 'name', bool $reverse = false)
+    {
+        $sql = $this->createQueryBuilder('a')
+                    ->orderBy('a.' . $order_field, $reverse ? 'DESC' : 'ASC')
+                    ->getQuery();
+
+        return $sql->execute();
+    }
+
     // /**
     //  * @return Actors[] Returns an array of Actors objects
     //  */

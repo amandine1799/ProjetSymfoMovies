@@ -3,21 +3,21 @@
 
 {% block body %}
   <div class="media">
-    <div class="container mt-3 mb-3">
+    <div class="container mt-3 mb-5">
       <div class="row">
         <div class="col-lg-4 text-center">
          <img src="{{ media.poster }}" alt="">
         </div>
         <div class="col-lg-8">
           <div class="media-content text-justify">
-            <div class="list-button text-right mb-3">
+            <div class="list-button text-right text-white mb-3">
               {% if app.user %}
               {% set var = app.user.mediaUser(media) %}
-              <a title="Ajouter à sa liste de médias déjà vu" class="btn btn-secondary {% if var is not null and var.haveSeen == true %} bg-danger{% endif %} haveSeen" data-url="{{ path('medias.haveseen', {'id': media.id }) }}" role="button">
+              <a title="Ajouter à sa liste de médias déjà vu" class="btn btn-secondary {% if var is not null and var.haveSeen == true %} btn-info{% endif %} haveSeen" data-url="{{ path('medias.haveseen', {'id': media.id }) }}" role="button">
                 <i class="fas fa-film"> Déjà Vu</i>
               </a>
               {% set var = app.user.mediaUser(media) %}
-              <a title="Ajouter à sa WishList" class="btn btn-secondary {% if var is not null and var.wishList == true %} bg-danger{% endif %} wishList" data-url="{{ path('medias.wantsee', {'id': media.id }) }}" role="button">
+              <a title="Ajouter à sa WishList" class="btn btn-secondary {% if var is not null and var.wishList == true %} btn-info{% endif %} wishList" data-url="{{ path('medias.wantsee', {'id': media.id }) }}" role="button">
                 <i class="far fa-clock"> Wish List</i>
               </a>
               {% endif %}
@@ -29,13 +29,12 @@
       </div>
     </div>
   </div>
-
-  <div class="container mt-4">
+  
+  <div class="container mt-5">
     <div class="row justify-content-md-center">
       <div class="col">
         <h3>Durée</h3>
         <p>{{ media.duration }}mns</p>
-
         <h3>Genre</h3>
         <p>{{ media.genres.name }}</p>
         <h3>Année</h3>
@@ -47,15 +46,17 @@
     </div>
   </div>
 
-  <div class="container mt-5">
+  <div class="container mt-5 mb-4">
     <div class="acteur">
       <h3>Casting</h3>
       <div class="d-flex flex-wrap mt-3">
         {% for actor in media.actors %}
-        <a href="{{ path('actors.show', {'id': actor.id}) }}" class="mr-1">
-          <img src="{{ actor.image }}">
-          <p>{{ actor.name }}</p> 
-        </a>
+        <li class="card mr-2 mb-2">
+          <a href="{{ path('actors.show', {'id': actor.id}) }}" class="mr-1">
+            <img src="{{ actor.image }}">
+            <p>{{ actor.name }}</p> 
+          </a>
+        </li>
         {% endfor %}
       </div>
     </div>
@@ -64,14 +65,14 @@
   <div class="review container mt-3">
     <h3>Reviews</h3>
     <div class="card border-light mb-8">
-      {% for review in media.reviews %}
-      <div class="card-header"><h5 class="card-title">{{ review.title }}</h5></div>
-      <div class="card-body">
-        <p class="card-text">{{ review.text }}</p>
-        <p>Par {{ review.user.username }} le {{ review.date | date('d/m/Y') }}<p>
+        {% for review in media.reviews %}
+        <div class="card-header"><h5 class="card-title">{{ review.title }}</h5></div>
+          <div class="card-body">
+            <p class="card-text">{{ review.text }}</p>
+            <p>Par {{ review.user.username }} le {{ review.date | date('d/m/Y') }}<p>
+          </div>
+        {% endfor %}
       </div>
-      {% endfor %}
-    </div>
     {% if app.user %}
     <a class="btn btn-secondary mb-3" href="{{ path('review.new', {'id': media.id}) }}">Ajouter une Review</a>
     {% endif %}

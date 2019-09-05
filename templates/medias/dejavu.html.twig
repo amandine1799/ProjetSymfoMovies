@@ -3,16 +3,18 @@
 {% block title %}Déjà Vu{% endblock %}
 
 {% block body %}
-<div class="list p-2">
-  <div class="container-fluid">
+  <div class="title-next"> 
     <h2>Vous avez vu {{ medias|length }} Médias</h2>
-    <div class="poster-grid mt-4">
-      {% for umedia in medias %}
-        <a href="{{ path('medias.show', {'id': umedia.media.id}) }}"><img src="{{ umedia.media.poster }}" alt="affiche">
-          <p>{{ umedia.media.title }}</p>
-        </a>
-      {% endfor %}
+  </div>
+  <div class="list p-2">
+    <div class="container-fluid">
+      <div class="poster-grid mt-4">
+        {% for umedia in medias %}
+          <a href="{{ path('medias.show', {'id': umedia.media.id}) }}"><img src="{{ umedia.media.poster }}" alt="affiche">
+            <p>{{ umedia.media.title }}</p>
+          </a>
+        {% endfor %}
+      </div>
     </div>
   </div>
-</div>
 {% endblock %}

@@ -25,13 +25,9 @@
 
   h1 {
     text-align: center;
-    color: white;
     font-family: 'Roboto';
   }
 
-  .content {
-    background-color: black;
-  }
 
   .poster-grid {
     display: flex;
@@ -41,7 +37,7 @@
 
   .poster-grid a {
     text-decoration: none;
-    color: white;
+    color: black;
     text-align: center;
     font-family: 'Roboto';
     display: block;
@@ -58,15 +54,11 @@
   }
 
   .media {
-    background-color: black;
+    background-color: white;
   }
 
   .media img {
     height: 30em;
-  }
-
-  .media-content {
-    color: #ffffff;
   }
 
   .acteur img:hover {
@@ -74,17 +66,21 @@
   }
 
   .acteur img {
-    height: 18em;
+    height: 15em;
   }
 
   .review {
     border-top: 1px solid #d7d7d7;
   }
 
+  .card {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
   .acteur a p {
     text-decoration: none;
     color: black;
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-align: center;
   }
 
@@ -142,7 +138,6 @@
 
  .jumbotron {
    background-image: url("../img/background.jpg");
-   background-repeat: no-repeat;
  }
 
  .jumbotron p {
@@ -150,9 +145,9 @@
  }
 
  .title-next {
-  background: linear-gradient(to right, #34113F, white);  
+  background-image: url("../img/background.jpg");  
   width: 100%;
-  border-top-right-radius: 90%;
+  background-repeat: no-repeat;
  }
 
  .title-next h2 {
@@ -160,3 +155,20 @@
    color: white;
  }
 
+.registration{
+  border-radius: 40px;
+  border: 1px solid grey;
+}
+
+.box-form {
+  border-radius: 1rem; 
+  box-shadow: 0 0.3rem 1rem 0 rgba(0, 0, 0, 0.4); 
+  width: 450px; 
+  height: 500px; 
+  background: white;
+}
+
+.bg {
+  background-image: url("../img/back_co.jpg");
+  height: 100%;
+}

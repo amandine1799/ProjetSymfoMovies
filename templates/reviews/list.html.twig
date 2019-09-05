@@ -3,17 +3,19 @@
 {% block title %}Liste des Reviews{% endblock %}
 
 {% block body %}
-
-<div class="container-fluid mt-3">
-    <div class="d-flex flex-wrap poster-list">
-        {% for review in reviews %}
-            <div class="mx-1">
-                <div><a href="{{ path('medias.show', {'id': review.media.id}) }}"><img src="{{ review.media.poster }}" alt="affiche"></a></div><br/>
-                <div><a class="btn btn-secondary" role="button" href="{{ path('review.edit', {'id': review.id}) }}"><i class="fas fa-edit"></i></a>
-                <a class="btn btn-secondary" role="button" href="{{ path('review.delete', {'id' : review.id}) }}"><i class="far fa-trash-alt"></i></a></div>
-                <p>{{ review.title }}</p>
-            </div>
-        {% endfor %}
+    <div class="title-next"> 
+        <h2>Vous avez {{ reviews|length }} Reviews</h2>
     </div>
-</div>
+    <div class="container-fluid mt-3">
+        <div class="d-flex flex-wrap poster-list">
+            {% for review in reviews %}
+                <div class="mx-1">
+                    <div><a href="{{ path('medias.show', {'id': review.media.id}) }}"><img src="{{ review.media.poster }}" alt="affiche"></a></div><br/>
+                    <div><a class="btn btn-secondary" role="button" href="{{ path('review.edit', {'id': review.id}) }}"><i class="fas fa-edit"></i></a>
+                    <a class="btn btn-secondary" role="button" href="{{ path('review.delete', {'id' : review.id}) }}"><i class="far fa-trash-alt"></i></a></div>
+                    <p>{{ review.title }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
