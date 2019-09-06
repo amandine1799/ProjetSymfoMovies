@@ -14,7 +14,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class MediaController extends AbstractController
 {
@@ -162,6 +162,7 @@ class MediaController extends AbstractController
 
     /**
      * @Route("/medias/crud", name="medias.crud", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function crud(MediaRepository $mediaRepository)
     {

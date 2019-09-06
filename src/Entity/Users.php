@@ -64,10 +64,16 @@ class Users implements UserInterface
      */
     private $mediaUsers;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Roles", inversedBy="users")
+     */
+    private $userRoles;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
         $this->mediaUsers = new ArrayCollection();
+        $this->userRoles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -114,10 +120,7 @@ class Users implements UserInterface
 public function eraseCredentials() {}
 
     public function getSalt() {}
-    
-    public function getRoles() {
-        return ['ROLE_USER'];
-    }
+
 
     /**
      * @return Collection|Review[]
@@ -189,5 +192,40 @@ public function eraseCredentials() {}
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Roles[]
+     */
+    public function getUserRoles(): Collection
+    {
+        return $this->userRoles;
+    }
+
+    public function addUserRole(Roles $userRole): self
+    {
+        if (!$this->userRoles->contains($userRole)) {
+            $this->userRoles[] = $userRole;
+        }
+
+        return $this;
+    }
+
+    public function removeUserRole(Roles $userRole): self
+    {
+        if ($this->userRoles->contains($userRole)) {
+            $this->userRoles->removeElement($userRole);
+        }
+
+        return $this;
+    }
+
+    public function getRoles()
+    {
+        $roles = $this->userRoles->map(function($role){
+            return $role->getName();
+        })->toArray();
+        $roles[] = 'ROLE_USER';
+        return $roles;
     }
 }
