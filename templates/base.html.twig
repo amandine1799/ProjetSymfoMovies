@@ -28,36 +28,35 @@
                 <a class="nav-link" href="{{ path('medias.index') }}">Films et Séries</a>
               </li>
               {% if app.user %}
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('medias.dejavu') }}">Liste des médias vus</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('medias.wishlist') }}">Liste des médias à visionner</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('review.list') }}">Mes reviews</a>
-              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('medias.dejavu') }}">Liste des médias vus</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('medias.wishlist') }}">Liste des médias à visionner</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('review.list') }}">Mes reviews</a>
+                </li>
               {% endif %}
             </ul>
             {% if not app.user %}
-            <a class="nav-link" href="{{ path('login') }}">Connexion</a>
-            <a class="nav-link" href="{{ path('security_registration') }}">Inscription</a>
-             {% else  %}
-            <a class="nav-link" href="{{ path('logout') }}">Déconnexion</a>
+              <a class="nav-link" href="{{ path('login') }}">Connexion</a>
+              <a class="nav-link" href="{{ path('security_registration') }}">Inscription</a>
+              {% else  %}
+              <a class="nav-link" href="{{ path('logout') }}">Déconnexion</a>
             {% endif %}
             {% if app.user %}
-            {# is_granted('IS_AUTHENTICATED_REMEMBERED') #}
-            <form class="form-inline my-2 my-lg-0">
-              <button class="btn btn-dark"><a class="nav-link" href="{{ path('medias.crud') }}">Espace Modération</a></button>
-            </form>
+              {# is_granted('IS_AUTHENTICATED_REMEMBERED') #}
+              <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-dark"><a class="nav-link" href="{{ path('medias.crud') }}">Espace Modération</a></button>
+              </form>
             {% endif %}
           </div>
         </nav>
         
         {% block body %}{% endblock %}
         <footer>
-          <div class="footer-copyright text-center bg-dark py-3">© 2019 Copyright: WatchingMedias
-          </div>
+          <div class="footer-copyright text-center bg-dark py-3">© 2019 Copyright: WatchingMedias</div>
         </footer>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

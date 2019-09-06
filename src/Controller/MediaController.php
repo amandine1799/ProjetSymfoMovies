@@ -177,12 +177,13 @@ class MediaController extends AbstractController
     {
         $user = $this->getUser();
         $mediauser = $repo->findOneBy(['media' => $media, 'users' => $user]);
-        if($mediauser == null){
+        if ($mediauser == null){
             $mediauser = new MediaUsers();
         }
+
         $mediauser->setMedia($media);
         $mediauser->setUsers($user);
-        if($mediauser->getHaveSeen()==true){
+        if ($mediauser->getHaveSeen()==true){
             $mediauser->setHaveSeen(false);
             $active = false;
         } else {
@@ -222,12 +223,13 @@ class MediaController extends AbstractController
     {
         $user = $this->getUser();
         $mediauser = $repo->findOneBy(['media' => $media, 'users' => $user]);
-        if($mediauser == null){
+        if ($mediauser == null){
             $mediauser = new MediaUsers();
         }
+
         $mediauser->setMedia($media);
         $mediauser->setUsers($user);
-        if($mediauser->getWishList()==true){
+        if ($mediauser->getWishList()==true){
             $mediauser->setWishList(false);
             $active = false;
         } else {

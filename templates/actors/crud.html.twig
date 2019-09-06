@@ -25,18 +25,18 @@
             </thead>
             <tbody>
                 {% for actor in actor %}
-                <tr class="table-secondary">
-                    <td>{{ actor.name }}</td>
-                    <td>{{ actor.born }}</td>
-                    <td>{{ actor.died }}</td>
-                    <td>{{ actor.image }}</td>
-                    <td><a href="{{ path('actors.edit', {'id': actor.id}) }}"><i class="fas fa-edit"></i></a></td>
-                    <td><a href="{{ path('actors.show', {'id' : actor.id}) }}"><i class="far fa-eye"></i></a></td>
-                </tr>
+                    <tr class="table-secondary">
+                        <td>{{ actor.name }}</td>
+                        <td>{{ actor.born }}</td>
+                        <td>{{ actor.died }}</td>
+                        <td>{{ actor.image }}</td>
+                        <td><a href="{{ path('actors.edit', {'id': actor.id}) }}"><i class="fas fa-edit"></i></a></td>
+                        <td><a href="{{ path('actors.show', {'id' : actor.id}) }}"><i class="far fa-eye"></i></a></td>
+                    </tr>
                 {% else %}
-                <tr>
-                    <td colspan="6">no records found</td>
-                </tr>
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>

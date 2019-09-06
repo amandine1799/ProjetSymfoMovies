@@ -5,18 +5,18 @@
 {% block body %}
     <h2>Nouvelle review pour {{ review.media.title }}</h2>
     {{ form_start(form) }}
-    <div>
-        <a href="{{ path('medias.show', {'id': review.media.id}) }}"><button type="button" class="btn btn-secondary">Retour</button></a>
-    </div>
+        <div>
+            <a href="{{ path('medias.show', {'id': review.media.id}) }}"><button type="button" class="btn btn-secondary">Retour</button></a>
+        </div>
 
-    <div>
-    {{ form_label(form.title) }}
-    {{ form_widget(form.title) }}
-    </div>
-    <div>
-    {{ form_label(form.text) }}
-    {{ form_widget(form.text) }}
-    </div>
-    <button type="submit">Envoyer</button>
+        <div>
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title) }}
+        </div>
+        <div>
+            {{ form_label(form.text) }}
+            {{ form_widget(form.text) }}
+        </div>
+        <button type="submit">Envoyer</button>
     {{ form_end(form) }}
 {% endblock %}

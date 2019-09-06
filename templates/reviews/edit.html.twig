@@ -4,18 +4,18 @@
 
 {% block body %}
     {{ form_start(form) }}
-    <h2>Editer sa Review</h2>
-    <a href="{{ path('review.list') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
+        <h2>Editer sa Review</h2>
+        <a href="{{ path('review.list') }}"><button type="button" class="btn btn-secondary">Retour</button></a>
 
-    <div>
-    {{ form_label(form.title) }}
-    {{ form_widget(form.title) }}
-    </div>
-    <div>
-    {{ form_label(form.text) }}
-    {{ form_widget(form.text) }}
-    </div>
+        <div>
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title) }}
+        </div>
+        <div>
+        {{ form_label(form.text) }}
+        {{ form_widget(form.text) }}
+        </div>
 
-    <button type="submit"> Mettre à jour </button>
+        <button type="submit"> Mettre à jour </button>
     {{ form_end(form) }}
 {% endblock %}
