@@ -26,6 +26,7 @@ class ReviewController extends AbstractController
      */
     public function list()
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $reviews = $this->reviewRepository->getReviewsByUser($this->currentUser->getID());
 
         return $this->render('reviews/list.html.twig', [

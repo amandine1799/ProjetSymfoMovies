@@ -3,7 +3,7 @@
 
 {% block body %}
   <div class="media">
-    <div class="container mt-3 mb-5">
+    <div class="container mt-3 mb-4">
       <div class="row">
         <div class="col-lg-4 text-center">
          <img src="{{ media.poster }}" alt="">
@@ -30,23 +30,25 @@
     </div>
   </div>
   
-  <div class="container mt-5">
-    <div class="row justify-content-md-center">
-      <div class="col">
-        <h3>Durée</h3>
-        <p>{{ media.duration }}mns</p>
-        <h3>Genre</h3>
-        <p>{{ media.genres.name }}</p>
-        <h3>Année</h3>
-        <p>{{ media.released | date('d/m/Y') }}</p>      
-      </div>
-      <div class="col">
-        <embed src="{{ media.trailer }}" allowfullscreen="true" width="625" height="350">
+  <div class="medias-caract">
+    <div class="container mt-4 mb-4">
+      <div class="row justify-content-md-center">
+        <div class="col">
+          <h3>Durée</h3>
+          <p>{{ media.duration }}mns</p>
+          <h3>Genre</h3>
+          <p>{{ media.genres.name }}</p>
+          <h3>Année</h3>
+          <p>{{ media.released | date('d/m/Y') }}</p>      
+        </div>
+        <div class="col">
+          <embed src="{{ media.trailer }}" allowfullscreen="true" width="625" height="350">
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="container mt-5 mb-4">
+  <div class="container mt-4 mb-4">
     <div class="acteur">
       <h3>Casting</h3>
       <div class="d-flex flex-wrap mt-3">

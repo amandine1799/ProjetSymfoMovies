@@ -136,7 +136,7 @@
    font-weight: bold;
  }
 
- .jumbotron {
+ .jumbotron, .medias-caract {
    background-image: url("../img/background.jpg");
  }
 

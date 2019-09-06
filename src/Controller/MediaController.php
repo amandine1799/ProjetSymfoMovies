@@ -205,6 +205,8 @@ class MediaController extends AbstractController
      */
     public function listHaveSeen(MediaUsersRepository $repo)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         return $this->render('medias/dejavu.html.twig', [
             'medias' => $repo->findBy([
                 'users' =>  $this->getUser(),
@@ -248,6 +250,8 @@ class MediaController extends AbstractController
      */
     public function wishList(MediaUsersRepository $repo)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         return $this->render('medias/wishlist.html.twig', [
             'medias' => $repo->findBy([
                 'users' => $this->getUser(),
