@@ -29,7 +29,7 @@ footer {
 
 h1 {
   text-align: center;
-  font-family: 'Roboto';
+  font-family: 'Abel';
 }
 
 
@@ -140,15 +140,11 @@ h1 {
   font-weight: bold;
 }
 
-.jumbotron, .medias-caract {
+.jumbotron {
   background-image: url("../img/back_co.jpg");
-}
-
-
-
-.jumbotron{
   height: 90vh !important;
 }
+
 .jumbotron p {
   color: white;
 }
@@ -158,9 +154,10 @@ h1 {
 }
 
 .title-next {
-background-image: url("../img/background.jpg");  
-width: 100%;
-background-repeat: no-repeat;
+  background-image: url("../img/background.jpg");
+  font-family: 'Abel'; 
+  width: 100%;
+  background-repeat: no-repeat;
 }
 
 .title-next h2 {
@@ -233,11 +230,11 @@ background-repeat: no-repeat;
     margin-left: 8%;
   }
 }
-.btn-info{
+.btn-info {
   background: rgba(0, 0, 0, 0.75);
 }
 
-.amand1ne{
+.jumbo-content {
   background: rgba(0, 0, 0, 0.75);
   width: 50%;
   padding: 50px 10px;
