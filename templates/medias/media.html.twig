@@ -6,9 +6,17 @@
     <div class="container mt-3 mb-4">
       <div class="row">
         <div class="col-lg-4 text-center">
-         <img src="{{ media.poster }}" alt="">
+          <img src="{{ media.poster }}" alt="">
         </div>
         <div class="col-lg-8">
+          <div class="list-button text-left text-white mt-4">
+            <a title="J'aime" class="btn btn-secondary" role="button">
+              <i class="far fa-thumbs-up"></i>
+            </a>
+            <a title="J'aime pas" class="btn btn-secondary" role="button">
+              <i class="far fa-thumbs-down"></i>
+            </a>
+          </div>
           <div class="media-content text-justify">
             <div class="list-button text-right text-white mb-3">
               {% if app.user %}
@@ -66,6 +74,7 @@
 
   <div class="review container mt-3">
     <h3>Reviews</h3>
+    <h1>Ecrivez votre Review!</h1>
     <div class="card border-light mb-8">
       {% for review in media.reviews %}
         <div class="card-header">

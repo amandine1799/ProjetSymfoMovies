@@ -52,11 +52,9 @@
 
       <div class="poster-grid">
         {% for media in medias %}
-          <div class="card mb-3 mr-1">
           <a href="{{ path('medias.show', {'id': media.id}) }}"><img src="{{ media.poster }}" alt="affiche">
             <p>{{ media.title }}</p>
           </a>
-        </div>
         {% endfor %}
       </div>
     </div>
