@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Likes;
 use App\Entity\Media;
 use App\Form\MediaType;
 use App\Entity\MediaUsers;
+use App\Repository\LikesRepository;
 use App\Repository\MediaRepository;
 use App\Repository\ActorsRepository;
 use App\Repository\GenresRepository;
@@ -13,8 +15,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MediaController extends AbstractController
 {
@@ -169,6 +171,57 @@ class MediaController extends AbstractController
         return $this->render('medias/crud.html.twig', [
             'media' => $mediaRepository->findAll('title'),
         ]);
+    }
+
+    /**
+     * @Route("/medias/{id}/like", name="medias.like")
+     */
+    public function like(Media $media, Request $request, ObjectManager $manager, LikesRepository $repo)
+    {
+        $user = $this->getUser();
+        $likes = $repo->findByUserMedia($user,$media);
+        $liked = $request->request->get('content'); 
+        
+        // Si on n'a jamais liké
+        if ($likes == null){
+            $likes = new Likes();
+            $likes->setMedia($media);
+            $likes->setUsers($user);
+            if($liked == 1){
+                $likes->setContent(1);
+            } else {
+                $likes->setContent(-1);
+            }
+            $manager->persist($likes);
+        } 
+        // Si on a déjà (dis)like
+        else {
+            // Si on a appuyer sur le like
+            if($liked == 1){
+                // Et que c'était déjà like
+                if($likes->getContent() == 1){
+                    $manager->remove($likes);
+                } 
+                // Sinon c'était dislike donc on le modifie en like
+                else {
+                    $likes->setContent(1);
+                    $manager->persist($likes);
+                }
+            }
+            if($liked == -1){
+                if($likes->getContent() == -1){
+                    $manager->remove($likes);
+                }
+                else {
+                    $likes->setContent(-1);
+                    $manager->persist($likes);
+                }
+            }
+        }
+
+        $manager->flush();
+
+        return new JsonResponse();
     }
 
     /**

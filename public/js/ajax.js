@@ -34,6 +34,37 @@ $(document).on('click','.wishList', function() {
     });
 })
 
+$(document).on('click','.getContent', function() {
+    const button = $(this);
+    const url = $(this).data('url');
+    const status = parseInt($(this).data('content'));
+
+    $.ajax({
+        url: url,
+        data: {
+            content: status,
+        },
+        type: "POST",
+        success: function(){
+            if(status == 1){
+                $('.dislike').removeClass('btn-info');
+                if($(button).hasClass('btn-info')){
+                    $(button).removeClass('btn-info');
+                } else {
+                    $(button).addClass('btn-info');
+                }
+            } else {
+                $('.like').removeClass('btn-info');
+                if($(button).hasClass('btn-info')){
+                    $(button).removeClass('btn-info');
+                } else {
+                    $(button).addClass('btn-info');
+                }
+            }
+        }
+    });
+})
+
 $(document).on('click','.moviealea',function(){
     const url = $(this).data('url');
     modal = $(this).data('target');

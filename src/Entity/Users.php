@@ -265,4 +265,14 @@ public function eraseCredentials() {}
 
         return $this;
     }
+
+    public function getLike(Media $media)
+    {
+        foreach($this->likes as $like){
+            if ($like->getMedia() == $media) {
+                return $like->getContent();
+            }
+        }
+        return 0;
+    }
 }

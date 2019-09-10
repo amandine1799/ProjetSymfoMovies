@@ -10,12 +10,14 @@
         </div>
         <div class="col-lg-8">
           <div class="list-button text-left text-white mt-4">
-            <a title="J'aime" class="btn btn-secondary" role="button">
-              <i class="far fa-thumbs-up"></i>
-            </a>
-            <a title="J'aime pas" class="btn btn-secondary" role="button">
-              <i class="far fa-thumbs-down"></i>
-            </a>
+            {% if app.user %}
+              <a title="J'aime" data-content='1' class="btn btn-secondary getContent {% if app.user.like(media) == 1 %} btn-info {% endif %} like" data-url="{{ path('medias.like', {'id': media.id }) }}" role="button">
+                <i class="far fa-thumbs-up"></i>
+              </a>
+              <a title="J'aime pas" data-content='-1' class="btn btn-secondary getContent {% if app.user.like(media) == -1 %} btn-info {% endif %} dislike" data-url="{{ path('medias.like', {'id': media.id }) }}" role="button">
+                <i class="far fa-thumbs-down"></i>
+              </a>
+            {% endif %}
           </div>
           <div class="media-content text-justify">
             <div class="list-button text-right text-white mb-3">

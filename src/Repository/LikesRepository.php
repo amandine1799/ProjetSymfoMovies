@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Likes;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Media;
+use App\Entity\Users;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Likes|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,22 +21,22 @@ class LikesRepository extends ServiceEntityRepository
         parent::__construct($registry, Likes::class);
     }
 
-    // /**
-    //  * @return Likes[] Returns an array of Likes objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
+    /**
+     * @return Likes[] Returns an array of Likes objects
+     */
+    public function findByUserMedia(Users $users, Media $media)
+    { 
         return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('l.users = :users')
+            ->andWhere('l.media = :media')
+            ->setParameters([
+                'users' => $users,
+                'media' => $media
+            ])
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Likes
