@@ -81,11 +81,17 @@ class Media
      */
     private $mediaUsers;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Likes", mappedBy="media", orphanRemoval=true)
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->actors = new ArrayCollection();
         $this->reviews = new ArrayCollection();
         $this->mediaUsers = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -271,6 +277,37 @@ class Media
             // set the owning side to null (unless already changed)
             if ($mediaUser->getMedia() === $this) {
                 $mediaUser->setMedia(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Likes[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Likes $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setMedia($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Likes $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getMedia() === $this) {
+                $like->setMedia(null);
             }
         }
 

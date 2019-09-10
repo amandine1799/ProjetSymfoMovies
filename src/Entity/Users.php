@@ -69,11 +69,17 @@ class Users implements UserInterface
      */
     private $userRoles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Likes", mappedBy="users", orphanRemoval=true)
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
         $this->mediaUsers = new ArrayCollection();
         $this->userRoles = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -227,5 +233,36 @@ public function eraseCredentials() {}
         })->toArray();
         $roles[] = 'ROLE_USER';
         return $roles;
+    }
+
+    /**
+     * @return Collection|Likes[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Likes $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Likes $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getUsers() === $this) {
+                $like->setUsers(null);
+            }
+        }
+
+        return $this;
     }
 }

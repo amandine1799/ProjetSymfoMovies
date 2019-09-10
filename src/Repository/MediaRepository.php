@@ -96,7 +96,3 @@ class MediaRepository extends ServiceEntityRepository
         return $sql->getResult();
     }
 }
-
-
-
-
