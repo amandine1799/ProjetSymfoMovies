@@ -47,18 +47,18 @@ $(document).on('click','.getContent', function() {
         type: "POST",
         success: function(){
             if(status == 1){
-                $('.dislike').removeClass('btn-info');
-                if($(button).hasClass('btn-info')){
-                    $(button).removeClass('btn-info');
+                $('.dislike').removeClass('btn-danger');
+                if($(button).hasClass('btn-success')){
+                    $(button).removeClass('btn-success');
                 } else {
-                    $(button).addClass('btn-info');
+                    $(button).addClass('btn-success');
                 }
             } else {
-                $('.like').removeClass('btn-info');
-                if($(button).hasClass('btn-info')){
-                    $(button).removeClass('btn-info');
+                $('.like').removeClass('btn-success');
+                if($(button).hasClass('btn-danger')){
+                    $(button).removeClass('btn-danger');
                 } else {
-                    $(button).addClass('btn-info');
+                    $(button).addClass('btn-danger');
                 }
             }
         }
