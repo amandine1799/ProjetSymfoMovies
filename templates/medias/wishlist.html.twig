@@ -21,20 +21,30 @@
                 <p class="card-text">{{ umedia.media.synopsis }}</p>
               </div>
             </div>
-            <div class="list-button text-right mt-3 d-flex justify-content-center">
-                {% if app.user %}
-                    {% set var = app.user.mediaUser(umedia.media) %}
-                        <a class="btn btn-secondary text-white mr-3 {% if var is not null and var.haveSeen == true %} btn-info{% endif %} haveSeen" 
-                        data-url="{{ path('medias.haveseen', {'id': umedia.media.id }) }}" role="button">
-                            <i class="fas fa-film"> Déjà Vu</i>
-                        </a>
-                    {% set var = app.user.mediaUser(umedia.media) %}
-                        <a class="btn btn-secondary text-white {% if var is not null and var.wishList == true %}btn-info{% endif %} wishList2" 
-                        data-url="{{ path('medias.wantsee', {'id': umedia.media.id }) }}" role="button">
-                            <i class="far fa-clock"> Wish List</i>
-                        </a>
-                {% endif %}
-            </div>
+          </div>
+          <div class="list-button d-flex justify-content-center text-white mt-3 mb-2">
+            {% if app.user %}
+              <a title="J'aime" data-content='1' class="btn btn-secondary getContent mr-3 {% if app.user.like(umedia.media) == 1 %} btn-success {% endif %} like" data-url="{{ path('medias.like', {'id': umedia.media.id }) }}" role="button">
+                <i class="far fa-thumbs-up"></i>
+              </a>
+              <a title="J'aime pas" data-content='-1' class="btn btn-secondary getContent {% if app.user.like(umedia.media) == -1 %} btn-danger {% endif %} dislike" data-url="{{ path('medias.like', {'id': umedia.media.id }) }}" role="button">
+                <i class="far fa-thumbs-down"></i>
+              </a>
+            {% endif %}
+          </div>
+          <div class="list-button text-right mt-3 d-flex justify-content-center">
+              {% if app.user %}
+                  {% set var = app.user.mediaUser(umedia.media) %}
+                      <a class="btn btn-secondary text-white mr-3 {% if var is not null and var.haveSeen == true %} btn-info{% endif %} haveSeen" 
+                      data-url="{{ path('medias.haveseen', {'id': umedia.media.id }) }}" role="button">
+                          <i class="fas fa-film"> Déjà Vu</i>
+                      </a>
+                  {% set var = app.user.mediaUser(umedia.media) %}
+                      <a class="btn btn-secondary text-white {% if var is not null and var.wishList == true %}btn-info{% endif %} wishList2" 
+                      data-url="{{ path('medias.wantsee', {'id': umedia.media.id }) }}" role="button">
+                          <i class="far fa-clock"> Wish List</i>
+                      </a>
+              {% endif %}
           </div>
         </div>
       {% endfor %}
