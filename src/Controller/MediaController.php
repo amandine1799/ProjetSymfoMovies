@@ -182,7 +182,6 @@ class MediaController extends AbstractController
         $likes = $repo->findByUserMedia($user,$media);
         $liked = $request->request->get('content'); 
         
-        // Si on n'a jamais liké
         if ($likes == null){
             $likes = new Likes();
             $likes->setMedia($media);
@@ -193,16 +192,12 @@ class MediaController extends AbstractController
                 $likes->setContent(-1);
             }
             $manager->persist($likes);
-        } 
-        // Si on a déjà (dis)like
+        }
         else {
-            // Si on a appuyer sur le like
             if($liked == 1){
-                // Et que c'était déjà like
                 if($likes->getContent() == 1){
                     $manager->remove($likes);
                 } 
-                // Sinon c'était dislike donc on le modifie en like
                 else {
                     $likes->setContent(1);
                     $manager->persist($likes);

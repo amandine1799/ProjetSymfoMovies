@@ -61,7 +61,8 @@ h1 {
 }
 
 .media {
-  background-color: white;
+  background-image: url("../img/background.jpg");
+  color: white;
 }
 
 .media img {
@@ -141,7 +142,6 @@ h1 {
 
 .jumbotron {
   background-image: url("../img/back_co.jpg");
-  height: 90vh !important;
 }
 
 .jumbotron p {
@@ -182,11 +182,6 @@ h1 {
   height: 100%;
 }
 
-.medias-caract {
-  height: auto;
-  width: 100%;
-}
-
 .video {
   width: 50%;
   height: 23em;
@@ -220,7 +215,7 @@ h1 {
 
     .video embed {
       width: 80%;
-      margin-left: 4%;
+      margin-left: 10%;
   }
 }
 

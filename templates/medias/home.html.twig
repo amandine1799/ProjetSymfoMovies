@@ -14,29 +14,29 @@
             <a class="btn btn-info btn-lg btn-home" href="{{ path('medias.index')}}" role="button">Tous les Médias</a>
         </div>
     </div>
-<div class="" style="padding: 0 10rem;">
-    <div class="title-next">
-        <h2 class="ml-4">Les prochaines sorties</h2>
-    </div>
-    <div class="carousel1 mb-5" data-flickity='{ "groupCells": true }'>
-        {% for media in medias %}
-            <div class="carousel-cell">
-                <a href="{{ path('medias.show', {'id': media.id}) }}"><img src="{{ media.poster }}" alt="affiche">
-                </a>
-            </div>
-        {% endfor %}
-    </div>
+    <div class="container">
+        <div class="title-next">
+            <h2 class="ml-4">Les prochaines sorties</h2>
+        </div>
+        <div class="carousel1 mb-5" data-flickity='{ "groupCells": true }'>
+            {% for media in medias %}
+                <div class="carousel-cell">
+                    <a href="{{ path('medias.show', {'id': media.id}) }}"><img src="{{ media.poster }}" alt="affiche">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
 
-    <div class="title-next mt-5">
-        <h2 class="ml-4">Les dernières sorties</h2>
+        <div class="title-next mt-5">
+            <h2 class="ml-4">Les dernières sorties</h2>
+        </div>
+        <div class="carousel2 mb-5" data-flickity='{ "groupCells": true }'>
+            {% for lmedia  in last %}
+                <div class="carousel-cell">
+                    <a href="{{ path('medias.show', {'id': lmedia.id}) }}"><img src="{{ lmedia.poster }}" alt="affiche">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    <div class="carousel2 mb-5" data-flickity='{ "groupCells": true }'>
-        {% for lmedia  in last %}
-            <div class="carousel-cell">
-                <a href="{{ path('medias.show', {'id': lmedia.id}) }}"><img src="{{ lmedia.poster }}" alt="affiche">
-                </a>
-            </div>
-        {% endfor %}
-    </div>
-</div>
 {% endblock %}

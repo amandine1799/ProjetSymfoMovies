@@ -34,6 +34,23 @@ $(document).on('click','.wishList', function() {
     });
 })
 
+$(document).on('click','.wishList2', function() {
+    const button = $(this);
+    const url = $(this).data('url');
+    let counter = parseInt($('.wish-counter').html());
+
+    $.ajax({
+        url: url,
+        type: "POST",
+
+        success: function(response){
+            $(button).parent().parent().parent().fadeOut(200);
+            counter--;
+            $('.wish-counter').html(counter);
+        }
+    });
+})
+
 $(document).on('click','.getContent', function() {
     const button = $(this);
     const url = $(this).data('url');

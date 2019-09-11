@@ -35,6 +35,11 @@
             <h2>{{ media.title }}</h2>
             <p>{{ media.synopsis | raw }}</p>
           </div>
+          <div class="d-flex justify-content-center mt-5">
+              <p class="mr-5">Durée : {{ media.duration }}mns</p>
+              <p class="mr-5">Genre : {{ media.genres.name }}</p>
+              <p class="mr-5">Année : {{ media.released | date('d/m/Y') }} </p>     
+          </div> 
         </div>
       </div>
     </div>
@@ -43,14 +48,7 @@
   <div class="medias-caract">
     <div class="container mt-4 mb-4">
       <div class="row justify-content-md-center">
-        <div class="col descrip">
-          <h3>Durée</h3>
-          <p>{{ media.duration }}mns</p>
-          <h3>Genre</h3>
-          <p>{{ media.genres.name }}</p>
-          <h3>Année</h3>
-          <p>{{ media.released | date('d/m/Y') }}</p>      
-        </div>
+
         <div class="video">
           <embed src="{{ media.trailer }}" allowfullscreen="true">
         </div>

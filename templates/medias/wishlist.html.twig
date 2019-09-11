@@ -4,17 +4,39 @@
 
 {% block body %}
   <div class="title-next">
-    <h2>Vous avez {{ medias|length }} Médias dans votre WishList</h2>
+    <h2>Vous avez <span class="wish-counter">{{ medias|length }}</span> Médias dans votre WishList</h2>
   </div>
-  <div class="list p-2">
-    <div class="container-fluid">
-      <div class="poster-grid mt-4">
-        {% for umedia in medias %}
-          <a href="{{ path('medias.show', {'id': umedia.media.id}) }}"><img src="{{ umedia.media.poster }}" alt="affiche">
-            <p>{{ umedia.media.title }}</p>
-          </a>
-        {% endfor %}
-      </div>
+  <div class="container mt-1 d-flex justify-content-center flex-wrap">
+    {% for umedia in medias %}
+      <div class="card mb-3" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4 poster-grid">
+              <a href="{{ path('medias.show', {'id': umedia.media.id}) }}">
+                <img src="{{ umedia.media.poster }}" alt="affiche">
+              </a>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ umedia.media.title }}</h5>
+                <p class="card-text">{{ umedia.media.synopsis }}</p>
+              </div>
+            </div>
+            <div class="list-button text-right mt-3 d-flex justify-content-center">
+                {% if app.user %}
+                    {% set var = app.user.mediaUser(umedia.media) %}
+                        <a class="btn btn-secondary text-white mr-3 {% if var is not null and var.haveSeen == true %} btn-info{% endif %} haveSeen" 
+                        data-url="{{ path('medias.haveseen', {'id': umedia.media.id }) }}" role="button">
+                            <i class="fas fa-film"> Déjà Vu</i>
+                        </a>
+                    {% set var = app.user.mediaUser(umedia.media) %}
+                        <a class="btn btn-secondary text-white {% if var is not null and var.wishList == true %}btn-info{% endif %} wishList2" 
+                        data-url="{{ path('medias.wantsee', {'id': umedia.media.id }) }}" role="button">
+                            <i class="far fa-clock"> Wish List</i>
+                        </a>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-  </div>
 {% endblock %}
