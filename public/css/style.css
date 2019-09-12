@@ -1,5 +1,5 @@
 .nav-am {
-  background-color: black !important; 
+  background-color: black !important;
 }
 
 button.navbar-toggler {
@@ -108,7 +108,7 @@ h1 {
   color: rgba(255,255,255,0.5);
 }
 
-.collapse a.nav-link:hover {
+.collapse a.nav-link:hover, .jumbotron p {
   color: white;
 }
 
@@ -144,8 +144,8 @@ h1 {
   background-image: url("../img/back_co.jpg");
 }
 
-.jumbotron p {
-  color: white;
+.navbar-brand img {
+  height: 50px;
 }
 
 .jumbotron h1 {

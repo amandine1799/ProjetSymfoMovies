@@ -34,7 +34,7 @@ $(document).on('click','.wishList', function() {
     });
 })
 
-$(document).on('click','.wishList2', function() {
+$(document).on('click','.wishListDisappear', function() {
     const button = $(this);
     const url = $(this).data('url');
     let counter = parseInt($('.wish-counter').html());
@@ -44,9 +44,26 @@ $(document).on('click','.wishList2', function() {
         type: "POST",
 
         success: function(response){
-            $(button).parent().parent().parent().fadeOut(200);
+            $(button).parent().parent().fadeOut(200);
             counter--;
             $('.wish-counter').html(counter);
+        }
+    });
+})
+
+$(document).on('click','.haveSeenDisappear', function(){
+    const button = $(this);
+    const url = $(this).data('url');
+    let counter = parseInt($('.seen-counter').html());
+
+    $.ajax({
+        url: url,
+        type: "POST",
+
+        success: function(response){
+            $(button).parent().parent().fadeOut(200);
+            counter--;
+            $('.seen-counter').html(counter);
         }
     });
 })

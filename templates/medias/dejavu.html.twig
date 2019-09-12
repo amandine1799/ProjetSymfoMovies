@@ -4,7 +4,7 @@
 
 {% block body %}
   <div class="title-next"> 
-    <h2>Vous avez vu {{ medias|length }} Médias</h2>
+    <h2>Vous avez vu <span class="seen-counter">{{ medias|length }}</span> Médias</h2>
   </div>
   <div class="container mt-1 d-flex justify-content-center flex-wrap">
       {% for umedia in medias %}
@@ -18,7 +18,7 @@
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title">{{ umedia.media.title }}</h5>
-                  <p class="card-text">{{ umedia.media.synopsis }}</p>
+                  <p class="card-text">{{ umedia.media.synopsis | truncate(300, true) }}</p>
                 </div>
               </div>
             </div>
@@ -35,7 +35,7 @@
             <div class="list-button text-right mt-3 d-flex justify-content-center">
                 {% if app.user %}
                     {% set var = app.user.mediaUser(umedia.media) %}
-                        <a class="btn btn-secondary text-white mr-3 {% if var is not null and var.haveSeen == true %} btn-info{% endif %} wishList2" 
+                        <a class="btn btn-secondary text-white mr-3 {% if var is not null and var.haveSeen == true %} btn-info{% endif %} haveSeenDisappear" 
                         data-url="{{ path('medias.haveseen', {'id': umedia.media.id }) }}" role="button">
                             <i class="fas fa-film"> Déjà Vu</i>
                         </a>
