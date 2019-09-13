@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Users;
 use Twig\Environment;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class NotificationsController {
+class NotificationsController extends AbstractController {
 
     /*
      * @var \Swift_Mailer
@@ -31,10 +32,7 @@ class NotificationsController {
         ->setTo($user->getEmail())
         ->setReplyTo($user->getEmail())
         ->setBody(
-            $this->renderer->render(
-                'registration.html.twig',
-                ['user' => $user]
-            ),
+            'Bienvenue sur le site Watching Medias <b>'.$user->getUsername().'</b> !',
             'text/html'
         );
 

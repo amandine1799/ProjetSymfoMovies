@@ -45,16 +45,17 @@
     </div>
   </div>
   
+  {% if media.trailer is not null %} 
   <div class="medias-caract">
     <div class="container mt-4 mb-4">
       <div class="row justify-content-md-center">
-
         <div class="video">
           <embed src="{{ media.trailer }}" allowfullscreen="true">
         </div>
       </div>
     </div>
   </div>
+  {% endif %}
 
   <div class="container mt-4 mb-4">
     <div class="acteur">

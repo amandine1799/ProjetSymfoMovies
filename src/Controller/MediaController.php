@@ -99,6 +99,8 @@ class MediaController extends AbstractController
      */
     public function new(Request $request, ActorsRepository $actorsRepository)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $media = new Media();
         $form = $this->createForm(MediaType::class, $media);
         $form->handleRequest($request);
@@ -130,6 +132,8 @@ class MediaController extends AbstractController
      */
     public function edit(Request $request, Media $media, ActorsRepository $actorsRepository)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $form = $this->createForm(MediaType::class, $media);
         $form->handleRequest($request);
 
@@ -156,6 +160,8 @@ class MediaController extends AbstractController
      */
     public function delete(Request $request, Media $media)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($media);
         $entityManager->flush();
@@ -168,6 +174,8 @@ class MediaController extends AbstractController
      */
     public function crud(MediaRepository $mediaRepository)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         return $this->render('medias/crud.html.twig', [
             'media' => $mediaRepository->findAll('title'),
         ]);
@@ -224,6 +232,8 @@ class MediaController extends AbstractController
      */
     public function haveseen(Media $media, ObjectManager $manager, MediaUsersRepository $repo)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $user = $this->getUser();
         $mediauser = $repo->findOneBy(['media' => $media, 'users' => $user]);
         if ($mediauser == null){
@@ -270,6 +280,8 @@ class MediaController extends AbstractController
      */
     public function wantsee(Media $media, ObjectManager $manager, MediaUsersRepository $repo)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $user = $this->getUser();
         $mediauser = $repo->findOneBy(['media' => $media, 'users' => $user]);
         if ($mediauser == null){

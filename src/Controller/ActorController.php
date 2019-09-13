@@ -17,6 +17,8 @@ class ActorController extends AbstractController
      */
     public function new(Request $request)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $actor = new Actors();
         $form = $this->createForm(ActorsType::class, $actor);
         $form->handleRequest($request);
@@ -39,6 +41,8 @@ class ActorController extends AbstractController
      */
     public function edit(Request $request, Actors $actor)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $form = $this->createForm(ActorsType::class, $actor);
         $form->handleRequest($request);
 
@@ -59,6 +63,8 @@ class ActorController extends AbstractController
         */
         public function delete(Request $request, Actors $actor)
         {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($actor);
             $entityManager->flush();
@@ -70,6 +76,8 @@ class ActorController extends AbstractController
          */
         public function crud(ActorsRepository $actorsRepository)
         {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
             return $this->render('actors/crud.html.twig', [
                 'actor' => $actorsRepository->findAll(),
             ]);
