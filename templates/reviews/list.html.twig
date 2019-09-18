@@ -6,16 +6,25 @@
     <div class="title-next"> 
         <h2>Vous avez {{ reviews|length }} Reviews</h2>
     </div>
-    <div class="container-fluid mt-3">
-        <div class="d-flex flex-wrap poster-list">
-            {% for review in reviews %}
-                <div class="mx-1">
-                    <div><a href="{{ path('medias.show', {'id': review.media.id}) }}"><img src="{{ review.media.poster }}" alt="affiche"></a></div><br/>
-                    <div><a class="btn btn-secondary" role="button" href="{{ path('review.edit', {'id': review.id}) }}"><i class="fas fa-edit"></i></a>
-                    <a class="btn btn-secondary" role="button" href="{{ path('review.delete', {'id' : review.id}) }}"><i class="far fa-trash-alt"></i></a></div>
-                    <p>{{ review.title }}</p>
+    <div class="container mt-3 mb-3">
+        <div class="card mb-3" style="max-width: 540px;" id="content-review">
+            <div class="row no-gutters">
+                {% for review in reviews %}
+                <div class="col-md-4 poster-grid mt-3 mb-3">
+                <a href="{{ path('medias.show', {'id': review.media.id}) }}">
+                    <img src="{{ review.media.poster }}" alt="affiche">
+                </a>
                 </div>
-            {% endfor %}
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ review.title }}</h5>
+                    <p class="card-text">{{ review.text | truncate(300, true) }}</p>
+                    <div><a class="btn btn-secondary" title="Editer" role="button" href="{{ path('review.edit', {'id': review.id}) }}"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-secondary" title="Supprimer" role="button" href="{{ path('review.delete', {'id' : review.id}) }}"><i class="far fa-trash-alt"></i></a></div>
+                </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

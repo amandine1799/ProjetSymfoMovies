@@ -75,7 +75,13 @@
 
   <div class="review container mt-3">
     <h3>Reviews</h3>
-    <h1>Ecrivez votre Review!</h1>
+    <div class="list-button text-center text-white mt-4">
+      {% if not app.user %}
+        <p class="lead d-flex text-center justify-content-center text-secondary">Pour écrire votre Review, veuillez vous connecter ou vous inscrire.</p>
+        <a class="btn btn-secondary" href="{{ path('login') }}"> Connexion</a>
+        <a class="btn btn-secondary" href="{{ path('security_registration') }}"> Inscription</a>
+      {% endif %}
+    </div>
     <div class="card border-light mb-8">
       {% for review in media.reviews %}
         <div class="card-header">
@@ -87,8 +93,6 @@
         </div>
       {% endfor %}
     </div>
-    {% if app.user %}
-      <a class="btn btn-secondary mb-3" href="{{ path('review.new', {'id': media.id}) }}">Ajouter une Review</a>
-    {% endif %}
+        <a class="btn btn-secondary mb-3" href="{{ path('review.new', {'id': media.id}) }}">Ajouter une Review</a>
   </div>
 {% endblock %}

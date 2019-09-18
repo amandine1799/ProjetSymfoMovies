@@ -73,6 +73,22 @@ $(document).on('click','.getContent', function() {
     const url = $(this).data('url');
     const status = parseInt($(this).data('content'));
 
+    if(status == 1){
+        $(button).parent().find('.dislike').removeClass('btn-danger');
+        if($(button).hasClass('btn-success')){
+            $(button).removeClass('btn-success');
+        } else {
+            $(button).addClass('btn-success');
+        }
+    } else {
+        $(button).parent().find('.like').removeClass('btn-success');
+        if($(button).hasClass('btn-danger')){
+            $(button).removeClass('btn-danger');
+        } else {
+            $(button).addClass('btn-danger');
+        }
+    }
+
     $.ajax({
         url: url,
         data: {
@@ -80,21 +96,7 @@ $(document).on('click','.getContent', function() {
         },
         type: "POST",
         success: function(){
-            if(status == 1){
-                $('.dislike').removeClass('btn-danger');
-                if($(button).hasClass('btn-success')){
-                    $(button).removeClass('btn-success');
-                } else {
-                    $(button).addClass('btn-success');
-                }
-            } else {
-                $('.like').removeClass('btn-success');
-                if($(button).hasClass('btn-danger')){
-                    $(button).removeClass('btn-danger');
-                } else {
-                    $(button).addClass('btn-danger');
-                }
-            }
+
         }
     });
 })
