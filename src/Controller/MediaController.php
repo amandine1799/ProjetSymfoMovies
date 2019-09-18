@@ -326,10 +326,20 @@ class MediaController extends AbstractController
     /**
     * @Route("/medias/{id}", name="medias.show")
     */
-    public function show(Media $media)
+    public function show(Media $media, LikesRepository $repo)
     {
+        $total = count($repo->findBy([
+            'media' => $media
+        ]));
+        $likes = count($repo->findBy([
+            'media' =>  $media,
+            'content' => 1
+        ]));
+
+        $moyenne = $likes / $total * 100;
         return $this->render('medias/media.html.twig', [
             'media' => $media,
+            'moyenne' => $moyenne
         ]);
     }
 }
