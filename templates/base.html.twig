@@ -23,36 +23,36 @@
           <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
+                <a class="nav-link" href="{{ path('accueil') }}">accueil</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ path('medias.index') }}">Films et Séries</a>
+                <a class="nav-link" href="{{ path('medias.index') }}">films et séries</a>
               </li>
               {% if app.user %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ path('medias.dejavu') }}">Liste des médias vus</a>
+                  <a class="nav-link" href="{{ path('medias.dejavu') }}">médias vus <i class="fas fa-check"></i></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ path('medias.wishlist') }}">Liste des médias à visionner</a>
+                  <a class="nav-link" href="{{ path('medias.wishlist') }}">wish list <i class="fas fa-bookmark"></i></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ path('review.list') }}">Mes reviews</a>
+                  <a class="nav-link" href="{{ path('review.list') }}">reviews</a>
                 </li>
               {% endif %}
             </ul>
             {% if app.user %}
               {% if is_granted('ROLE_ADMIN') %}
               <form class="form-inline my-2 my-lg-0">
-                <a class="nav-link" href="{{ path('medias.crud') }}"><i class="fas fa-user-shield"></i> Modération</a>
+                <a class="nav-link" href="{{ path('medias.crud') }}"><i class="fas fa-user-shield"></i> modération</a>
               </form>
               {% endif %}
             {% endif %}
             {% if not app.user %}
-              <a class="nav-link" href="{{ path('login') }}"><i class="fas fa-sign-in-alt"></i> Connexion</a>
-              <a class="nav-link" href="{{ path('security_registration') }}">Inscription</a>
+              <a class="nav-link" href="{{ path('security_registration') }}">inscription</a>
+              <a class="nav-link" href="{{ path('login') }}"><i class="fas fa-sign-in-alt"></i> connexion</a>
               {% else  %}
               <a class="nav-link" title="Profil" href="{{ path('profile') }}"><i class="fas fa-user"></i></a>
-              <a class="nav-link" href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+              <a class="nav-link" href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i> déconnexion</a>
             {% endif %}
           </div>
         </nav>

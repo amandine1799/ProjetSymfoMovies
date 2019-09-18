@@ -11,10 +11,10 @@
         <div class="col-lg-8">
           <div class="list-button text-left text-white mt-4">
             {% if app.user %}
-              <a title="J'aime" data-content='1' class="btn btn-secondary getContent {% if app.user.like(media) == 1 %} btn-success {% endif %} like" data-url="{{ path('medias.like', {'id': media.id }) }}" role="button">
+              <a title="J'aime" data-content='1' class="btn-circle btn-lg mr-2 btn btn-secondary getContent {% if app.user.like(media) == 1 %} btn-success {% endif %} like" data-url="{{ path('medias.like', {'id': media.id }) }}" role="button">
                 <i class="far fa-thumbs-up"></i>
               </a>
-              <a title="J'aime pas" data-content='-1' class="btn btn-secondary getContent {% if app.user.like(media) == -1 %} btn-danger {% endif %} dislike" data-url="{{ path('medias.like', {'id': media.id }) }}" role="button">
+              <a title="J'aime pas" data-content='-1' class="btn-circle btn-lg btn btn-secondary getContent {% if app.user.like(media) == -1 %} btn-danger {% endif %} dislike" data-url="{{ path('medias.like', {'id': media.id }) }}" role="button">
                 <i class="far fa-thumbs-down"></i>
               </a>
             {% endif %}
@@ -24,11 +24,11 @@
               {% if app.user %}
                 {% set var = app.user.mediaUser(media) %}
                 <a title="Ajouter à sa liste de médias déjà vu" class="btn btn-secondary {% if var is not null and var.haveSeen == true %} btn-info{% endif %} haveSeen" data-url="{{ path('medias.haveseen', {'id': media.id }) }}" role="button">
-                  <i class="fas fa-film"> Déjà Vu</i>
+                    <i class="fas fa-check"> Déjà Vu</i>
                 </a>
                 {% set var = app.user.mediaUser(media) %}
                 <a title="Ajouter à sa WishList" class="btn btn-secondary {% if var is not null and var.wishList == true %} btn-info{% endif %} wishList" data-url="{{ path('medias.wantsee', {'id': media.id }) }}" role="button">
-                  <i class="far fa-clock"> Wish List</i>
+                  <i class="fas fa-bookmark"> Wish List</i>
                 </a>
               {% endif %}
             </div>
@@ -93,6 +93,8 @@
         </div>
       {% endfor %}
     </div>
-        <a class="btn btn-secondary mb-3" href="{{ path('review.new', {'id': media.id}) }}">Ajouter une Review</a>
-  </div>
+    {% if app.user %}
+      <a class="btn btn-secondary mb-3" href="{{ path('review.new', {'id': media.id}) }}">Ajouter une Review</a>
+    {% endif %}
+    </div>
 {% endblock %}

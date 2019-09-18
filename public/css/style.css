@@ -6,13 +6,27 @@ button.navbar-toggler {
   outline: none;
 }
 
-button.btn a {
-  color:white;
+.navbar-collapse a {
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .logo {
   height: 80px;
-  margin-left: 20px;
+  margin-left: 40px;
+}
+
+#content-seen, #content-review {
+  display: none;
+}
+
+.btn-circle.btn-lg {
+  width: 3.125rem;
+  height: 3.125rem;
+  padding: 0.625rem 1rem;
+  font-size: 1.125rem;
+  line-height: 1.33;
+  border-radius: 1.563rem;
 }
 
 html, body {
@@ -171,13 +185,11 @@ h1 {
 
 .title-index {
   color: white;
-  font-weight: bold;
 }
 
 .jumbotron {
   background-image: url("../img/back_co.jpg");
 }
-
 
 .jumbotron h1 {
   font-family: 'Abel';

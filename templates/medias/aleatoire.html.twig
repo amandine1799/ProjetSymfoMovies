@@ -12,12 +12,12 @@
                 {% set var = app.user.mediaUser(mediaaleatoire) %}
                     <a class="btn btn-secondary text-white mr-3 {% if var is not null and var.haveSeen == true %} btn-info{% endif %} haveSeen" 
                     data-url="{{ path('medias.haveseen', {'id': mediaaleatoire.id }) }}" role="button">
-                        <i class="fas fa-film"> Déjà Vu</i>
+                        <i class="fas fa-check"> Déjà Vu</i>
                     </a>
                 {% set var = app.user.mediaUser(mediaaleatoire) %}
                     <a class="btn btn-secondary text-white {% if var is not null and var.wishList == true %}btn-info{% endif %} wishList" 
                     data-url="{{ path('medias.wantsee', {'id': mediaaleatoire.id }) }}" role="button">
-                        <i class="far fa-clock"> Wish List</i>
+                        <i class="fas fa-bookmark"> Wish List</i>
                     </a>
             {% endif %}
         </div>

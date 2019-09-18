@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Form\UsersType;
 use App\Form\RegistrationType;
+use App\Repository\UsersRepository;
 use App\Controller\NotificationsController;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -40,6 +42,53 @@ class SecurityController extends AbstractController
 
         return $this->render('security/registration.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+     /**
+     * @Route("/membres/{id}/edit", name="membres.edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Users $users)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $form = $this->createForm(UsersType::class, $users);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('membres.crud');
+        }
+
+        return $this->render('security/edit.html.twig', [
+            'users' => $users,
+            'form' => $form->createView(),
+        ]);
+    }
+
+        /**
+        * @Route("/membres/{id}/delete", name="membres.delete")
+        */
+        public function delete(Users $users)
+        {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($users);
+            $entityManager->flush();
+            return $this->redirectToRoute('membres.crud');
+        }
+
+    /**
+     * @Route("/membres/crud", name="membres.crud", methods={"GET"})
+     */
+    public function crud(UsersRepository $usersRepository)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        return $this->render('security/crud.html.twig', [
+            'users' => $usersRepository->findAll(),
         ]);
     }
 

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Membres{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Liste des Membres</h2>
+
+    <div>
+        <a class="btn btn-secondary" href="{{ path('medias.crud') }}" role="button">ESPACE MEDIAS</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Pseudo</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Editer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for users in users %}
+                    <tr class="table-secondary">
+                        <td>{{ users.username }}</td>
+                        <td>{{ users.email }}</td>
+                        <td><a href="{{ path('membres.edit', {'id': users.id}) }}"><i class="fas fa-edit"></i></a></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

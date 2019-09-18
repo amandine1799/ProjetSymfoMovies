@@ -27,7 +27,7 @@
         <h2>Filmographie</h2>
         <div class="d-flex flex-wrap mt-3 mb-3">
         {% for m in actor.media %}
-            <a href="{{ path('medias.show', {'id': m.id}) }}" class="m-1">
+            <a href="{{ path('medias.show', {'id': m.id}) }}" title="{{ m.title }}" class="m-1">
                 <img src="{{ m.poster }}" alt="{{ m.title }}">
             </a>
         {% endfor %}
