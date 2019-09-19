@@ -5,9 +5,13 @@
 {% block body %}
     <div class="my-profile d-flex">
         <img src="/img/{{ app.user.image }}" class="img-profile rounded-circle">
-        <h3 class="text-white mt-5 ml-4 font-weight-bold"><i class="fas fa-cog" id="profil-form" data-toggle="modal" data-target="#editProfile"></i> {{app.user.username}}</h3>
-        <h3 class="text-white mt-5 ml-4 font-weight-bold">{{ medias|length }} Médias dans la WishList</h3>
-        <h3 class="text-white mt-5 ml-4 font-weight-bold">{{ media|length }} Médias Vus</h3>
+        <div class="d-flex flex-column">
+            <h3 class="text-white mt-5 ml-4 font-weight-bold"><i class="fas fa-cog" id="profil-form" data-toggle="modal" data-target="#editProfile"></i> {{app.user.username}}</h3>
+            <div class="d-flex">
+                <h4 class="text-white mt-2 ml-4">{{ medias|length }} Médias dans la WishList</h4>
+                <h4 class="text-white mt-2 ml-4">{{ media|length }} Médias Vus</h4>
+            </div>
+        </div>
     </div>
 
     <nav>
@@ -42,23 +46,25 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="card mb-3" style="max-width: 540px;" id="content-review">
-            <h3 class="text-dark mt-2 ml-4 font-weight-bold">Mes Reviews</h3>
-            <div class="row no-gutters">
-                {% for review in reviews %}
-                <div class="col-md-4 poster-grid mt-3 mb-3">
-                    <a href="{{ path('medias.show', {'id': review.media.id}) }}">
-                        <img src="{{ review.media.poster }}" alt="affiche">
-                    </a>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ review.media.title }}</h5>
-                        <p class="card-text">{{ review.text | truncate(300, true) }}</p>
+        <div id="content-review">
+        <h3 class="text-dark mt-2 ml-4 font-weight-bold">Mes Reviews</h3>
+            {% for review in reviews %}
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 poster-grid mt-3 mb-3">
+                            <a href="{{ path('medias.show', {'id': review.media.id}) }}">
+                                <img src="{{ review.media.poster }}" alt="affiche">
+                            </a>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ review.media.title }}</h5>
+                                <p class="card-text">{{ review.text | truncate(300, true) }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
     </div>
         <!-- Modal -->

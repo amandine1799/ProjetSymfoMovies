@@ -5,7 +5,11 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Form\UsersType;
 use App\Form\RegistrationType;
+use App\Repository\MediaRepository;
 use App\Repository\UsersRepository;
+use App\Repository\ActorsRepository;
+use App\Repository\ReviewRepository;
+use App\Repository\MediaUsersRepository;
 use App\Controller\NotificationsController;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -89,6 +93,35 @@ class SecurityController extends AbstractController
 
         return $this->render('security/crud.html.twig', [
             'users' => $usersRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/statistiques", name="statistiques")
+     */
+    public function stats(MediaUsersRepository $repoMu, UsersRepository $usersRepo, ReviewRepository $reviewsRepo, ActorsRepository $actorsRepo, MediaRepository $mediasRepo)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        return $this->render('security/stats.html.twig', [
+            'users' => $usersRepo->findAll(),
+            'actors' => $actorsRepo->findAll(),
+            'medias' => $mediasRepo->findAll(),
+            'reviews' => $reviewsRepo->findAll(),
+            'wishlist' => $repoMu->findBy([
+                'users' => $this->getUser(),
+                'wishList' => true
+            ]),
+            'seen' => $repoMu->findBy([
+                'users' => $this->getUser(),
+                'haveSeen' => true
+            ]),
+            'films' => $mediasRepo->findBy([
+                'type' => 1
+            ]),      
+            'series' => $mediasRepo->findBy([
+                'type' => 2
+            ])
         ]);
     }
 

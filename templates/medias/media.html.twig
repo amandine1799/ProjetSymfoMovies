@@ -10,6 +10,7 @@
         </div>
         <div class="col-lg-8">
           <div class="list-button text-left text-white mt-4">
+            <h5>{{ moyenne }} % <span style="font-size: .85em">({{ total }} votes)</span></h5>
             {% if app.user %}
               <a title="J'aime" data-content='1' class="btn-circle btn-lg mr-2 btn btn-secondary getContent {% if app.user.like(media) == 1 %} btn-success {% endif %} like" data-url="{{ path('medias.like', {'id': media.id }) }}" role="button">
                 <i class="far fa-thumbs-up"></i>
@@ -23,11 +24,11 @@
             <div class="list-button text-right text-white mb-3">
               {% if app.user %}
                 {% set var = app.user.mediaUser(media) %}
-                <a title="Ajouter à sa liste de médias déjà vu" class="btn btn-secondary {% if var is not null and var.haveSeen == true %} btn-info{% endif %} haveSeen" data-url="{{ path('medias.haveseen', {'id': media.id }) }}" role="button">
+                <a title="Ajouter à sa liste de médias déjà vu" class="btn btn-secondary {% if var is not null and var.haveSeen == true %} btn-main{% endif %} haveSeen" data-url="{{ path('medias.haveseen', {'id': media.id }) }}" role="button">
                     <i class="fas fa-check"> Déjà Vu</i>
                 </a>
                 {% set var = app.user.mediaUser(media) %}
-                <a title="Ajouter à sa WishList" class="btn btn-secondary {% if var is not null and var.wishList == true %} btn-info{% endif %} wishList" data-url="{{ path('medias.wantsee', {'id': media.id }) }}" role="button">
+                <a title="Ajouter à sa WishList" class="btn btn-secondary {% if var is not null and var.wishList == true %} btn-main{% endif %} wishList" data-url="{{ path('medias.wantsee', {'id': media.id }) }}" role="button">
                   <i class="fas fa-bookmark"> Wish List</i>
                 </a>
               {% endif %}
@@ -40,7 +41,6 @@
               <p class="mr-5">Genre : {{ media.genres.name }}</p>
               <p class="mr-5">Année : {{ media.released | date('d/m/Y') }} </p>     
           </div>
-          <h5>{{ moyenne }}%</h5>
         </div>
       </div>
     </div>

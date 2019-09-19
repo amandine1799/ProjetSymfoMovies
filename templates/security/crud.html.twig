@@ -6,10 +6,14 @@
 <div class="container">
     <h2>Liste des Membres</h2>
 
-    <div>
-        <a class="btn btn-secondary" href="{{ path('medias.crud') }}" role="button">ESPACE MEDIAS</a>
-    </div>
-
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link" href="{{ path('medias.crud') }}" aria-selected="false">ESPACE MEDIAS</a>
+            <a class="nav-item nav-link" href="{{ path('actors.crud') }}" aria-selected="false">ESPACE ACTEURS</a>
+            <a class="nav-item nav-link active" href="{{ path('membres.crud') }}" aria-selected="true">ESPACE MEMBRES</a>
+            <a class="nav-item nav-link" href="{{ path('statistiques') }}" aria-selected="false">STATISTIQUES</a>
+        </div>
+    </nav>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>

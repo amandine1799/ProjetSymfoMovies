@@ -35,12 +35,12 @@
             <div class="list-button text-right mt-3 d-flex justify-content-center">
                 {% if app.user %}
                     {% set var = app.user.mediaUser(umedia.media) %}
-                        <a class="btn btn-secondary text-white mr-3 {% if var is not null and var.haveSeen == true %} btn-info{% endif %} haveSeenDisappear" 
+                        <a class="btn btn-secondary text-white mr-3 {% if var is not null and var.haveSeen == true %} btn-main{% endif %} haveSeenDisappear" 
                         data-url="{{ path('medias.haveseen', {'id': umedia.media.id }) }}" role="button">
                           <i class="fas fa-check"> Déjà Vu</i>
                         </a>
                     {% set var = app.user.mediaUser(umedia.media) %}
-                        <a class="btn btn-secondary text-white {% if var is not null and var.wishList == true %}btn-info{% endif %} wishList" 
+                        <a class="btn btn-secondary text-white {% if var is not null and var.wishList == true %}btn-main{% endif %} wishList" 
                         data-url="{{ path('medias.wantsee', {'id': umedia.media.id }) }}" role="button">
                           <i class="fas fa-bookmark"> Wish List</i>
                         </a>

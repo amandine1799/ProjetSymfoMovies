@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stats{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Statistiques</h2>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link" href="{{ path('medias.crud') }}" aria-selected="false">ESPACE MEDIAS</a>
+            <a class="nav-item nav-link" href="{{ path('actors.crud') }}" aria-selected="false">ESPACE ACTEURS</a>
+            <a class="nav-item nav-link" href="{{ path('membres.crud') }}" aria-selected="false">ESPACE MEMBRES</a>
+            <a class="nav-item nav-link active" href="{{ path('statistiques') }}" aria-selected="true">STATISTIQUES</a>
+        </div>
+    </nav>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <h1>Statistiques Médias et Utilisateurs</h1>
+            <thead>
+                <tr>
+                    <th scope="col">Médias</th>
+                    <th scope="col">Acteurs</th>
+                    <th scope="col">Films</th>
+                    <th scope="col">Séries</th>
+                    <th scope="col">Utilisateurs</th>
+                    <th scope="col">Reviews</th>
+                    <th scope="col">WishList</th>
+                    <th scope="col">Médias Vus</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr class="table-secondary">
+                        <td>{{ medias|length }}</td>
+                        <td>{{ actors|length }}</td>
+                        <td>{{ films|length }}</td>
+                        <td>{{ series|length }}</td>
+                        <td>{{ users|length }}</td>
+                        <td>{{ reviews|length }}</td>
+                        <td>{{ wishlist|length }}</td>
+                        <td>{{ seen|length }}</td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

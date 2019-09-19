@@ -7,10 +7,16 @@
     <h2>Liste des Médias</h2>
 
     <div>
-        <a class="btn btn-secondary" href="{{ path('actors.crud') }}" role="button">ESPACE ACTEURS</a>
-        <a class="btn btn-secondary" href="{{ path('membres.crud') }}" role="button">ESPACE MEMBRES</a>
         <a class="btn btn-secondary" href="{{ path('medias.new') }}">Ajouter</a>
     </div>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" href="{{ path('medias.crud') }}" data-toggle="tab" role="tab" aria-controls="nav-profile" aria-selected="true">ESPACE MEDIAS</a>
+            <a class="nav-item nav-link" href="{{ path('actors.crud') }}" aria-selected="false">ESPACE ACTEURS</a>
+            <a class="nav-item nav-link" href="{{ path('membres.crud') }}" aria-selected="false">ESPACE MEMBRES</a>
+            <a class="nav-item nav-link" href="{{ path('statistiques') }}" aria-selected="false">STATISTIQUES</a>
+        </div>
+    </nav>
 
     <div class="table-responsive">
         <table class="table table-hover">

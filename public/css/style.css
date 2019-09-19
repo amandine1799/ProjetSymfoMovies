@@ -85,7 +85,6 @@ h1 {
 }
 
 .img-profile {
-  width: 20%;
   margin-top: 2%;
   margin-bottom: 2%;
   width: 125px; 
@@ -94,7 +93,17 @@ h1 {
   margin-left: 12%;
 }
 
-#profil-form {
+.media-pro {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  width: 60px; 
+  height: 60px;
+  margin-left: 12%;
+  background: rgba(0, 0, 0, 0.8);
+  border : solid 4px grey;  
+}
+
+#profil-form, .nav-item {
   cursor: pointer;
 }
 
@@ -160,8 +169,17 @@ h1 {
   color: white;
 }
 
-.list p {
+.list p, a {
   color: black;
+}
+
+a:hover {
+  color: #1B3087;
+}
+
+.btn-main{
+  background: #1B3087 !important;
+  border-color: #1B3087;
 }
 
 .carousel1, .carousel2 {

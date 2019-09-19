@@ -336,10 +336,16 @@ class MediaController extends AbstractController
             'content' => 1
         ]));
 
-        $moyenne = $likes / $total * 100;
+        $moyenne = 0;
+        if($total > 0){
+            $moyenne = $likes / $total * 100;
+        }
+
+
         return $this->render('medias/media.html.twig', [
             'media' => $media,
-            'moyenne' => $moyenne
+            'moyenne' => $moyenne,
+            'total' => $total
         ]);
     }
 }

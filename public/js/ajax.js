@@ -8,9 +8,9 @@ $(document).on('click','.haveSeen', function() {
 
         success: function(response){
             if(response.active == true){
-                $(button).addClass('btn-info');
+                $(button).addClass('btn-main');
             } else {
-                $(button).removeClass('btn-info');
+                $(button).removeClass('btn-main');
             }
         }
     });
@@ -26,9 +26,9 @@ $(document).on('click','.wishList', function() {
 
         success: function(response){
             if(response.active == true){
-                $(button).addClass('btn-info');
+                $(button).addClass('btn-main');
             } else {
-                $(button).removeClass('btn-info');
+                $(button).removeClass('btn-main');
             }
         }
     });
