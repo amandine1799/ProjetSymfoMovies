@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Genres;
 use App\Entity\Media;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -22,19 +23,23 @@ class MediaRepository extends ServiceEntityRepository
 
     public function findWithFilters($genre, $type, $decade)
     {
+        // Medias are by default indexed in decreasing.
         $q = $this->createQueryBuilder('m')
                   ->orderBy('m.released', 'DESC');
 
+        // When you selected a type it take it in the data base.
         if ($type !== null) {
             $q->andWhere('m.type = :type');
             $q->setParameter('type', $type);
         }
 
+        // When you selected a genre it take it in the data base.
         if ($genre !== null) {
             $q->andWhere('m.genres = :genre');
             $q->setParameter('genre', $genre);
         }
 
+        // When you selected a decade it take it in the data base.
         if ($decade !== null) {
             $q->andWhere('YEAR(m.released) BETWEEN :decade AND (:decade + 9)');
             $q->setParameter('decade', $decade);
@@ -54,11 +59,13 @@ class MediaRepository extends ServiceEntityRepository
 
     public function getDistinctDecades()
     {
+        // We use SELECT DISTINCT for delete duplicates decades for our form.
         $sql = $this->getEntityManager()->createQuery(
             'SELECT DISTINCT m.released FROM App\Entity\Media m'
         );
         $res = $sql->getResult();
 
+        // We do a calculation for to have 10 to 10' numbers in our form.  
         $decades = [];
         foreach($res as $date) {
             $y = (int)$date['released']->format('Y');
@@ -78,6 +85,20 @@ class MediaRepository extends ServiceEntityRepository
         );
         $sql->setMaxResults(1);
         return $sql->getSingleResult();
+    }
+
+    public function aleatoireMediasbygenre(Media $media)
+    {
+        $sql = $this->getEntityManager()->createQuery(
+            "SELECT m FROM App\Entity\Media m WHERE m.genres = :genres AND m != :media ORDER BY RAND()"
+        )
+        ->setMaxResults(5)
+        ->setParameters([
+            'genres' => $media->getGenres(),
+            'media' => $media
+        ])
+        ->getResult();
+        return $sql;
     }
 
     public function nextReleased()

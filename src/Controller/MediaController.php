@@ -36,18 +36,19 @@ class MediaController extends AbstractController
     /**
      * @Route("/medias", name="medias.index")
      */
-    public function index(MediaRepository $repo, GenresRepository $genresrepo, Request $request)
+    public function index(MediaRepository $mediarepo, GenresRepository $genresrepo, Request $request)
     {
-        // Remplissage des valeurs du formulaire
+        // Filling form's values.
         $genres = $genresrepo->findAll();
 
-        $decades = $repo->getDistinctDecades();
+        $decades = $mediarepo->getDistinctDecades();
 
-        // Recherche des films en fonction des critères
+        // Initialize filters.
         $genre_id = null;
         $type = null;
         $decade = null;
 
+        // Method when you chose fields in filters.
         if ($request->isMethod('post')) {
             $genre_id = $request->request->get('genre');
             $decade = $request->request->get('decade');
@@ -66,7 +67,8 @@ class MediaController extends AbstractController
             }
         }
 
-        $medias = $repo->findWithFilters($genre_id, $type, $decade);
+        // Function when you selected fields from filters.
+        $medias = $mediarepo->findWithFilters($genre_id, $type, $decade);
         
         
         return $this->render('medias/index.html.twig', [
@@ -326,7 +328,7 @@ class MediaController extends AbstractController
     /**
     * @Route("/medias/{id}", name="medias.show")
     */
-    public function show(Media $media, LikesRepository $repo)
+    public function show(Media $media, LikesRepository $repo, MediaRepository $mediarepo)
     {
         $total = count($repo->findBy([
             'media' => $media
@@ -340,12 +342,13 @@ class MediaController extends AbstractController
         if($total > 0){
             $moyenne = $likes / $total * 100;
         }
-
+        $medias = $mediarepo->aleatoireMediasbygenre($media);
 
         return $this->render('medias/media.html.twig', [
             'media' => $media,
             'moyenne' => $moyenne,
-            'total' => $total
+            'total' => $total,
+            'aleatoires' => $medias
         ]);
     }
 }

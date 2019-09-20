@@ -98,4 +98,16 @@
       <a class="btn btn-secondary mb-3" href="{{ path('review.new', {'id': media.id}) }}">Ajouter une Review</a>
     {% endif %}
     </div>
+    <div class="container mt-3">
+      <h3>En suggestion</h3>
+      <div class="poster">
+        <div class="d-flex flex-wrap mt-3 mb-3">
+            {% for aleatoire in aleatoires %}
+              <a href="{{ path('medias.show', {'id': aleatoire.id}) }}" title="{{ aleatoire.title }}" class="m-1">
+                  <img src="{{ aleatoire.poster }}" alt="{{ aleatoire.title }}">
+              </a>
+              {% endfor %}
+          </div>
+        </div>
+  </div>
 {% endblock %}
