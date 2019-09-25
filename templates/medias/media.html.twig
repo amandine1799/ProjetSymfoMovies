@@ -37,7 +37,7 @@
             <p>{{ media.synopsis | raw }}</p>
           </div>
           <div class="d-flex justify-content-center mt-5">
-              <p class="mr-5">Durée : {{ media.duration }}minutes</p>
+              <p class="mr-5">Durée : {{ media.duration }} minutes</p>
               <p class="mr-5">Genre : {{ media.genres.name }}</p>
               <p class="mr-5">Année : {{ media.released | date('d/m/Y') }} </p>     
           </div>
@@ -76,38 +76,51 @@
 
   <div class="review container mt-3">
     <h3>Reviews</h3>
-    <div class="list-button text-center text-white mt-4">
-      {% if not app.user %}
-        <p class="lead d-flex text-center justify-content-center text-secondary">Pour écrire votre Review, veuillez vous connecter ou vous inscrire.</p>
-        <a class="btn btn-secondary" href="{{ path('login') }}"> Connexion</a>
-        <a class="btn btn-secondary" href="{{ path('security_registration') }}"> Inscription</a>
-      {% endif %}
-    </div>
-    <div class="card border-light mb-8">
-      {% for review in media.reviews %}
-        <div class="card-header">
-          <h5 class="card-title">{{ review.title }}</h5>
-        </div>
-        <div class="card-body">
-          <p class="card-text">{{ review.text }}</p>
-          <p>Par {{ review.user.username }} le {{ review.date | date('d/m/Y') }}<p>
-        </div>
-      {% endfor %}
-    </div>
-    {% if app.user %}
-      <a class="btn btn-secondary mb-3" href="{{ path('review.new', {'id': media.id}) }}">Ajouter une Review</a>
-    {% endif %}
-    </div>
-    <div class="container mt-3">
-      <h3>En suggestion</h3>
-      <div class="poster">
-        <div class="d-flex flex-wrap mt-3 mb-3">
-            {% for aleatoire in aleatoires %}
-              <a href="{{ path('medias.show', {'id': aleatoire.id}) }}" title="{{ aleatoire.title }}" class="m-1">
-                  <img src="{{ aleatoire.poster }}" alt="{{ aleatoire.title }}">
-              </a>
-              {% endfor %}
+    <section id="commentaires">
+      <div class="jumbotron comment">
+          <h3>{{ media.reviews | length }} Reviews: </h3>
+          <p>
+            <a class="btn btn-outline-secondary btn-lg btn-block" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Voir les Reviews
+            </a>
+          </p>
+          <div class="collapse" id="collapseExample">
+            {% for review in media.reviews %}
+              <div class="card border-light mb-3">
+                <div class="card-header">
+                  <h5 class="card-title">{{ review.title }}</h5>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{ review.text }}</p>
+                  <p>Par {{ review.user.username }} le {{ review.date | date('d/m/Y') }}<p>
+                </div>
+              </div>
+            {% endfor %}
           </div>
-        </div>
+          <div class="list-button text-center mt-2">
+            {% if app.user %}
+              <a class="btn btn-secondary mb-3" href="{{ path('review.new', {'id': media.id}) }}">Ajouter une Review</a>
+            {% endif %}
+            {% if not app.user %}
+            <p class="lead d-flex text-center justify-content-center text-secondary">Pour écrire votre Review, veuillez vous connecter ou vous inscrire.</p>
+            <a class="btn btn-secondary" href="{{ path('login') }}"> Connexion</a>
+            <a class="btn btn-secondary" href="{{ path('security_registration') }}"> Inscription</a>
+            {% endif %}
+          </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="container mt-3">
+    <h3>En suggestion</h3>
+    <div class="poster">
+      <div class="d-flex flex-wrap mt-3 mb-3">
+        {% for aleatoire in aleatoires %}
+          <a href="{{ path('medias.show', {'id': aleatoire.id}) }}" title="{{ aleatoire.title }}" class="m-1">
+            <img src="{{ aleatoire.poster }}" alt="{{ aleatoire.title }}">
+          </a>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 {% endblock %}

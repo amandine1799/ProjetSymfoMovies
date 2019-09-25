@@ -101,7 +101,7 @@ class MediaController extends AbstractController
      */
     public function new(Request $request, ActorsRepository $actorsRepository)
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $media = new Media();
         $form = $this->createForm(MediaType::class, $media);
@@ -134,7 +134,7 @@ class MediaController extends AbstractController
      */
     public function edit(Request $request, Media $media, ActorsRepository $actorsRepository)
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $form = $this->createForm(MediaType::class, $media);
         $form->handleRequest($request);
@@ -162,7 +162,7 @@ class MediaController extends AbstractController
      */
     public function delete(Request $request, Media $media)
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($media);
@@ -176,7 +176,7 @@ class MediaController extends AbstractController
      */
     public function crud(MediaRepository $mediaRepository)
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         return $this->render('medias/crud.html.twig', [
             'media' => $mediaRepository->findAll('title'),

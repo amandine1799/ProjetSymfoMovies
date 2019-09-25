@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-use App\Entity\Genres;
 use App\Entity\Media;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

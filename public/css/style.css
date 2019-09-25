@@ -165,7 +165,7 @@ h1 {
   color: rgba(255,255,255,0.5);
 }
 
-.collapse a.nav-link:hover, .jumbotron p {
+.collapse a.nav-link:hover, .content-home p {
   color: white;
 }
 
@@ -203,13 +203,14 @@ a:hover {
 
 .title-index {
   color: white;
+  font-size: 2.9em;
 }
 
-.jumbotron {
+.content-home {
   background-image: url("../img/back_co.jpg");
 }
 
-.jumbotron h1 {
+.content-home h1 {
   font-family: 'Abel';
 }
 
@@ -288,7 +289,7 @@ a:hover {
 
 @media screen and (max-width: 576px) {
   .carousel-cell {
-    width: 60%;
+    width: 70%;
   }
 
   .carousel-cell img {

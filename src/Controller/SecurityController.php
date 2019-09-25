@@ -54,7 +54,7 @@ class SecurityController extends AbstractController
      */
     public function edit(Request $request, Users $users)
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $form = $this->createForm(UsersType::class, $users);
         $form->handleRequest($request);
@@ -76,7 +76,7 @@ class SecurityController extends AbstractController
         */
         public function delete(Users $users)
         {
-            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+            $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($users);
@@ -89,7 +89,7 @@ class SecurityController extends AbstractController
      */
     public function crud(UsersRepository $usersRepository)
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         return $this->render('security/crud.html.twig', [
             'users' => $usersRepository->findAll(),
@@ -101,7 +101,7 @@ class SecurityController extends AbstractController
      */
     public function stats(MediaUsersRepository $repoMu, UsersRepository $usersRepo, ReviewRepository $reviewsRepo, ActorsRepository $actorsRepo, MediaRepository $mediasRepo)
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         return $this->render('security/stats.html.twig', [
             'users' => $usersRepo->findAll(),
