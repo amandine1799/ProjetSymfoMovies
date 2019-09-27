@@ -25,10 +25,10 @@ class MediaController extends AbstractController
      */
     public function home(MediaRepository $repo)
     {
-        $medias = $repo->nextReleased();
+        $next = $repo->nextReleased();
         $last = $repo->lastReleased();
         return $this->render('medias/home.html.twig', [
-            'medias' => $medias,
+            'next' => $next,
             'last' => $last
         ]);
     }
@@ -342,6 +342,7 @@ class MediaController extends AbstractController
         if($total > 0){
             $moyenne = $likes / $total * 100;
         }
+        
         $medias = $mediarepo->aleatoireMediasbygenre($media);
 
         return $this->render('medias/media.html.twig', [

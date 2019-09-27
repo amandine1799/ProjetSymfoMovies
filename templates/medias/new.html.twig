@@ -13,7 +13,9 @@
             </div>
             <div>
             {{ form_label(form.title) }}
-            {{ form_widget(form.title) }}
+            {{ form_widget(form.title, {'attr' : {
+                'placeholder' : 'Titre'
+            }}) }}
             </div>
             <div>
             {{ form_label(form.type) }}
@@ -21,28 +23,39 @@
             </div>
             <div>
             {{ form_label(form.synopsis) }}
-            {{ form_widget(form.synopsis) }}
+            {{ form_widget(form.synopsis, {'attr' : {
+                'placeholder' : 'Synopsis'
+            }}) }}
             </div>
             <div>
             {{ form_label(form.duration) }}
-            {{ form_widget(form.duration) }}
+            {{ form_widget(form.duration, {'attr' : {
+                'placeholder' : 'Durée'
+            }}) }}
             </div>
             <div>
             {{ form_label(form.poster) }}
-            {{ form_widget(form.poster) }}
+            {{ form_widget(form.poster, {'attr' : {
+                'placeholder' : 'Affiche'
+            }}) }}
             </div>
             <div>
             {{ form_label(form.trailer) }}
-            {{ form_widget(form.trailer) }}
+            {{ form_widget(form.trailer, {'attr' : {
+                'placeholder' : 'Trailer'
+            }}) }}
             </div>
             <div>
             {{ form_label(form.genres) }}
-            {{ form_widget(form.genres) }}
+            {{ form_widget(form.genres, {'attr' : {
+                'placeholder' : 'Genre'
+            }}) }}
             </div>
             <div>
             {{ form_label(form.actors) }}
             {{ form_widget(form.actors, {'attr': {
                 'class' : 'media-actors selectpicker',
+                'title' : 'Sélectionnez un ou plusieurs acteurs',
                 'data-live-search' : "true",
                 'data-size' : '5'
             }}) }}

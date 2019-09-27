@@ -20,9 +20,9 @@
             <h2 class="ml-4">Les prochaines sorties</h2>
         </div>
         <div class="carousel1 mb-5" data-flickity='{ "groupCells": true }'>
-            {% for media in medias %}
+            {% for n in next %}
                 <div class="carousel-cell">
-                    <a href="{{ path('medias.show', {'id': media.id}) }}"><img src="{{ media.poster }}" alt="affiche">
+                    <a href="{{ path('medias.show', {'id': n.id}) }}"><img src="{{ n.poster }}" alt="affiche">
                     </a>
                 </div>
             {% endfor %}
@@ -32,9 +32,9 @@
             <h2 class="ml-4">Les dernières sorties</h2>
         </div>
         <div class="carousel2 mb-5" data-flickity='{ "groupCells": true }'>
-            {% for lmedia  in last %}
+            {% for l in last %}
                 <div class="carousel-cell">
-                    <a href="{{ path('medias.show', {'id': lmedia.id}) }}"><img src="{{ lmedia.poster }}" alt="affiche">
+                    <a href="{{ path('medias.show', {'id': l.id}) }}"><img src="{{ l.poster }}" alt="affiche">
                     </a>
                 </div>
             {% endfor %}

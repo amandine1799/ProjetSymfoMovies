@@ -63,12 +63,12 @@
       <h3>Casting</h3>
       <div class="d-flex flex-wrap mt-3">
         {% for actor in media.actors %}
-        <li class="card mr-2 mb-2">
-          <a href="{{ path('actors.show', {'id': actor.id}) }}" class="mr-1">
-            <img src="{{ actor.image }}">
-            <p>{{ actor.name }}</p> 
-          </a>
-        </li>
+          <li class="card mr-2 mb-2">
+            <a href="{{ path('actors.show', {'id': actor.id}) }}" class="mr-1">
+              <img src="{{ actor.image }}">
+              <p>{{ actor.name }}</p> 
+            </a>
+          </li>
         {% endfor %}
       </div>
     </div>
@@ -93,14 +93,19 @@
                 <div class="card-body">
                   <p class="card-text">{{ review.text }}</p>
                   <p>Par {{ review.user.username }} le {{ review.date | date('d/m/Y') }}<p>
+                  {% if app.user == review.user %}
+                    <a class="btn btn-secondary" title="Editer" role="button" href="{{ path('review.edit', {'id': review.id}) }}"><i class="fas fa-edit"></i></a>
+                  {% endif %}
                 </div>
               </div>
             {% endfor %}
           </div>
           <div class="list-button text-center mt-2">
-            {% if app.user %}
-              <a class="btn btn-secondary mb-3" href="{{ path('review.new', {'id': media.id}) }}">Ajouter une Review</a>
-            {% endif %}
+            {% for review in media.reviews %}
+              {% if app.user and review.user is not null %}
+                <a class="btn btn-secondary mb-3" href="{{ path('review.new', {'id': media.id}) }}">Ajouter une Review</a>
+              {% endif %}
+            {% endfor %}
             {% if not app.user %}
             <p class="lead d-flex text-center justify-content-center text-secondary">Pour écrire votre Review, veuillez vous connecter ou vous inscrire.</p>
             <a class="btn btn-secondary" href="{{ path('login') }}"> Connexion</a>

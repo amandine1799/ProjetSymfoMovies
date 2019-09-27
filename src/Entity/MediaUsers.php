@@ -27,11 +27,6 @@ class MediaUsers
     private $haveSeen;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $rating;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Media", inversedBy="mediaUsers")
      */
     private $media;
@@ -72,18 +67,6 @@ class MediaUsers
     public function setHaveSeen(bool $haveSeen): self
     {
         $this->haveSeen = $haveSeen;
-
-        return $this;
-    }
-
-    public function getRating(): ?int
-    {
-        return $this->rating;
-    }
-
-    public function setRating(?int $rating): self
-    {
-        $this->rating = $rating;
 
         return $this;
     }

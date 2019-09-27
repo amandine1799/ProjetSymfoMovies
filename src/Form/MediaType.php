@@ -27,7 +27,8 @@ class MediaType extends AbstractType
             ])
             ->add('synopsis')
             ->add('released', DateType::class, [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'label' => 'Année'
             ])
             ->add('poster')
             ->add('trailer')

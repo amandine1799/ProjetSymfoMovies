@@ -39,6 +39,8 @@ class ReviewController extends AbstractController
      */
     public function new(Request $request, Media $media)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $review = new Review();
         $review->setMedia($media);
         $review->setUser($this->currentUser);
@@ -63,8 +65,10 @@ class ReviewController extends AbstractController
     /**
      * @Route("/reviews/{id}/delete", name="review.delete")
      */
-    public function delete(Request $request, Review $review)
+    public function delete(Review $review)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($review);
         $entityManager->flush();
@@ -76,6 +80,11 @@ class ReviewController extends AbstractController
      */
     public function edit(Review $review, Request $request)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        if($this->getUser() != $review->getUser()){
+            $media = $review->getMedia();
+            return $this->redirectToRoute('medias.show', ["id" => $media->getID()]);
+        }
         $form = $this->createForm(ReviewType::class, $review);
         $form->handleRequest($request);
 

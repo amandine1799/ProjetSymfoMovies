@@ -19,7 +19,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ review.title }}</h5>
                             <p class="card-text">{{ review.text | truncate(300, true) }}</p>
-                            <div><a class="btn btn-secondary" title="Editer" role="button" href="{{ path('review.edit', {'id': review.id}) }}"><i class="fas fa-edit"></i></a>
+                            <div>
+                                <a class="btn btn-secondary" title="Editer" role="button" href="{{ path('review.edit', {'id': review.id}) }}"><i class="fas fa-edit"></i></a>
                                 <a class="btn btn-secondary" title="Supprimer" role="button" href="{{ path('review.delete', {'id' : review.id}) }}"><i class="far fa-trash-alt"></i></a>
                             </div>
                         </div>
