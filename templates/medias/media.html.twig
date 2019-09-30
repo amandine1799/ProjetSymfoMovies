@@ -101,12 +101,11 @@
             {% endfor %}
           </div>
           <div class="list-button text-center mt-2">
-            {% for review in media.reviews %}
-              {% if app.user and review.user is not null %}
+            {% if app.user %}
+              {% if app.user.hasReview(media) == false %}
                 <a class="btn btn-secondary mb-3" href="{{ path('review.new', {'id': media.id}) }}">Ajouter une Review</a>
               {% endif %}
-            {% endfor %}
-            {% if not app.user %}
+            {% else %}
             <p class="lead d-flex text-center justify-content-center text-secondary">Pour écrire votre Review, veuillez vous connecter ou vous inscrire.</p>
             <a class="btn btn-secondary" href="{{ path('login') }}"> Connexion</a>
             <a class="btn btn-secondary" href="{{ path('security_registration') }}"> Inscription</a>

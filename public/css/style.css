@@ -182,6 +182,11 @@ a:hover {
   border-color: #1B3087;
 }
 
+.btn-main:hover{
+  background: #001673 !important;
+  border-color: #001673;
+}
+
 .carousel1, .carousel2 {
   background: rgba(0,0,0,0.1);
 }
@@ -253,9 +258,6 @@ a:hover {
   height: 100%;
 }
 
-.btn-home {
-  background: rgba(0, 0, 0, 0.75);
-}
 
 .jumbo-content {
   background: rgba(0, 0, 0, 0.75);

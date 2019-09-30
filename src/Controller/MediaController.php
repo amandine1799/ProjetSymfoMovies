@@ -43,7 +43,7 @@ class MediaController extends AbstractController
 
         $decades = $mediarepo->getDistinctDecades();
 
-        // Initialize filters.
+        // Initialize filters (by default).
         $genre_id = null;
         $type = null;
         $decade = null;

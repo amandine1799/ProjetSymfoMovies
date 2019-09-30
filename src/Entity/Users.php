@@ -136,6 +136,16 @@ public function eraseCredentials() {}
         return $this->reviews;
     }
 
+    public function hasReview(Media $media)
+    {
+        foreach($media->getReviews() as $review){
+            if($this->reviews->contains($review)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function addReview(Review $review): self
     {
         if (!$this->reviews->contains($review)) {
