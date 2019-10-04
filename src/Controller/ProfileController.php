@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\AccountType;
+use App\Form\EditImgType;
 use App\Repository\ReviewRepository;
 use App\Repository\MediaUsersRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,21 +21,21 @@ class ProfileController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $user = $this->getUser();
-        $img = $user->getImage();
 
-        if(!$img) {
-            $img = ($this->getParameter(('image_directory')).$user->getImage());
-        }
+        $formImg = $this->createForm(EditImgType::class, $user);
+        $form = $this->createForm(AccountType::class, $user);
+    
+        $formImg->handleRequest($request);
+        $form->handleRequest($request);
 
-        $formProfil = $this->createForm(AccountType::class, $user);
-        $formProfil->handleRequest($request);
 
-        if ($formProfil->isSubmitted() && $formProfil->isValid()) {
+        if ($formImg->isSubmitted() && $formImg->isValid()) {
 
-            $this->addFlash('success', 'Votre profil a bien été modifié!');
+            $img = $formImg->get('image')->getData();
 
-            if(!is_null($img)){
-                $file = $formProfil->get('image')->getData();
+            if($img != null)
+            {
+                $file = $formImg->get('image')->getData();
                 $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
 
                 $file->move($this->getParameter('image_directory'), $fileName);
@@ -50,10 +51,19 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('profile');
         }
 
+        if($form->isSubmitted()){
+            $manager->persist($user);
+            $manager->flush();
+            $this->addFlash(
+                'success',
+                'Le profil a bien été mis à jour.'
+            );
+        }
+
         return $this->render('profile/profile.html.twig', [
-            'Formprofil' => $formProfil->createView(),
+            'form' => $form->createView(),
+            'formImg' => $formImg->createView(),
             'user' => $user,
-            'image' => $img,
             'medias' => $repo->findBy([
                 'users' => $this->getUser(),
                 'wishList' => true

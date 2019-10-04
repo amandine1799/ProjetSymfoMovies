@@ -12,7 +12,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
- * @UniqueEntity(fields={"email"}, message= "Cet Email est déjà utilisé")
  * @UniqueEntity(fields={"username"},message= "Ce Pseudo est déjà utilisé")
  */
 class Users implements UserInterface
@@ -27,8 +26,7 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Email(
-     *      message = "Cet email n'est pas valide", 
-     *      checkMX = true
+     *      message = "Cet email n'est pas valide"
      * )
      */
     private $email;

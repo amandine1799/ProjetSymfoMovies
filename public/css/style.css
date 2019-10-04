@@ -84,13 +84,19 @@ h1 {
   width: 100%;
 }
 
-.img-profile {
+ .img-profile {
   margin-top: 2%;
   margin-bottom: 2%;
   width: 125px; 
   height: 125px;
   object-fit: cover;
   margin-left: 12%;
+} 
+
+.img-profile:hover {
+  transition: 300ms;
+  filter: contrast(50%);
+  cursor: pointer;
 }
 
 .media-pro {
