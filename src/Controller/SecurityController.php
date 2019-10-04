@@ -109,11 +109,9 @@ class SecurityController extends AbstractController
             'medias' => $mediasRepo->findAll(),
             'reviews' => $reviewsRepo->findAll(),
             'wishlist' => $repoMu->findBy([
-                'users' => $this->getUser(),
                 'wishList' => true
             ]),
             'seen' => $repoMu->findBy([
-                'users' => $this->getUser(),
                 'haveSeen' => true
             ]),
             'films' => $mediasRepo->findBy([

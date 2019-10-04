@@ -51,7 +51,7 @@
               <a class="nav-link" href="{{ path('security_registration') }}">inscription</a>
               <a class="nav-link" href="{{ path('login') }}"><i class="fas fa-sign-in-alt"></i> connexion</a>
               {% else  %}
-              <a class="nav-link" title="Profil" href="{{ path('profile') }}"><i class="fas fa-user"></i></a>
+              <a class="nav-link" title="Profil" href="{{ path('profile') }}"><i class="fas fa-user"></i> {{ app.user.username }}</a>
               <a class="nav-link" href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i> déconnexion</a>
             {% endif %}
           </div>

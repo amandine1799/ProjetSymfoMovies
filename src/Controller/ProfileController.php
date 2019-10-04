@@ -20,38 +20,35 @@ class ProfileController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $user = $this->getUser();
-
         $img = $user->getImage();
 
-        if(!$img){
+        if(!$img) {
             $img = ($this->getParameter(('image_directory')).$user->getImage());
         }
 
         $formProfil = $this->createForm(AccountType::class, $user);
-
         $formProfil->handleRequest($request);
 
-    if ($formProfil->isSubmitted() && $formProfil->isValid()) {
+        if ($formProfil->isSubmitted() && $formProfil->isValid()) {
 
-        $this->addFlash('success', 'Votre profil a bien été modifié!');
+            $this->addFlash('success', 'Votre profil a bien été modifié!');
 
-        if(!is_null($img)){
-            $file = $formProfil->get('image')->getData();
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            if(!is_null($img)){
+                $file = $formProfil->get('image')->getData();
+                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
 
-            $file->move($this->getParameter('image_directory'), $fileName);
-            $user->setImage($fileName);
+                $file->move($this->getParameter('image_directory'), $fileName);
+                $user->setImage($fileName);
+            }
+            else {
+                $user->setImage($img);
+            }
+
+            $manager->persist($user);
+            $manager->flush();
+
+            return $this->redirectToRoute('profile');
         }
-        else{
-            $user->setImage($img);
-        }
-
-        $manager->persist($user);
-    $manager->flush();
-
-    return $this->redirectToRoute('profile');
-
-    }
 
         return $this->render('profile/profile.html.twig', [
             'Formprofil' => $formProfil->createView(),
