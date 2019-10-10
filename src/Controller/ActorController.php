@@ -61,7 +61,7 @@ class ActorController extends AbstractController
         /**
         * @Route("/actors/{id}/delete", name="actors.delete")
         */
-        public function delete(Request $request, Actors $actor)
+        public function delete(Actors $actor)
         {
             $this->denyAccessUnlessGranted('ROLE_ADMIN');
 

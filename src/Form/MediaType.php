@@ -30,7 +30,12 @@ class MediaType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'Année'
             ])
-            ->add('poster')
+            ->add('poster' 
+            // FileType::class,[
+            //     'label' => 'Ajouter affiche',
+            //     'data_class' => null
+            // ]
+            )
             ->add('trailer')
             ->add('genres', EntityType::class, [
                 'class' => Genres::class,

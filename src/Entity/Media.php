@@ -10,7 +10,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MediaRepository")
- * @UniqueEntity(fields= {"title"}, message="Ce film a déjà été ajouté")
  */
 class Media
 {
