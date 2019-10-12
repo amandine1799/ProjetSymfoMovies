@@ -12,13 +12,13 @@
                 <div class="row no-gutters">
                     <div class="col-md-4 poster-grid mt-3 mb-3">
                     <a href="{{ path('medias.show', {'id': review.media.id}) }}">
-                        <img src="{{ review.media.poster }}" alt="affiche">
+                        <img src="{{ review.media.posterPath }}" alt="affiche">
                     </a>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">{{ review.title }}</h5>
-                            <p class="card-text">{{ review.text | truncate(300, true) }}</p>
+                            <p class="card-text">{{ review.text | truncate(300, true) | nl2br }}</p>
                             <div>
                                 <a class="btn btn-secondary" title="Editer" role="button" href="{{ path('review.edit', {'id': review.id}) }}"><i class="fas fa-edit"></i></a>
                                 <a class="btn btn-secondary" title="Supprimer" role="button" href="{{ path('review.delete', {'id' : review.id}) }}"><i class="far fa-trash-alt"></i></a>

@@ -109,6 +109,14 @@ class MediaController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $img = $form->get('poster')->getData();
+            if($img != null)
+            {
+                $fileName = $this->generateUniqueFileName().'.'.$img->guessExtension();
+                $img->move($this->getParameter('poster_directory'), $fileName);
+                $media->setPoster($fileName);
+            }
+
             $data = $request->request->get('media');
             foreach($data['actors'] as $actor_id) 
             {
@@ -351,5 +359,13 @@ class MediaController extends AbstractController
             'total' => $total,
             'aleatoires' => $medias
         ]);
+    }
+
+    /**
+     * @return string
+     */
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
     }
 }

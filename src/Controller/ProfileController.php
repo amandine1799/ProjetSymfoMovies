@@ -35,14 +35,9 @@ class ProfileController extends AbstractController
 
             if($img != null)
             {
-                $file = $formImg->get('image')->getData();
-                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-
-                $file->move($this->getParameter('image_directory'), $fileName);
+                $fileName = $this->generateUniqueFileName().'.'.$img->guessExtension();
+                $img->move($this->getParameter('avatar_directory'), $fileName);
                 $user->setImage($fileName);
-            }
-            else {
-                $user->setImage($img);
             }
 
             $manager->persist($user);

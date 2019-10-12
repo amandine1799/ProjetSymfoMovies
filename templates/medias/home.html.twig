@@ -22,7 +22,7 @@
         <div class="carousel1 mb-5" data-flickity='{ "groupCells": true }'>
             {% for n in next %}
                 <div class="carousel-cell">
-                    <a href="{{ path('medias.show', {'id': n.id}) }}"><img src="{{ n.poster }}" alt="affiche">
+                    <a href="{{ path('medias.show', {'id': n.id}) }}"><img src="{{ n.posterPath }}" alt="affiche">
                     </a>
                 </div>
             {% endfor %}
@@ -34,7 +34,7 @@
         <div class="carousel2 mb-5" data-flickity='{ "groupCells": true }'>
             {% for l in last %}
                 <div class="carousel-cell">
-                    <a href="{{ path('medias.show', {'id': l.id}) }}"><img src="{{ l.poster }}" alt="affiche">
+                    <a href="{{ path('medias.show', {'id': l.id}) }}"><img src="{{ l.posterPath }}" alt="affiche">
                     </a>
                 </div>
             {% endfor %}

@@ -24,6 +24,14 @@ class ActorController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+            $img = $form->get('image')->getData();
+            if($img != null)
+            {
+                $fileName = $this->generateUniqueFileName().'.'.$img->guessExtension();
+                $img->move($this->getParameter('actor_directory'), $fileName);
+                $media->setPoster($fileName);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($actor);
             $entityManager->flush();

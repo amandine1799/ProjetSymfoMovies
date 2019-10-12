@@ -146,6 +146,11 @@ class Media
         return $this;
     }
 
+    public function getPosterPath()
+    {
+        return '/img/posters/' . $this->poster;
+    }
+
     public function getGenres(): ?Genres
     {
         return $this->genres;

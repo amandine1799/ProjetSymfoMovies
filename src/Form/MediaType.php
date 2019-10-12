@@ -28,36 +28,32 @@ class MediaType extends AbstractType
             ->add('synopsis')
             ->add('released', DateType::class, [
                 'widget' => 'single_text',
-                'label' => 'Année'
+                'label'  => 'Année'
             ])
-            ->add('poster' 
-            // FileType::class,[
-            //     'label' => 'Ajouter affiche',
-            //     'data_class' => null
-            // ]
-            )
+            ->add('poster', FileType::class, [
+                'label'      => 'Ajouter affiche',
+                'data_class' => null
+            ])
             ->add('trailer')
             ->add('genres', EntityType::class, [
-                'class' => Genres::class,
+                'class'        => Genres::class,
                 'choice_label' => 'name'
             ])
             ->add('type', ChoiceType::class, [
                 'placeholder' => 'Choix du type',
-                'choices' => [
-                    'Film' => Media::FILM,
-                    'Série' => Media::SERIE
+                'choices'     => [
+                    'Film'    => Media::FILM,
+                    'Série'   => Media::SERIE
                 ]  
             ])
             ->add('duration', IntegerType::class)
-            ->add('actors',EntityType::class, [
+            ->add('actors', EntityType::class, [
                 'class'         => Actors::class,
-                'choice_label'  => 'name',
                 'label'         => 'Acteurs',
                 'multiple'      => true,
-                'mapped'        => false,
+                'choice_label'  => 'name',
                 'query_builder' => function(ActorsRepository $rep) {
-                    return $rep->createQueryBuilder('a')
-                                ->distinct();
+                    return $rep->createQueryBuilder('a')->orderBy('a.name');
                 }
             ])
         ;

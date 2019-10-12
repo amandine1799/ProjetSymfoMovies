@@ -5,6 +5,9 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     image_directory: '%kernel.project_dir%/public/img'
+    poster_directory: '%kernel.project_dir%/public/img/poster'
+    avatar_directory: '%kernel.project_dir%/public/img/avatar'
+    actor_directory: '%kernel.project_dir%/public/img/actors'
 
 services:
     # default configuration for services in *this* file

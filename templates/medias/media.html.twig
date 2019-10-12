@@ -6,11 +6,11 @@
     <div class="container mt-3 mb-4">
       <div class="row">
         <div class="col-lg-4 text-center">
-          <img src="{{ media.poster }}" alt="">
+          <img src="{{ media.posterPath }}" alt="">
         </div>
         <div class="col-lg-8">
           <div class="list-button text-left text-white mt-4">
-            <h5>{{ moyenne }} % <span style="font-size: .85em">({{ total }} votes)</span></h5>
+            <h5>{{ "%.01f %%"|format(moyenne) }} <span style="font-size: .85em">({{ total }} votes)</span></h5>
             {% if app.user %}
               <a title="J'aime" data-content='1' class="btn-circle btn-lg mr-2 btn btn-secondary getContent {% if app.user.like(media) == 1 %} btn-success {% endif %} like" data-url="{{ path('medias.like', {'id': media.id }) }}" role="button">
                 <i class="far fa-thumbs-up"></i>
@@ -25,21 +25,21 @@
               {% if app.user %}
                 {% set var = app.user.mediaUser(media) %}
                 <a title="Ajouter à sa liste de médias déjà vu" class="btn btn-secondary {% if var is not null and var.haveSeen == true %} btn-main{% endif %} haveSeen" data-url="{{ path('medias.haveseen', {'id': media.id }) }}" role="button">
-                    <i class="fas fa-check"> Déjà Vu</i>
+                    <i class="fas fa-check"></i> Déjà vu
                 </a>
                 {% set var = app.user.mediaUser(media) %}
-                <a title="Ajouter à sa WishList" class="btn btn-secondary {% if var is not null and var.wishList == true %} btn-main{% endif %} wishList" data-url="{{ path('medias.wantsee', {'id': media.id }) }}" role="button">
-                  <i class="fas fa-bookmark"> Wish List</i>
+                <a title="Ajouter à sa Wish list" class="btn btn-secondary {% if var is not null and var.wishList == true %} btn-main{% endif %} wishList" data-url="{{ path('medias.wantsee', {'id': media.id }) }}" role="button">
+                  <i class="fas fa-bookmark"></i> Wish list
                 </a>
               {% endif %}
             </div>
             <h2>{{ media.title }}</h2>
-            <p>{{ media.synopsis | raw }}</p>
+            <p>{{ media.synopsis | nl2br }}</p>
           </div>
           <div class="d-flex justify-content-center mt-5">
               <p class="mr-5">Durée : {{ media.duration }} minutes</p>
               <p class="mr-5">Genre : {{ media.genres.name }}</p>
-              <p class="mr-5">Année : {{ media.released | date('d/m/Y') }} </p>     
+              <p class="mr-5">Sortie : {{ media.released | date('d/m/Y') }} </p>     
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
         {% for actor in media.actors %}
           <li class="card mr-2 mb-2">
             <a href="{{ path('actors.show', {'id': actor.id}) }}" class="mr-1">
-              <img src="{{ actor.image }}">
+              <img src="/img/actors/{{ actor.image }}">
               <p>{{ actor.name }}</p> 
             </a>
           </li>
@@ -74,32 +74,32 @@
     </div>
    </div> 
 
-  <div class="review container mt-3">
-    <h3>Reviews</h3>
+  <div class="review container mt-3 pt-4">
+    <h3>{{ media.reviews | length }} Reviews</h3>
+
     <section id="commentaires">
       <div class="jumbotron comment">
-          <h3>{{ media.reviews | length }} Reviews: </h3>
+          <div class="collapse" id="collapseExample">
+            {% for review in media.reviews %}
+              <div class="card border-light mb-3">
+                <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                  <h5 class="card-title">{{ review.title }}</h5>
+                  {% if app.user == review.user %}
+                    <a class="btn btn-secondary" title="Editer" role="button" href="{{ path('review.edit', {'id': review.id}) }}"><i class="fas fa-edit"></i></a>
+                  {% endif %}
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{ review.text | nl2br }}</p>
+                  <p>Par {{ review.user.username }} le {{ review.date | date('d/m/Y') }}<p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
           <p>
             <a class="btn btn-outline-secondary btn-lg btn-block" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
               Voir les Reviews
             </a>
           </p>
-          <div class="collapse" id="collapseExample">
-            {% for review in media.reviews %}
-              <div class="card border-light mb-3">
-                <div class="card-header">
-                  <h5 class="card-title">{{ review.title }}</h5>
-                </div>
-                <div class="card-body">
-                  <p class="card-text">{{ review.text }}</p>
-                  <p>Par {{ review.user.username }} le {{ review.date | date('d/m/Y') }}<p>
-                  {% if app.user == review.user %}
-                    <a class="btn btn-secondary" title="Editer" role="button" href="{{ path('review.edit', {'id': review.id}) }}"><i class="fas fa-edit"></i></a>
-                  {% endif %}
-                </div>
-              </div>
-            {% endfor %}
-          </div>
           <div class="list-button text-center mt-2">
             {% if app.user %}
               {% if app.user.hasReview(media) == false %}
@@ -121,7 +121,7 @@
       <div class="d-flex flex-wrap mt-3 mb-3">
         {% for aleatoire in aleatoires %}
           <a href="{{ path('medias.show', {'id': aleatoire.id}) }}" title="{{ aleatoire.title }}" class="m-1">
-            <img src="{{ aleatoire.poster }}" alt="{{ aleatoire.title }}">
+            <img src="{{ aleatoire.posterPath }}" alt="{{ aleatoire.title }}">
           </a>
         {% endfor %}
       </div>

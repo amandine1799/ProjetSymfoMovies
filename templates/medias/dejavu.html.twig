@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Déjà Vu{% endblock %}
+{% block title %}Déjà vu{% endblock %}
 
 {% block body %}
   <div class="title-next"> 
@@ -12,7 +12,7 @@
             <div class="row no-gutters">
               <div class="col-md-4 poster-grid">
                 <a href="{{ path('medias.show', {'id': umedia.media.id}) }}">
-                  <img src="{{ umedia.media.poster }}" alt="affiche">
+                  <img src="{{ umedia.media.posterPath }}" alt="affiche">
                 </a>
               </div>
               <div class="col-md-8">
@@ -37,12 +37,12 @@
                     {% set var = app.user.mediaUser(umedia.media) %}
                         <a class="btn btn-secondary text-white mr-3 {% if var is not null and var.haveSeen == true %} btn-main{% endif %} haveSeenDisappear" 
                         data-url="{{ path('medias.haveseen', {'id': umedia.media.id }) }}" role="button">
-                          <i class="fas fa-check"> Déjà Vu</i>
+                          <i class="fas fa-check"></i> Déjà vu
                         </a>
                     {% set var = app.user.mediaUser(umedia.media) %}
                         <a class="btn btn-secondary text-white {% if var is not null and var.wishList == true %}btn-main{% endif %} wishList" 
                         data-url="{{ path('medias.wantsee', {'id': umedia.media.id }) }}" role="button">
-                          <i class="fas fa-bookmark"> Wish List</i>
+                          <i class="fas fa-bookmark"></i> Wish list
                         </a>
                 {% endif %}
             </div>

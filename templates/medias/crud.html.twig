@@ -25,9 +25,6 @@
                     <th scope="col">Titre</th>
                     <th scope="col">Type</th>
                     <th scope="col">Année</th>
-                    <th scope="col">Durée</th>
-                    <th scope="col">Affiche</th>
-                    <th scope="col">Genre</th>
                     <th scope="col">Acteurs</th>
                     <th scope="col">Editer</th>
                     <th scope="col">Voir</th>
@@ -37,10 +34,12 @@
             {% for media in media %}
                 <tr class="table-secondary">
                     <td>{{ media.title }}</td>
-                    <td>{{ media.type }}</td>
-                    <td>{{ media.released | date('d/m/Y') }}</td>
-                    <td>{{ media.duration }}</td>
-                    <td>{{ media.poster }}</td>
+                    <td>{% if media.type == 1 %}
+                        Film
+                        {% else %}
+                        Série
+                        {% endif %}
+                    </td>
                     <td>{{ media.genres.name }}</td>
                     <td>
                     {% for actor in media.actors %}

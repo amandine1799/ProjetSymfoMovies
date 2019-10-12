@@ -6,18 +6,18 @@
         </button>
     </div>
     <div class="modal-body">
-        <img src="{{ mediaaleatoire.poster }}" style="width:100%;">
+        <img src="{{ mediaaleatoire.posterPath }}" style="width:100%;">
         <div class="list-button text-right mt-3 d-flex justify-content-center">
             {% if app.user %}
                 {% set var = app.user.mediaUser(mediaaleatoire) %}
                     <a class="btn btn-secondary text-white mr-3 {% if var is not null and var.haveSeen == true %} btn-main{% endif %} haveSeen" 
                     data-url="{{ path('medias.haveseen', {'id': mediaaleatoire.id }) }}" role="button">
-                        <i class="fas fa-check"> Déjà Vu</i>
+                        <i class="fas fa-check"></i> Déjà vu
                     </a>
                 {% set var = app.user.mediaUser(mediaaleatoire) %}
                     <a class="btn btn-secondary text-white {% if var is not null and var.wishList == true %}btn-main{% endif %} wishList" 
                     data-url="{{ path('medias.wantsee', {'id': mediaaleatoire.id }) }}" role="button">
-                        <i class="fas fa-bookmark"> Wish List</i>
+                        <i class="fas fa-bookmark"></i> Wish list
                     </a>
             {% endif %}
         </div>

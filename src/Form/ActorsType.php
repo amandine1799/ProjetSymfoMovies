@@ -6,6 +6,7 @@ use App\Entity\Actors;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
@@ -20,7 +21,10 @@ class ActorsType extends AbstractType
             ->add('biography')
             ->add('born')
             ->add('died')
-            ->add('image')
+            ->add('image', FileType::class, [
+                'label'      => 'Ajouter image',
+                'data_class' => null
+            ])
         ;
     }
 
