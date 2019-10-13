@@ -29,7 +29,7 @@ class ActorController extends AbstractController
             {
                 $fileName = $this->generateUniqueFileName().'.'.$img->guessExtension();
                 $img->move($this->getParameter('actor_directory'), $fileName);
-                $media->setPoster($fileName);
+                $actor->setImage($fileName);
             }
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -55,6 +55,14 @@ class ActorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $img = $form->get('image')->getData();
+            if($img != null)
+            {
+                $fileName = $this->generateUniqueFileName().'.'.$img->guessExtension();
+                $img->move($this->getParameter('actor_directory'), $fileName);
+                $actor->setImage($fileName);
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('actors.crud');
@@ -66,40 +74,48 @@ class ActorController extends AbstractController
         ]);
     }
 
-        /**
-        * @Route("/actors/{id}/delete", name="actors.delete")
-        */
-        public function delete(Actors $actor)
-        {
-            $this->denyAccessUnlessGranted('ROLE_ADMIN');
+    /**
+    * @Route("/actors/{id}/delete", name="actors.delete")
+    */
+    public function delete(Actors $actor)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($actor);
-            $entityManager->flush();
-            return $this->redirectToRoute('actors.crud');
-        }
-            
-        /**
-         * @Route("/actors/crud", name="actors.crud", methods={"GET"})
-         */
-        public function crud(ActorsRepository $actorsRepository)
-        {
-            $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($actor);
+        $entityManager->flush();
+        return $this->redirectToRoute('actors.crud');
+    }
+        
+    /**
+     * @Route("/actors/crud", name="actors.crud", methods={"GET"})
+     */
+    public function crud(ActorsRepository $actorsRepository)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-            return $this->render('actors/crud.html.twig', [
-                'actor' => $actorsRepository->findAll(),
-            ]);
-        }
+        return $this->render('actors/crud.html.twig', [
+            'actor' => $actorsRepository->findAll(),
+        ]);
+    }
 
-        /**
-         * @Route("/actors/{id}", name="actors.show")
-         */
-        public function show(Actors $actor)
-        {
-            return $this->render('actors/index.html.twig', [
-                'actor' => $actor
-            ]);
-        }
+    /**
+     * @Route("/actors/{id}", name="actors.show")
+     */
+    public function show(Actors $actor)
+    {
+        return $this->render('actors/index.html.twig', [
+            'actor' => $actor
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
+    }
 }
 
 

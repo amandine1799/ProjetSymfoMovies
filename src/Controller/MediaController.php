@@ -148,6 +148,14 @@ class MediaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $img = $form->get('poster')->getData();
+            if($img != null)
+            {
+                $fileName = $this->generateUniqueFileName().'.'.$img->guessExtension();
+                $img->move($this->getParameter('poster_directory'), $fileName);
+                $media->setPoster($fileName);
+            }
+            
             $data = $request->request->get('media');
             foreach($data['actors'] as $actor_id)
             {

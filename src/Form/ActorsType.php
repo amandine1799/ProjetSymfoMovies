@@ -23,7 +23,8 @@ class ActorsType extends AbstractType
             ->add('died')
             ->add('image', FileType::class, [
                 'label'      => 'Ajouter image',
-                'data_class' => null
+                'mapped'     => false,
+                'required'   => false
             ])
         ;
     }

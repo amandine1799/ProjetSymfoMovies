@@ -32,7 +32,8 @@ class MediaType extends AbstractType
             ])
             ->add('poster', FileType::class, [
                 'label'      => 'Ajouter affiche',
-                'data_class' => null
+                'mapped'     => false,
+                'required'   => false
             ])
             ->add('trailer')
             ->add('genres', EntityType::class, [
