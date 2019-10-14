@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="/css/custom.css">
+{% endblock %}
+
 {% block title %}New Media{% endblock %}
 
 {% block body %}
@@ -35,9 +39,7 @@
             </div>
             <div>
             {{ form_label(form.poster) }}
-            {{ form_widget(form.poster, {'attr' : {
-                'placeholder' : 'Affiche'
-            }}) }}
+            {{ form_widget(form.poster) }}
             </div>
             <div>
             {{ form_label(form.trailer) }}
