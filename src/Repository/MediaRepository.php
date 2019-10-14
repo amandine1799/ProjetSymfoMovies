@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Actors;
 use App\Entity\Media;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -54,6 +55,17 @@ class MediaRepository extends ServiceEntityRepository
                     ->getQuery();
 
         return $sql->execute();
+    }
+
+    public function findAllMediaByActor(Actors $actor)
+    {
+        return $this->createQueryBuilder('m')
+                    ->join('m.actors','a')
+                    ->andWhere('a = :actor')
+                    ->setParameter('actor',$actor)
+                    ->orderBy('m.released','ASC')
+                    ->getQuery()
+                    ->getResult();
     }
 
     public function getDistinctDecades()

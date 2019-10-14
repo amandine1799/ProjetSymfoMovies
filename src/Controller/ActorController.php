@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Actors;
 use App\Form\ActorsType;
 use App\Repository\ActorsRepository;
+use App\Repository\MediaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -102,10 +103,11 @@ class ActorController extends AbstractController
     /**
      * @Route("/actors/{id}", name="actors.show")
      */
-    public function show(Actors $actor)
+    public function show(Actors $actor, MediaRepository $rep)
     {
         return $this->render('actors/index.html.twig', [
-            'actor' => $actor
+            'actor' => $actor,
+            'medias' => $rep->findAllMediaByActor($actor)
         ]);
     }
 
